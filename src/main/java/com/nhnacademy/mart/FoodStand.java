@@ -10,8 +10,9 @@ public class FoodStand {
     public void add(Food food) {
         foods.add(food);
     }
-    // TODO 장바구니에 담은 Food 삭제 구현 (Not yet)
-    public void remove() {
-        foods.clear();
+    // TODO 장바구니에 담은 Food 삭제 구현 (Complete)
+    public void remove(Food food) {
+        foods.remove(food);
     }
+
 }

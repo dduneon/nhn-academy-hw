@@ -28,6 +28,7 @@ public class NhnMart {
         return new Basket();
     }
 
+    // getFoodStand() 구현
     public FoodStand getFoodStand() {
         return foodStand;
     }

@@ -17,6 +17,10 @@ public class Customer {
         this.basket = basket;
     }
 
+    public void pickFoods(FoodStand foodStand) {
+
+    }
+
     // TODO pickFoods 메서드 구현
 
 
