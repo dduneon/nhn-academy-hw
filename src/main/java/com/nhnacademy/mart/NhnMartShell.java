@@ -1,6 +1,7 @@
 package com.nhnacademy.mart;
 
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class NhnMartShell {
 
@@ -32,8 +33,15 @@ public class NhnMartShell {
         BuyList buyList = new BuyList();
         Scanner sc = new Scanner(System.in);
 
-        while(sc.hasNext()) {
-            buyList.add(sc.next(), sc.nextInt());
+        String str = sc.nextLine();
+        StringTokenizer st = new StringTokenizer(str);
+
+        while(st.hasMoreTokens()) {
+            String itemName = st.nextToken();
+            int itemAmount;
+            if (!st.hasMoreTokens())    throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
+            itemAmount = Integer.parseInt(st.nextToken());
+            buyList.add(itemName, itemAmount);
         }
         return buyList;
     }

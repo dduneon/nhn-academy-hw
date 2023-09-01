@@ -5,8 +5,11 @@ import java.util.ArrayList;
 public class Basket {
     private final ArrayList<Food> foods = new ArrayList<>();
 
+    private int totalAmount = 0;
+
     public void add(Food food) {
         foods.add(food);
+        totalAmount += food.getPrice();
     }
 
     public ArrayList<Food> getFoods() {
@@ -15,10 +18,6 @@ public class Basket {
 
     // getTotalAmount() -> 장바구니 최종 금액
     public int getTotalAmount() {
-        int total = 0;
-        for (Food food: foods) {
-            total += food.getPrice();
-        }
-        return total;
+        return totalAmount;
     }
 }
