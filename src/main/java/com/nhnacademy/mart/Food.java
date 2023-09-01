@@ -17,4 +17,13 @@ public class Food {
     public int getPrice() {
         return price;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Food food;
+        if (obj instanceof Food)
+            food = (Food) obj;
+        else return false;
+        return (this.getName().equals(food.getName()));
+    }
 }

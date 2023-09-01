@@ -13,7 +13,9 @@ public class FoodStand {
     // TODO 장바구니에 담은 Food 삭제 구현 (Complete)
     public void remove(Basket basket) {
         for(Food food: basket.getFoods()) {
-            this.foods.remove(food);
+            if(!this.foods.remove(food)) {
+                throw new IllegalArgumentException("매대에 없는 상품을 구매하셨습니다");
+            }
         }
     }
 

@@ -25,6 +25,8 @@ public class Customer {
 
 
     // TODO payTox 메서드 구현
-
+    public void payTox(Counter counter) {
+        counter.pay(this.basket.getTotalAmount());
+    }
 
 }
