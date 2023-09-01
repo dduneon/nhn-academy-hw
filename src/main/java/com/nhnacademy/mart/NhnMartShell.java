@@ -10,7 +10,7 @@ public class NhnMartShell {
 
         BuyList buyList = inputBuyListFromShell();
 
-        // TODO 본인이름 영어로 변수명 작성!
+        // TODO 본인이름 영어로 변수명 작성! (Complete)
         // 본인이름을 각자 맞게 영어로 변경
         // 홍길동 학생
         // -> hongGilDong or gilDong
@@ -27,7 +27,7 @@ public class NhnMartShell {
     }
 
     private static BuyList inputBuyListFromShell() {
-        // TODO Scanner 입력을 받아 buyList 만들기
+        // TODO Scanner 입력을 받아 buyList 만들기 (Complete)
 
         BuyList buyList = new BuyList();
         Scanner sc = new Scanner(System.in);

@@ -6,7 +6,7 @@ public class BuyList {
 
     private final ArrayList<Item> items = new ArrayList<>();
 
-    // TODO add 메서드 생성
+    // TODO add 메서드 생성 (Complete)
     public void add(String name, int amount) {
         items.add(new Item(name, amount));
     }
