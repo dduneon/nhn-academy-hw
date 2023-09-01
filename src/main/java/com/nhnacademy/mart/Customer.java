@@ -17,11 +17,11 @@ public class Customer {
         this.basket = basket;
     }
 
+    // TODO pickFoods 메서드 구현 (Complete)
     public void pickFoods(FoodStand foodStand) {
-
+        foodStand.remove(basket);
     }
 
-    // TODO pickFoods 메서드 구현
 
 
     // TODO payTox 메서드 구현

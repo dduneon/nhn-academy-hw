@@ -8,4 +8,8 @@ public class Basket {
     public void add(Food food) {
         foods.add(food);
     }
+
+    public ArrayList<Food> getFoods() {
+        return foods;
+    }
 }

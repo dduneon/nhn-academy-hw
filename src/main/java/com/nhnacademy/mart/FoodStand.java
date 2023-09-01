@@ -11,8 +11,10 @@ public class FoodStand {
         foods.add(food);
     }
     // TODO 장바구니에 담은 Food 삭제 구현 (Complete)
-    public void remove(Food food) {
-        foods.remove(food);
+    public void remove(Basket basket) {
+        for(Food food: basket.getFoods()) {
+            this.foods.remove(food);
+        }
     }
 
 }
