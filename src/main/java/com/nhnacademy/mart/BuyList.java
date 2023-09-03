@@ -6,7 +6,6 @@ public class BuyList {
 
     private final ArrayList<Item> items = new ArrayList<>();
 
-    // TODO add 메서드 생성 (Complete)
     public void add(Item item) {
         Logback.logger.info("BuyList.add() : {} {}개가 추가되었습니다.", item.name, item.amount);
         items.add(item);
