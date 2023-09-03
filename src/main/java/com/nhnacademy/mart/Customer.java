@@ -41,6 +41,8 @@ public class Customer {
                 } else {
                     Logback.logger.error("Customer.pickFood() : {} 상품 수량이 더이상 존재하지 않습니다", tmp.getName());
                     System.out.println(tmp.getName() + " 상품 수량이 존재하지 않습니다. 확인 해주세요!");
+                    throw new IllegalArgumentException(tmp.getName() + " 상품 수량이 존재하지 않습니다. 확인 해주세요!");
+
                 }
             }
         }

@@ -28,6 +28,7 @@ public class NhnMartShell {
             // 카운터에서 계산한다.
             junHyeon.payTox(mart.getCounter());
         } catch (IllegalArgumentException e) {
+            System.out.println("잘못된 값을 입력하였습니다. 다시 확인해주세요!");
             Logback.logger.error("잘못된 값을 입력하셨습니다. 다시 확인해주세요!");
         }
     }
