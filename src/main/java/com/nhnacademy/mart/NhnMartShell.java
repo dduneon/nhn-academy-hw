@@ -2,6 +2,7 @@ package com.nhnacademy.mart;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
+import org.slf4j.LoggerFactory;
 
 public class NhnMartShell {
 
@@ -33,6 +34,8 @@ public class NhnMartShell {
         BuyList buyList = new BuyList();
         Scanner sc = new Scanner(System.in);
 
+        System.out.println("NHN 마트에 오신것을 환영합니다! 사고 싶은 물건을 골라주세요\n");
+        System.out.print("> ");
         String str = sc.nextLine();
         StringTokenizer st = new StringTokenizer(str);
 
@@ -40,8 +43,12 @@ public class NhnMartShell {
             String itemName = st.nextToken();
             int itemAmount;
             if (!st.hasMoreTokens())    throw new IllegalArgumentException("잘못된 값을 입력하셨습니다.");
-            itemAmount = Integer.parseInt(st.nextToken());
-            buyList.add(itemName, itemAmount);
+            try {
+                itemAmount = Integer.parseInt(st.nextToken());
+                buyList.add(new BuyList.Item(itemName, itemAmount));
+            } catch (NumberFormatException e) {
+                Logback.logger.error("NhnMartShell.inputBuyListFromShell() : 잘못된 값을 입력하였습니다.");
+            }
         }
         return buyList;
     }
