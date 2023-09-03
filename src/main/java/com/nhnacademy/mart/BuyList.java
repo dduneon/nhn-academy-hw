@@ -7,8 +7,13 @@ public class BuyList {
     private final ArrayList<Item> items = new ArrayList<>();
 
     // TODO add 메서드 생성 (Complete)
-    public void add(String name, int amount) {
-        items.add(new Item(name, amount));
+    public void add(Item item) {
+        Logback.logger.info("BuyList.add() : {} {}개가 추가되었습니다.", item.name, item.amount);
+        items.add(item);
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     public static class Item {
@@ -19,5 +24,12 @@ public class BuyList {
             this.amount = amount;
         }
 
+        public String getName() {
+            return name;
+        }
+
+        public int getAmount() {
+            return amount;
+        }
     }
 }
