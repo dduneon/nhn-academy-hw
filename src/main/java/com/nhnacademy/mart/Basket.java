@@ -9,6 +9,7 @@ public class Basket {
 
     public void add(Food food) {
         foods.add(food);
+        Logback.logger.info("Basket.add() : {}({}) 상품이 추가됨", food.getName(), food.getPrice());
         totalAmount += food.getPrice();
     }
 

@@ -11,12 +11,16 @@ public class FoodStand {
         foods.add(food);
     }
     // TODO 장바구니에 담은 Food 삭제 구현 (Complete)
-    public void remove(Basket basket) {
-        for(Food food: basket.getFoods()) {
-            if(!this.foods.remove(food)) {
-                throw new IllegalArgumentException("매대에 없는 상품을 구매하셨습니다");
-            }
+    public boolean remove(Food food) {
+        return foods.remove(food);
+    }
+
+    public Food findFood(String name) {
+        for(Food food: foods) {
+            if (food.getName().equals(name))
+                return food;
         }
+        return null;
     }
 
 }
