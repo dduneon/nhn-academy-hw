@@ -58,6 +58,7 @@ public class UserRepositoryImpl implements UserRepository {
     //todo#3-2 회원조회
     Connection connection = DbConnectionThreadLocal.getConnection();
     String sql = "select * from users where user_id=?";
+    log.debug("sql:{}", sql);
 
     ResultSet rs = null;
     try (PreparedStatement psmt = connection.prepareStatement(sql);) {
@@ -89,6 +90,7 @@ public class UserRepositoryImpl implements UserRepository {
     //todo#3-3 회원등록, executeUpdate()을 반환합니다.
     Connection connection = DbConnectionThreadLocal.getConnection();
     String sql = "insert into users(user_id, user_name, user_password, user_birth, user_auth, user_point, created_at) values(?,?,?,?,?,?,?)";
+    log.debug("sql:{}", sql);
 
     try (PreparedStatement psmt = connection.prepareStatement(sql);) {
       psmt.setString(1, user.getUserId());
@@ -129,6 +131,7 @@ public class UserRepositoryImpl implements UserRepository {
     //todo#3-5 회원수정, executeUpdate()을 반환합니다.
     Connection connection = DbConnectionThreadLocal.getConnection();
     String sql = "update users set user_name=?, user_password=?, user_birth=?, user_auth=?, user_point=?, created_at=? where user_id=?";
+    log.debug("sql:{}", sql);
 
     try (PreparedStatement psmt = connection.prepareStatement(sql);) {
       psmt.setString(1, user.getUserName());
@@ -170,6 +173,7 @@ public class UserRepositoryImpl implements UserRepository {
     //todo#3-7 userId와 일치하는 회원의 count를 반환합니다.
     Connection connection = DbConnectionThreadLocal.getConnection();
     String sql = "select count(*) from users where user_id=?";
+    log.debug("sql:{}", sql);
 
     ResultSet rs = null;
     try (PreparedStatement psmt = connection.prepareStatement(sql);) {

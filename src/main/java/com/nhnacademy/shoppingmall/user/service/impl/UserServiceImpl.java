@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
     if (Objects.isNull(user)) {
       throw new RuntimeException("user is null");
     }
-    if (isExistUser(user.getUserId())) {
+    if (Objects.nonNull(getUser(user.getUserId()))) {
       throw new UserAlreadyExistsException("user already exist");
     }
     int result = userRepository.save(user);
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
     if (Objects.isNull(user)) {
       throw new RuntimeException("user is null");
     }
-    if (!isExistUser(user.getUserId())) {
+    if (Objects.isNull(getUser(user.getUserId()))) {
       throw new UserNotFoundException("user doesn't exist");
     }
     int result = userRepository.update(user);
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public void deleteUser(String userId) {
     //todo#4-4 회원삭제
-    if (!isExistUser(userId)) {
+    if (Objects.nonNull(getUser(userId))) {
       throw new UserNotFoundException("user doesn't exist");
     }
     int result = userRepository.deleteByUserId(userId);
@@ -78,14 +78,4 @@ public class UserServiceImpl implements UserService {
     return user.get();
   }
 
-  /**
-   * userRepository에 존재하는 user인지 판단하는 메서드
-   *
-   * @param userId 조회할 user의 id
-   * @return 유저가 존재하면 true, 존재하지 않으면 false
-   */
-  public boolean isExistUser(String userId) {
-    int count = userRepository.countByUserId(userId);
-    return count > 0;
-  }
 }
