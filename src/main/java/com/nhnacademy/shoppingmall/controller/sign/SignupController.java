@@ -12,6 +12,6 @@ public class SignupController implements BaseController {
 
   @Override
   public String execute(HttpServletRequest req, HttpServletResponse resp) {
-    return null;
+    return "shop/sign/signup";
   }
 }

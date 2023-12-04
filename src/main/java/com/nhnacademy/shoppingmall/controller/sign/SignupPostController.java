@@ -13,6 +13,7 @@ public class SignupPostController implements BaseController {
 
   @Override
   public String execute(HttpServletRequest req, HttpServletResponse resp) {
-    return null;
+    return "redirect:/index.do";
   }
+
 }
