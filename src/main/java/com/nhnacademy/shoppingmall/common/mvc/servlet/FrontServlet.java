@@ -1,9 +1,17 @@
 package com.nhnacademy.shoppingmall.common.mvc.servlet;
 
+import static javax.servlet.RequestDispatcher.ERROR_EXCEPTION;
+import static javax.servlet.RequestDispatcher.ERROR_EXCEPTION_TYPE;
+import static javax.servlet.RequestDispatcher.ERROR_MESSAGE;
+import static javax.servlet.RequestDispatcher.ERROR_REQUEST_URI;
+import static javax.servlet.RequestDispatcher.ERROR_STATUS_CODE;
+
 import com.nhnacademy.shoppingmall.common.mvc.controller.BaseController;
 import com.nhnacademy.shoppingmall.common.mvc.controller.ControllerFactory;
 import com.nhnacademy.shoppingmall.common.mvc.transaction.DbConnectionThreadLocal;
 import com.nhnacademy.shoppingmall.common.mvc.view.ViewResolver;
+import java.io.IOException;
+import java.sql.Connection;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -30,10 +38,12 @@ public class FrontServlet extends HttpServlet {
   }
 
   @Override
-  protected void service(HttpServletRequest req, HttpServletResponse resp) {
+  protected void service(HttpServletRequest req, HttpServletResponse resp)
+      throws ServletException, IOException {
     try {
       //todo#7-3 Connection pool로 부터 connection 할당 받습니다. connection은 Thread 내에서 공유됩니다.
       DbConnectionThreadLocal.initialize();
+      Connection connection = DbConnectionThreadLocal.getConnection();
 
       BaseController baseController = (BaseController) controllerFactory.getController(req);
       String viewName = baseController.execute(req, resp);
@@ -54,6 +64,13 @@ public class FrontServlet extends HttpServlet {
       log.error("error:{}", e);
       DbConnectionThreadLocal.setSqlError(true);
       //todo#7-5 예외가 발생하면 해당 예외에 대해서 적절한 처리를 합니다.
+      req.setAttribute("status_code", req.getAttribute(ERROR_STATUS_CODE));
+      req.setAttribute("exception_type", req.getAttribute(ERROR_EXCEPTION_TYPE));
+      req.setAttribute("message", req.getAttribute(ERROR_MESSAGE));
+      req.setAttribute("exception", req.getAttribute(ERROR_EXCEPTION));
+      req.setAttribute("request_uri", req.getAttribute(ERROR_REQUEST_URI));
+      RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
+      rd.forward(req, resp);
 
     } finally {
       //todo#7-4 connection을 반납합니다.
