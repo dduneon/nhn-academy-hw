@@ -2,6 +2,8 @@ package com.nhnacademy.shoppingmall.common.filter;
 
 import com.nhnacademy.shoppingmall.user.domain.User;
 import com.nhnacademy.shoppingmall.user.domain.User.Auth;
+import com.nhnacademy.shoppingmall.user.repository.impl.UserRepositoryImpl;
+import com.nhnacademy.shoppingmall.user.service.impl.UserServiceImpl;
 import java.io.IOException;
 import java.util.Objects;
 import javax.servlet.FilterChain;
@@ -17,6 +19,8 @@ import lombok.extern.slf4j.Slf4j;
 @WebFilter(filterName = "adminCheckFilter", urlPatterns = "/admin/*")
 public class AdminCheckFilter extends HttpFilter {
 
+  private final UserServiceImpl userService = new UserServiceImpl(new UserRepositoryImpl());
+
   @Override
   protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
       throws IOException, ServletException {
@@ -26,18 +30,16 @@ public class AdminCheckFilter extends HttpFilter {
     if (Objects.isNull(session)) {
       log.error("Session is null");
       res.sendError(403);
-      return;
     } else {
-      User user = (User) session.getAttribute("USER_SESSION");
-      Auth auth = user.getUserAuth();
-      log.debug("User Auth: {}", auth);
-      if (auth.equals(Auth.ROLE_USER)) {
-        log.error("Auth: {}, access admin page", auth);
+      String userId = (String) session.getAttribute("USER_ID_SESSION");
+      User user = userService.getUser(userId);
+      if (Objects.isNull(user) || user.getUserAuth().equals(Auth.ROLE_USER)) {
+        log.error("Cannot Access by ROLE_USER or Non login state");
         res.sendError(403);
         return;
       }
+      log.debug("Auth: Admin, doFilter call");
+      chain.doFilter(req, res);
     }
-    log.debug("Auth: Admin, doFilter call");
-    chain.doFilter(req, res);
   }
 }

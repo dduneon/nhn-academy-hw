@@ -17,7 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
             crossorigin="anonymous"></script>
-    <title>NHN Academy Shopping Mall</title>
+    <title>NHN Academy Shopping Mall Admin Page</title>
 
 </head>
 <body>
@@ -44,21 +44,8 @@
                 </form>
 
                 <div class="text-end">
-                    <c:choose>
-                        <c:when test="${sessionScope.USER_ID_SESSION ne null}">
-                            <a class="btn btn-outline-light me-2" href="/logout.do">로그아웃</a>
-                            <c:if test="${sessionScope.USER_AUTH_SESSION eq 'ROLE_ADMIN'}">
-                                <a class="btn btn-warning" href="/admin.do">관리자 페이지</a>
-                            </c:if>
-                            <c:if test="${sessionScope.USER_AUTH_SESSION eq 'ROLE_USER'}">
-                                <a class="btn btn-warning" href="/mypage.do">마이페이지</a>
-                            </c:if>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="btn btn-outline-light me-2" href="/login.do">로그인</a>
-                            <a class="btn btn-warning" href="/signup.do">회원가입</a>
-                        </c:otherwise>
-                    </c:choose>
+                    <a class="btn btn-outline-light me-2" href="/logout.do">로그아웃</a>
+                    <a class="btn btn-warning" href="/admin.do">관리자 페이지</a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,11 @@
 package com.nhnacademy.shoppingmall.common.mvc.servlet;
 
+import static javax.servlet.RequestDispatcher.ERROR_EXCEPTION;
+import static javax.servlet.RequestDispatcher.ERROR_EXCEPTION_TYPE;
+import static javax.servlet.RequestDispatcher.ERROR_MESSAGE;
+import static javax.servlet.RequestDispatcher.ERROR_REQUEST_URI;
+import static javax.servlet.RequestDispatcher.ERROR_STATUS_CODE;
+
 import com.nhnacademy.shoppingmall.common.mvc.controller.BaseController;
 import com.nhnacademy.shoppingmall.common.mvc.controller.ControllerFactory;
 import com.nhnacademy.shoppingmall.common.mvc.transaction.DbConnectionThreadLocal;
@@ -57,11 +63,11 @@ public class FrontServlet extends HttpServlet {
       log.error("error:{}", e);
       DbConnectionThreadLocal.setSqlError(true);
       //todo#7-5 예외가 발생하면 해당 예외에 대해서 적절한 처리를 합니다.
-//      req.setAttribute("status_code", req.getAttribute(ERROR_STATUS_CODE));
-//      req.setAttribute("exception_type", req.getAttribute(ERROR_EXCEPTION_TYPE));
-//      req.setAttribute("message", req.getAttribute(ERROR_MESSAGE));
-//      req.setAttribute("exception", req.getAttribute(ERROR_EXCEPTION));
-//      req.setAttribute("request_uri", req.getAttribute(ERROR_REQUEST_URI));
+      req.setAttribute("status_code", req.getAttribute(ERROR_STATUS_CODE));
+      req.setAttribute("exception_type", req.getAttribute(ERROR_EXCEPTION_TYPE));
+      req.setAttribute("message", req.getAttribute(ERROR_MESSAGE));
+      req.setAttribute("exception", req.getAttribute(ERROR_EXCEPTION));
+      req.setAttribute("request_uri", req.getAttribute(ERROR_REQUEST_URI));
 //      RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
 //      rd.forward(req, resp);
 

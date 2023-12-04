@@ -40,7 +40,6 @@ public class ViewResolver {
 
   public String getRedirectUrl(String viewName) {
     //todo#6-3 REDIRECT_PREFIX를 제외한 url을 반환 합니다.
-
     if (isRedirect(viewName)) {
       return viewName.substring(REDIRECT_PREFIX.length());
     }
