@@ -17,7 +17,7 @@ public class WelcomePageFilter extends HttpFilter {
   protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
       throws IOException, ServletException {
     //todo#9 /요청이 오면 welcome page인 index.do redirect 합니다.
-    log.debug("doFilter called");
+    log.debug("{} called", getFilterName());
     res.sendRedirect("/index.do");
   }
 }

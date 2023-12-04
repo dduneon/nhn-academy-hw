@@ -19,9 +19,9 @@ public class LoginCheckFilter extends HttpFilter {
   protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
       throws IOException, ServletException {
     //todo#10 /mypage/ 하위경로의 접근은 로그인한 사용자만 접근할 수 있습니다. - 잘 모르겠음 dofilter()부분 else에서만 ?
-    log.debug("doFilter called");
+    log.debug("{} called", getFilterName());
     HttpSession session = req.getSession(false);
-    if (Objects.isNull(session)) {
+    if (Objects.isNull(session) || Objects.isNull(session.getAttribute("USER_ID_SESSION"))) {
       res.sendRedirect("/login.do");
       return;
     }
