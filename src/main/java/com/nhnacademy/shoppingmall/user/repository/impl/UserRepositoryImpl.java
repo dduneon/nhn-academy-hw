@@ -48,6 +48,12 @@ public class UserRepositoryImpl implements UserRepository {
       }
     } catch (SQLException e) {
       throw new RuntimeException(e);
+    } finally {
+      try {
+        rs.close();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
     }
 
     return Optional.empty();
@@ -82,6 +88,12 @@ public class UserRepositoryImpl implements UserRepository {
       }
     } catch (SQLException sqlException) {
       throw new RuntimeException(sqlException);
+    } finally {
+      try {
+        rs.close();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
     }
     log.debug("findById() return empty User");
     return Optional.empty();
@@ -189,6 +201,12 @@ public class UserRepositoryImpl implements UserRepository {
       return result;
     } catch (SQLException sqlException) {
       throw new RuntimeException(sqlException);
+    } finally {
+      try {
+        rs.close();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
     }
   }
 

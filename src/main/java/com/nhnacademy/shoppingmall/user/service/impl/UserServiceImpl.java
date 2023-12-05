@@ -31,11 +31,11 @@ public class UserServiceImpl implements UserService {
       throw new RuntimeException("user is null");
     }
     if (Objects.nonNull(getUser(user.getUserId()))) {
-      throw new UserAlreadyExistsException("user already exist");
+      throw new UserAlreadyExistsException(user.getUserId());
     }
     int result = userRepository.save(user);
     if (result < 1) {
-      throw new RuntimeException("Do not save user");
+      throw new RuntimeException("Cannot save user");
     }
   }
 
@@ -46,11 +46,11 @@ public class UserServiceImpl implements UserService {
       throw new RuntimeException("user is null");
     }
     if (Objects.isNull(getUser(user.getUserId()))) {
-      throw new UserNotFoundException("user doesn't exist");
+      throw new UserNotFoundException(user.getUserId());
     }
     int result = userRepository.update(user);
     if (result < 1) {
-      throw new RuntimeException("Do not update user");
+      throw new RuntimeException("Cannot update user");
     }
   }
 
@@ -58,11 +58,11 @@ public class UserServiceImpl implements UserService {
   public void deleteUser(String userId) {
     //todo#4-4 회원삭제
     if (Objects.nonNull(getUser(userId))) {
-      throw new UserNotFoundException("user doesn't exist");
+      throw new UserNotFoundException(userId);
     }
     int result = userRepository.deleteByUserId(userId);
     if (result < 1) {
-      throw new RuntimeException("Do not update user");
+      throw new RuntimeException("Cannot update user");
     }
   }
 
@@ -71,11 +71,10 @@ public class UserServiceImpl implements UserService {
     //todo#4-5 로그인 구현, userId, userPassword로 일치하는 회원 조회
     Optional<User> user = userRepository.findByUserIdAndUserPassword(userId, userPassword);
     if (user.isEmpty() || Objects.isNull(user)) {
-      throw new UserNotFoundException("user doesn't exist");
+      throw new UserNotFoundException(userId);
     }
     // 최근 로그인 시간을 현재 시간으로 변경
     userRepository.updateLatestLoginAtByUserId(userId, LocalDateTime.now());
     return user.get();
   }
-
 }
