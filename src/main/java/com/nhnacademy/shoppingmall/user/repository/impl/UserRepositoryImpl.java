@@ -77,11 +77,13 @@ public class UserRepositoryImpl implements UserRepository {
                 .toLocalDateTime() : null,
             Objects.nonNull(rs.getTimestamp("latest_login_at")) ? rs.getTimestamp("latest_login_at")
                 .toLocalDateTime() : null);
+        log.debug("findById() return User({})", user.getUserId());
         return Optional.of(user);
       }
     } catch (SQLException sqlException) {
       throw new RuntimeException(sqlException);
     }
+    log.debug("findById() return empty User");
     return Optional.empty();
   }
 
