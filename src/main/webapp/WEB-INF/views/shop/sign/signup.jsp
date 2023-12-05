@@ -3,11 +3,11 @@
 
 <script> function validateForm() {
   var selectedMonth = document.getElementById("user_birth_month").value;
-  if(selectedMonth==="월") {
+  if (selectedMonth === "월") {
     alert("월을 선택해 주세요.");
     return false;
   }
-    return true;
+  return true;
 }
 </script>
 
@@ -36,16 +36,19 @@
                 <label for="user_password">비밀번호</label>
             </div>
 
-            <div class ="bir_wrap">
+            <div class="bir_wrap">
                 <label class="form-label mt-4">생년월일</label>
                 <div class="bir_yy">
                 		<span class="ps_box">
-                			<input type="text" class="form-control" id="user_birth_year" placeholder="년(4자)" maxlength="4" required>
+                			<input type="text" class="form-control" id="user_birth_year"
+                                   name="user_birth_year" placeholder="년(4자)" maxlength="4"
+                                   required>
                 		</span>
                 </div>
                 <div class="bir_mm">
                 		<span class="ps_box focus">
-			                <select class="form-select" id="user_birth_month" required>
+			                <select class="form-select" id="user_birth_month"
+                                    name="user_birth_month" required>
 						        <option disabled selected>월</option>
 						        <option value="01">1월</option>
 						        <option value="02">2월</option>
@@ -64,7 +67,9 @@
                 </div>
                 <div class="bir_dd">
                 		<span class="ps_box">
-                			<input type ="text" class="form-control" id ="user_birth_day" placeholder="일" maxlength="2" required>
+                			<input type="text" class="form-control" id="user_birth_day"
+                                   name="user_birth_day"
+                                   placeholder="일" maxlength="2" required>
                 		</span>
                 </div>
             </div>

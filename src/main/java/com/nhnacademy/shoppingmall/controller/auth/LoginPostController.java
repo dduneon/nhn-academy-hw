@@ -35,11 +35,17 @@ public class LoginPostController implements BaseController {
         session.setAttribute("USER_AUTH_SESSION", user.getUserAuth());
       } catch (UserNotFoundException userNotFoundException) {
         log.error("user not found, redirect to login.do");
-        return "redirect:/login.do";
+        // popup alert
+        req.setAttribute("msg", "없는 아이디 이거나, 틀린 비밀번호를 입력하셨습니다.");
+        req.setAttribute("url", "/login.do");
+        return "alert/alert";
       }
       return "shop/main/index";
     }
     log.error("id or pw is null, redirect to login.do");
+    // popup alert
+    req.setAttribute("msg", "아이디, 비밀번호를 잘못 입력하셨습니다.");
+    req.setAttribute("url", "/login.do");
     return "redirect:/login.do";
   }
 }
