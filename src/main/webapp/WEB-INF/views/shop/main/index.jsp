@@ -9,11 +9,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<!-- 카테고리 넣기 (카테고리별) -->
 <div class="row row-cols-1 row-cols-sm-4 g-3">
     <c:forEach var="item" items="${requestScope.PAGE_CONTENTS.getContent()}">
         <div class="col">
             <!-- -->
-            <a href="<c:url value=''/>">
+            <a href="<c:url value="/product/detail.do?id=${item.getProductId()}"/>">
                 <div class="card shadow-sm">
                     <div class="text-center">
                         <img src="${item.getProductImage()}" alt="${item.getProductId()}"
@@ -39,7 +40,9 @@
     </c:forEach>
 </div>
 
-<nav aria-label="Page navigation">
+<!-- todo 사이 여백 두기 -->
+
+<nav aria-label="Page navigation" style="padding-top: 20px">
     <ul class="pagination justify-content-center">
         <c:choose>
         <c:when test="${requestScope.PAGE_CONTENTS.getCurrentIndex() eq 1}">
