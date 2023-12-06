@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RequestMapping(method = Method.GET, value = "/user/mypage/info.do")
-public class UpdateInfoController implements BaseController {
+@RequestMapping(method = Method.POST, value = "/user/mypage/infoAction.do")
+public class UpdateInfoPostController implements BaseController {
 
   private final UserService userService = new UserServiceImpl(new UserRepositoryImpl());
 
@@ -26,6 +26,20 @@ public class UpdateInfoController implements BaseController {
    */
   @Override
   public String execute(HttpServletRequest req, HttpServletResponse resp) {
+    String name = req.getParameter("name");
+    String pastPassword = req.getParameter("past_password");
+    String newPassword = req.getParameter("new_password");
+    String birthday = req.getParameter("birthday");
+
+    log.debug("name: {}, past_pw: {}, new_pw: {}, birth: {}", name, pastPassword, newPassword,
+        birthday);
+    if (Objects.isNull(name) || Objects.isNull(pastPassword) || Objects.isNull(newPassword)
+        || Objects.isNull(birthday)) {
+      req.setAttribute("msg", "잘못 입력되었습니다. 다시 입력해 주세요");
+      req.setAttribute("url", "/user/mypage/info.do");
+      return "alert/alert";
+    }
+
     HttpSession session = req.getSession(false);
     if (Objects.isNull(session)) {
       // popup alert
@@ -47,8 +61,16 @@ public class UpdateInfoController implements BaseController {
       req.setAttribute("url", "/index.do");
       return "alert/alert";
     }
-    log.debug("success to set attribute user");
-    req.setAttribute("USER_REQ", user);
-    return "shop/user/mypage/update_info";
+    if (!pastPassword.equals(user.getUserPassword())) {
+      req.setAttribute("msg", "이전 비밀번호를 잘못 입력하셨습니다. 다시 입력해주세요");
+      req.setAttribute("url", "/user/mypage/info.do");
+      return "alert/alert";
+    }
+    user.setUserName(name);
+    user.setUserPassword(newPassword);
+    user.setUserBirth(birthday);
+
+    userService.updateUser(user);
+    return "/user/mypage.do";
   }
 }

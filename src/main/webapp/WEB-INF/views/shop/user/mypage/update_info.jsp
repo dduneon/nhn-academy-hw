@@ -18,17 +18,27 @@
             <h2 class="mb-4">회원 정보 수정</h2>
 
             <!-- 회원 정보 수정 폼 -->
-            <form action="/updateMember" method="post">
+            <form action="/user/mypage/infoAction.do" method="post">
                 <!-- 이름 입력 필드 -->
                 <div class="mb-3">
                     <label for="name" class="form-label">이름</label>
-                    <input type="text" class="form-control" id="name" name="name" required>
+                    <input type="text" class="form-control" id="name" name="name"
+                           value="${requestScope.USER_REQ.getUserName()}" required>
                 </div>
 
-                <!-- 비밀번호 입력 필드 -->
+                <!-- 현재 비밀번호 입력 필드 -->
                 <div class="mb-3">
-                    <label for="password" class="form-label">비밀번호</label>
-                    <input type="password" class="form-control" id="password" name="password"
+                    <label for="past_password" class="form-label">현재 비밀번호</label>
+                    <input type="password" class="form-control" id="past_password"
+                           name="past_password"
+                           required>
+                </div>
+
+                <!-- 변경할 비밀번호 입력 필드 -->
+                <div class="mb-3">
+                    <label for="new_password" class="form-label">변경할 비밀번호</label>
+                    <input type="password" class="form-control" id="new_password"
+                           name="new_password"
                            required>
                 </div>
 
@@ -36,7 +46,10 @@
                 <div class="mb-3">
                     <label for="birthday" class="form-label">생일</label>
                     <!-- todo 이거 좋은데 signup에서도 쓸수 있도록 -->
-                    <input type="date" class="form-control" id="birthday" name="birthday" required>
+                    <!-- fn:replace - to "" -->
+                    <input type="date" class="form-control" id="birthday" name="birthday"
+                           value="${requestScope.USER_REQ.getUserBirth()}"
+                           required>
                 </div>
 
                 <!-- 수정 버튼 -->
