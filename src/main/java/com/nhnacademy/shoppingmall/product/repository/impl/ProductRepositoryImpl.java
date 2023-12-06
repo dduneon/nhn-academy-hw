@@ -13,6 +13,7 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+
 public class ProductRepositoryImpl implements ProductRepository {
 
   /**
@@ -33,7 +34,6 @@ public class ProductRepositoryImpl implements ProductRepository {
       if (rs.next()) {
         Product product = new Product(
             rs.getInt("ProductId"),
-            rs.getInt("CategoryId"),
             rs.getString("ModelNumber"),
             rs.getString("ModelName"),
             rs.getString("ProductImage"),
@@ -61,46 +61,6 @@ public class ProductRepositoryImpl implements ProductRepository {
   @Override
   public List<Product> getAllProductList() {
     return getLimitedList(0, Integer.MAX_VALUE);
-  }
-
-  /**
-   * @param categoryId
-   * @return
-   */
-  @Override
-  public List<Product> getListByCategoryId(int categoryId) {
-    Connection connection = DbConnectionThreadLocal.getConnection();
-    String sql = "select * from Products where CategoryID=?";
-
-    List<Product> result = new ArrayList<>();
-    ResultSet rs = null;
-    try (PreparedStatement psmt = connection.prepareStatement(sql);
-    ) {
-      psmt.setInt(1, categoryId);
-      rs = psmt.executeQuery();
-      while (rs.next()) {
-        Product product = new Product(
-            rs.getInt("ProductId"),
-            rs.getInt("CategoryId"),
-            rs.getString("ModelNumber"),
-            rs.getString("ModelName"),
-            rs.getString("ProductImage"),
-            rs.getInt("UnitCost"),
-            rs.getString("Description")
-        );
-        result.add(product);
-      }
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
-    } finally {
-      try {
-        rs.close();
-      } catch (SQLException e) {
-        throw new RuntimeException(e);
-      }
-    }
-
-    return result;
   }
 
   /**
@@ -138,17 +98,16 @@ public class ProductRepositoryImpl implements ProductRepository {
   @Override
   public int save(Product product) {
     Connection connection = DbConnectionThreadLocal.getConnection();
-    String sql = "insert into Products values(?,?,?,?,?,?,?)";
+    String sql = "insert into Products values(?,?,?,?,?,?)";
     log.debug("sql:{}", sql);
 
     try (PreparedStatement psmt = connection.prepareStatement(sql);) {
       psmt.setInt(1, product.getProductId());
-      psmt.setInt(2, product.getCategoryId());
-      psmt.setString(3, product.getModelNumber());
-      psmt.setString(4, product.getModelName());
-      psmt.setString(5, product.getProductImage());
-      psmt.setInt(6, product.getUnitCost());
-      psmt.setString(7, product.getDescription());
+      psmt.setString(2, product.getModelNumber());
+      psmt.setString(3, product.getModelName());
+      psmt.setString(4, product.getProductImage());
+      psmt.setInt(5, product.getUnitCost());
+      psmt.setString(6, product.getDescription());
 
       int result = psmt.executeUpdate();
       log.debug("result: {}", result);
@@ -186,17 +145,16 @@ public class ProductRepositoryImpl implements ProductRepository {
   @Override
   public int update(Product product) {
     Connection connection = DbConnectionThreadLocal.getConnection();
-    String sql = "update Products set CategoryID=?, ModelNumber=?, ModelName=?, ProductImage=?, UnitCost=?, Description=? where ProductID=?";
+    String sql = "update Products set ModelNumber=?, ModelName=?, ProductImage=?, UnitCost=?, Description=? where ProductID=?";
     log.debug("sql:{}", sql);
 
     try (PreparedStatement psmt = connection.prepareStatement(sql);) {
-      psmt.setInt(1, product.getCategoryId());
+      psmt.setString(1, product.getModelName());
       psmt.setString(2, product.getModelName());
-      psmt.setString(3, product.getModelName());
-      psmt.setString(4, product.getProductImage());
-      psmt.setInt(5, product.getUnitCost());
-      psmt.setString(6, product.getDescription());
-      psmt.setInt(7, product.getProductId());
+      psmt.setString(3, product.getProductImage());
+      psmt.setInt(4, product.getUnitCost());
+      psmt.setString(5, product.getDescription());
+      psmt.setInt(6, product.getProductId());
 
       int result = psmt.executeUpdate();
       log.debug("result: {}", result);
@@ -228,7 +186,6 @@ public class ProductRepositoryImpl implements ProductRepository {
       while (rs.next()) {
         Product product = new Product(
             rs.getInt("ProductId"),
-            rs.getInt("CategoryId"),
             rs.getString("ModelNumber"),
             rs.getString("ModelName"),
             rs.getString("ProductImage"),

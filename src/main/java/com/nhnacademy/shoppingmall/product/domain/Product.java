@@ -5,17 +5,15 @@ import java.util.Objects;
 public class Product {
 
   private int productId;
-  private int categoryId;
   private String modelNumber;
   private String modelName;
   private String productImage;
   private int unitCost;
   private String description;
 
-  public Product(int productId, int categoryId, String modelNumber, String modelName,
+  public Product(int productId, String modelNumber, String modelName,
       String productImage, int unitCost, String description) {
     this.productId = productId;
-    this.categoryId = categoryId;
     this.modelNumber = modelNumber;
     this.modelName = modelName;
     this.productImage = productImage;
@@ -25,10 +23,6 @@ public class Product {
 
   public int getProductId() {
     return productId;
-  }
-
-  public int getCategoryId() {
-    return categoryId;
   }
 
   public String getModelNumber() {
@@ -53,10 +47,6 @@ public class Product {
 
   public void setProductId(int productId) {
     this.productId = productId;
-  }
-
-  public void setCategoryId(int categoryId) {
-    this.categoryId = categoryId;
   }
 
   public void setModelNumber(String modelNumber) {
@@ -101,7 +91,6 @@ public class Product {
   public String toString() {
     return "Product{" +
         "productId='" + productId + '\'' +
-        ", categoryId='" + categoryId + '\'' +
         ", modelNumber='" + modelNumber + '\'' +
         ", modelName='" + modelName + '\'' +
         ", unitCost=" + unitCost + '\'' +

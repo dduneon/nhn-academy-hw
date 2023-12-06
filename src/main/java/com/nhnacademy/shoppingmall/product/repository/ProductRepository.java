@@ -12,8 +12,6 @@ public interface ProductRepository {
 
   List<Product> getLimitedList(long offset, long row_count);
 
-  // 생각해보기, CategoryProduct 에서 구현 하는 것이 좋을듯
-  List<Product> getListByCategoryId(int categoryId);
 
   int getProductCount();
 
