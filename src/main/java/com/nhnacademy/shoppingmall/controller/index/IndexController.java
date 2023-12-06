@@ -24,7 +24,7 @@ public class IndexController implements BaseController {
     long currentIndex = (Objects.isNull(currentIndexStr) || currentIndexStr.isEmpty()) ? 1 :
         Integer.parseInt(currentIndexStr);
 
-    Page<Product> currentPage = productService.getProductPage((currentIndex - 1) * Page.PAGE_SIZE,
+    Page<Product> currentPage = productService.getProductPage(currentIndex,
         Page.PAGE_SIZE);
 
     if (Objects.isNull(currentPage) || currentPage.getContent().isEmpty()) {

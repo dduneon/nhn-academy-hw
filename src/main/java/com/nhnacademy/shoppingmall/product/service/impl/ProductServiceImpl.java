@@ -99,8 +99,9 @@ public class ProductServiceImpl implements ProductService {
    * @return
    */
   @Override
-  public Page<Product> getProductPage(long offset, long row_count) {
+  public Page<Product> getProductPage(long currentIndex, long row_count) {
+    long offset = (currentIndex - 1) * Page.PAGE_SIZE;
     List<Product> products = productRepository.getLimitedList(offset, row_count);
-    return new Page<>(products, productRepository.getProductCount());
+    return new Page<>(products, productRepository.getProductCount(), currentIndex);
   }
 }
