@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true"
          session="true" %>
 
@@ -50,7 +51,7 @@
 			                <select class="form-select" id="user_birth_month"
                                     name="user_birth_month" required>
 						        <option disabled selected>월</option>
-						        <option value="01">1월</option>
+                                <option value="01">1월</option>
 						        <option value="02">2월</option>
 						        <option value="03">3월</option>
 						        <option value="04">4월</option>

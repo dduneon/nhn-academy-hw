@@ -32,6 +32,7 @@ public class LoginPostController implements BaseController {
         HttpSession session = req.getSession(true);
         session.setMaxInactiveInterval(60 * 60);
         session.setAttribute("USER_ID_SESSION", user.getUserId());
+        session.setAttribute("USER_NAME_SESSION", user.getUserName());
         session.setAttribute("USER_AUTH_SESSION", user.getUserAuth());
       } catch (UserNotFoundException userNotFoundException) {
         log.error("user not found, redirect to login.do");
@@ -40,7 +41,7 @@ public class LoginPostController implements BaseController {
         req.setAttribute("url", "/login.do");
         return "alert/alert";
       }
-      return "shop/main/index";
+      return "redirect:/index.do";
     }
     log.error("id or pw is null, redirect to login.do");
     // popup alert
