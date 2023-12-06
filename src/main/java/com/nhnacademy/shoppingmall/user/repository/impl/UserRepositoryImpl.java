@@ -144,7 +144,7 @@ public class UserRepositoryImpl implements UserRepository {
   public int update(User user) {
     //todo#3-5 회원수정, executeUpdate()을 반환합니다.
     Connection connection = DbConnectionThreadLocal.getConnection();
-    String sql = "update users set user_name=?, user_password=?, user_birth=?, user_auth=?, user_point=?, created_at=? where user_id=?";
+    String sql = "update users set user_name=?, user_password=?, user_birth=?, user_auth=?, user_point=? where user_id=?";
     log.debug("sql:{}", sql);
 
     try (PreparedStatement psmt = connection.prepareStatement(sql);) {
@@ -153,8 +153,7 @@ public class UserRepositoryImpl implements UserRepository {
       psmt.setString(3, user.getUserBirth());
       psmt.setString(4, user.getUserAuth().name());
       psmt.setInt(5, user.getUserPoint());
-      psmt.setTimestamp(6, Timestamp.valueOf(user.getCreatedAt()));
-      psmt.setString(7, user.getUserId());
+      psmt.setString(6, user.getUserId());
 
       int result = psmt.executeUpdate();
       log.debug("result: {}", result);

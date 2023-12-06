@@ -51,7 +51,7 @@
                                 <a class="btn btn-warning" href="/admin.do">관리자 페이지</a>
                             </c:if>
                             <c:if test="${sessionScope.USER_AUTH_SESSION eq 'ROLE_USER'}">
-                                <a class="btn btn-warning" href="/mypage.do">마이페이지</a>
+                                <a class="btn btn-warning" href="/user/mypage.do">마이페이지</a>
                             </c:if>
                         </c:when>
                         <c:otherwise>
