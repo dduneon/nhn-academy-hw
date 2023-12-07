@@ -15,5 +15,4 @@ public interface UserService {
 
   User doLogin(String userId, String userPassword);
 
-  List<String> getUserAddresses(String userId);
 }

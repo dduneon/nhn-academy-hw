@@ -78,13 +78,4 @@ public class UserServiceImpl implements UserService {
     userRepository.updateLatestLoginAtByUserId(userId, LocalDateTime.now());
     return user.get();
   }
-
-  /**
-   * @param userId
-   * @return
-   */
-  @Override
-  public List<String> getUserAddresses(String userId) {
-    return userRepository.getUserAddresses(userId);
-  }
 }

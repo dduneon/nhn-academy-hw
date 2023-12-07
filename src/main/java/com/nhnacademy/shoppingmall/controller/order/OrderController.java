@@ -8,7 +8,11 @@ import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping.Method;
 import com.nhnacademy.shoppingmall.common.mvc.controller.BaseController;
 import com.nhnacademy.shoppingmall.common.util.AlertUtils;
 import com.nhnacademy.shoppingmall.join.domain.ProductInfoInCart;
+import com.nhnacademy.shoppingmall.user.repository.impl.UserRepositoryImpl;
+import com.nhnacademy.shoppingmall.user.service.UserService;
+import com.nhnacademy.shoppingmall.user.service.impl.UserServiceImpl;
 import java.util.List;
+import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -19,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class OrderController implements BaseController {
 
   private final CartService cartService = new CartServiceImpl(new CartRepositoryImpl());
+  private final UserService userService = new UserServiceImpl(new UserRepositoryImpl());
 
   /**
    * @param req
@@ -35,9 +40,15 @@ public class OrderController implements BaseController {
       return AlertUtils.alert(req, "장바구니가 비어있습니다. 상품을 담고 시도해 주세요", "/user/cart.do");
     }
     int totalPrice = cartService.getTotalPriceInCart(userId);
+
+    List<String> addressList = userService.getUserAddresses(userId);
+    if(Objects.isNull(addressList)) {
+      return AlertUtils.alert(req, "오류가 발생하였습니다. 다시 시도해 주세요.", "/user/cart.do");
+    }
     //todo 유저 address req로 보내주기
     req.setAttribute("ORDER_LIST", orderList);
     req.setAttribute("TOTAL_PRICE", totalPrice);
+    req.setAttribute("USER_ADDRESSES", addressList);
     return "shop/order/order";
   }
 }

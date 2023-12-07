@@ -1,4 +1,4 @@
-package com.nhnacademy.shoppingmall.join.domain;
+package com.nhnacademy.shoppingmall.useraddress.domain;
 
 public class UserAddresses {
 

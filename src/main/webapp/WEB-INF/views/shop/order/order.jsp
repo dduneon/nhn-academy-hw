@@ -27,6 +27,15 @@
             <p>이메일: ${order.customerEmail}</p>
             <p>전화번호: ${order.customerPhone}</p>
             <!-- 기타 주문자 정보 추가 -->
+            <div class="mb-3">
+                <label for="savedAddress" class="form-label">주소 선택:</label>
+                <select class="form-select" id="savedAddress" name="savedAddress">
+                    <option selected disabled>주소를 선택하세요</option>
+                    <c:forEach var="address" items="${USER_ADDRESSES}">
+                        <option value="${address}">${address}</option>
+                    </c:forEach>
+                </select>
+            </div>
         </div>
     </div>
 

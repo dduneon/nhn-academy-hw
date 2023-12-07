@@ -21,5 +21,4 @@ public interface UserRepository {
 
   int countByUserId(String userId);
 
-  List<String> getUserAddresses(String userId);
 }
