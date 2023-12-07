@@ -1,16 +1,19 @@
 package com.nhnacademy.shoppingmall.cart.service.impl;
 
 import com.nhnacademy.shoppingmall.cart.domain.Cart;
+import com.nhnacademy.shoppingmall.cart.repository.CartRepository;
 import com.nhnacademy.shoppingmall.cart.service.CartService;
-import com.nhnacademy.shoppingmall.product.repository.ProductRepository;
 import java.util.List;
+import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class CartServiceImpl implements CartService {
 
-  private final ProductRepository productRepository;
+  private final CartRepository cartRepository;
 
-  public CartServiceImpl(ProductRepository productRepository) {
-    this.productRepository = productRepository;
+  public CartServiceImpl(CartRepository cartRepository) {
+    this.cartRepository = cartRepository;
   }
 
   /**
@@ -19,7 +22,13 @@ public class CartServiceImpl implements CartService {
    */
   @Override
   public List<Cart> getUserCartList(String userId) {
-    return null;
+    List<Cart> cart = cartRepository.getCart(userId);
+    log.debug("get cart length: {}", cart.size());
+    if (Objects.isNull(cart)) {
+      log.error("cart is null");
+      throw new RuntimeException("cart is null");
+    }
+    return cart;
   }
 
   /**
@@ -30,6 +39,15 @@ public class CartServiceImpl implements CartService {
   @Override
   public boolean isExistProductInCart(int productId, String userId) {
     List<Cart> cart = getUserCartList(userId);
+    if (Objects.isNull(cart)) {
+      log.error("cart is null");
+      throw new RuntimeException("cart is null");
+    }
+    for (Cart c : cart) {
+      if (c.getProductId() == productId) {
+        return true;
+      }
+    }
     return false;
   }
 
@@ -39,7 +57,11 @@ public class CartServiceImpl implements CartService {
    */
   @Override
   public void saveProductInCart(int productId, String userId) {
-
+    int result = cartRepository.save(productId, userId);
+    if (result < 1) {
+      log.error("cannot save in cart");
+      throw new RuntimeException("cannot save in cart");
+    }
   }
 
   /**
@@ -48,7 +70,11 @@ public class CartServiceImpl implements CartService {
    */
   @Override
   public void deleteProductInCart(int productId, String userId) {
-
+    int result = cartRepository.delete(productId, userId);
+    if (result < 1) {
+      log.error("cannot delete in cart");
+      throw new RuntimeException("cannot delete in cart");
+    }
   }
 
   /**
@@ -58,6 +84,10 @@ public class CartServiceImpl implements CartService {
    */
   @Override
   public void setQuantityProductInCart(int quantity, int productId, String userId) {
-
+    int result = cartRepository.update(quantity, productId, userId);
+    if (result < 1) {
+      log.error("cannot update in cart");
+      throw new RuntimeException("cannot update in cart");
+    }
   }
 }
