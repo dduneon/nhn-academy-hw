@@ -15,4 +15,5 @@ public interface CartRepository {
 
   public int countByProductIdUserId(int productId, String userId);
 
+  public int getTotalPriceInCart(String userId);
 }

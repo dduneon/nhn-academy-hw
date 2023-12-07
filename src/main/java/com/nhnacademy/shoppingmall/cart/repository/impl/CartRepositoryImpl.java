@@ -129,6 +129,37 @@ public class CartRepositoryImpl implements CartRepository {
   }
 
   @Override
+  public int getTotalPriceInCart(String userId) {
+    String sql = "select p.UnitCost, s.Quantity from ShoppingCart as s join Products as p on s.ProductID = p.ProductID where user_id=?";
+    log.debug("sql:{}", sql);
+
+    int result = 0;
+    ResultSet rs = null;
+    Connection connection = DbConnectionThreadLocal.getConnection();
+    try (PreparedStatement statement = connection.prepareStatement(sql);) {
+      statement.setString(1, userId);
+
+      rs = statement.executeQuery();
+      while (rs.next()) {
+        int temp_unitCost = rs.getInt("p.UnitCost");
+        int temp_quantity = rs.getInt("s.Quantity");
+
+        result += temp_unitCost * temp_quantity;
+      }
+      log.debug("total price : {}", result);
+      return result;
+    } catch (SQLException sqlException) {
+      throw new RuntimeException(sqlException);
+    } finally {
+      try {
+        rs.close();
+      } catch (SQLException sqlException) {
+        throw new RuntimeException(sqlException);
+      }
+    }
+  }
+
+  @Override
   public int countByProductIdUserId(int productId, String userId) {
     //todo#3-7 userId와 일치하는 회원의 count를 반환합니다.
     Connection connection = DbConnectionThreadLocal.getConnection();

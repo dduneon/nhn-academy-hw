@@ -31,6 +31,11 @@ public class CartServiceImpl implements CartService {
     return cart;
   }
 
+  @Override
+  public int getTotalPriceInCart(String userId) {
+    return cartRepository.getTotalPriceInCart(userId);
+  }
+
   /**
    * @param productId
    * @param userId

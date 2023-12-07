@@ -39,8 +39,10 @@ public class ShoppingCartController implements BaseController {
     }
 
     List<ProductInfoInCart> productInfoInCarts = cartService.getUserCartList(userId);
+    int totalPrice = cartService.getTotalPriceInCart(userId);
     if (Objects.nonNull(productInfoInCarts)) {
       req.setAttribute("CART_PRODUCTS", productInfoInCarts);
+      req.setAttribute("TOTAL_PRICE", totalPrice);
     } else {
       return AlertUtils.alert(req, "정보를 불러오는 데에 실패하였습니다.", "/index.do");
     }

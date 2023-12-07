@@ -14,4 +14,6 @@ public interface CartService {
   void deleteProductInCart(int productId, String userId);
 
   void setQuantityProductInCart(int quantity, int productId, String userId);
+
+  public int getTotalPriceInCart(String userId);
 }

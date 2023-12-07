@@ -12,7 +12,6 @@
           rel="stylesheet">
 </head>
 <body>
-
 <div class="container mt-5">
     <h2>Shopping Cart</h2>
 
@@ -71,7 +70,7 @@
         <div class="row justify-content-end">
             <!-- 총 가격 계산 로직 작성 -->
             <div class="col text-end">
-                <h5>총 가격: <fmt:formatNumber value=""
+                <h5>총 가격: <fmt:formatNumber value="${requestScope.TOTAL_PRICE}"
                                             type="number"
                                             maxFractionDigits="3"/> 원</h5>
             </div>
@@ -80,13 +79,14 @@
 
 
     <!-- 주문하기 버튼 중앙 정렬 -->
-    <div class="row justify-content-center mb-1">
-        <div class="row justify-content-center">
-            <form action="/user/order.do" method="get">
+    <form action="/user/order.do" method="get">
+        <div class="row justify-content-center mb-1">
+            <div class="row justify-content-center">
                 <button class="btn btn-primary" style="width: 30%" type="submit">주문하기</button>
-            </form>
+            </div>
         </div>
-    </div>
+    </form>
+
 </div>
 
 <!-- Bootstrap JS 및 Popper.js (필요한 경우) -->
