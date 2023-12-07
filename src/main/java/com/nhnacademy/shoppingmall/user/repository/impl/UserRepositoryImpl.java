@@ -9,6 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
@@ -209,4 +211,35 @@ public class UserRepositoryImpl implements UserRepository {
     }
   }
 
+  /**
+   * @param userId
+   * @return
+   */
+  @Override
+  public List<String> getUserAddresses(String userId) {
+    Connection connection = DbConnectionThreadLocal.getConnection();
+    String sql = "select a.user_address from users as u join UserAddresses as ua on u.user_id = ua.user_id where user_id=?";
+    log.debug("sql:{}", sql);
+
+    List<String> addressList = new ArrayList<>();
+    ResultSet rs = null;
+    try (PreparedStatement psmt = connection.prepareStatement(sql);) {
+      psmt.setString(1, userId);
+
+      rs = psmt.executeQuery();
+      while (rs.next()) {
+        addressList.add(rs.getString(1));
+      }
+      log.debug("Address list size: {}", addressList.size());
+      return addressList;
+    } catch (SQLException sqlException) {
+      throw new RuntimeException(sqlException);
+    } finally {
+      try {
+        rs.close();
+      } catch (SQLException e) {
+        throw new RuntimeException(e);
+      }
+    }
+  }
 }

@@ -68,8 +68,8 @@ public class FrontServlet extends HttpServlet {
       req.setAttribute("message", req.getAttribute(ERROR_MESSAGE));
       req.setAttribute("exception", req.getAttribute(ERROR_EXCEPTION));
       req.setAttribute("request_uri", req.getAttribute(ERROR_REQUEST_URI));
-//      RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
-//      rd.forward(req, resp);
+      RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
+      rd.forward(req, resp);
 
     } finally {
       //todo#7-4 connection을 반납합니다.

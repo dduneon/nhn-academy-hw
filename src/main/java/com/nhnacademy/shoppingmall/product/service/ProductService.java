@@ -19,4 +19,5 @@ public interface ProductService {
   int getProductCount();
 
   Page<Product> getProductPage(long offset, long row_count);
+
 }

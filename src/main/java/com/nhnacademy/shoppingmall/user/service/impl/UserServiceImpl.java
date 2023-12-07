@@ -6,6 +6,7 @@ import com.nhnacademy.shoppingmall.user.exception.UserNotFoundException;
 import com.nhnacademy.shoppingmall.user.repository.UserRepository;
 import com.nhnacademy.shoppingmall.user.service.UserService;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -76,5 +77,14 @@ public class UserServiceImpl implements UserService {
     // 최근 로그인 시간을 현재 시간으로 변경
     userRepository.updateLatestLoginAtByUserId(userId, LocalDateTime.now());
     return user.get();
+  }
+
+  /**
+   * @param userId
+   * @return
+   */
+  @Override
+  public List<String> getUserAddresses(String userId) {
+    return userRepository.getUserAddresses(userId);
   }
 }

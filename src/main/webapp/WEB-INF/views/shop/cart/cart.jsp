@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" session="false"
          trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
@@ -79,10 +80,20 @@
 
 
     <!-- 주문하기 버튼 중앙 정렬 -->
-    <form action="/user/order.do" method="get">
+    <form action="/user/order.do" method="post">
         <div class="row justify-content-center mb-1">
             <div class="row justify-content-center">
-                <button class="btn btn-primary" style="width: 30%" type="submit">주문하기</button>
+                <c:choose>
+                    <c:when test="${requestScope.CART_PRODUCTS.size() eq 0}">
+                        <button class="btn btn-primary" style="width: 30%" type="submit" disabled>
+                            주문하기
+                        </button>
+                    </c:when>
+                    <c:otherwise>
+                        <button class="btn btn-primary" style="width: 30%" type="submit">주문하기
+                        </button>
+                    </c:otherwise>
+                </c:choose>
             </div>
         </div>
     </form>
