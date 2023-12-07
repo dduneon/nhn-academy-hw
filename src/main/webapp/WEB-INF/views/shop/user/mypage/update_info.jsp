@@ -21,7 +21,14 @@
             <form action="/user/mypage/infoAction.do" method="post">
                 <!-- 이름 입력 필드 -->
                 <div class="mb-3">
-                    <label for="name" class="form-label">이름</label>
+                    <label for="id" class="form-label">아이디</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                           value="${requestScope.USER_REQ.getUserId()}" disabled required>
+                </div>
+
+                <!-- 이름 입력 필드 -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">변경할 이름</label>
                     <input type="text" class="form-control" id="name" name="name"
                            value="${requestScope.USER_REQ.getUserName()}" required>
                 </div>
@@ -44,7 +51,7 @@
 
                 <!-- 생일 입력 필드 -->
                 <div class="mb-3">
-                    <label for="birthday" class="form-label">생일</label>
+                    <label for="birthday" class="form-label">변경할 생일</label>
                     <!-- todo 이거 좋은데 signup에서도 쓸수 있도록 -->
                     <!-- fn:replace - to "" -->
                     <input type="date" class="form-control" id="birthday" name="birthday"

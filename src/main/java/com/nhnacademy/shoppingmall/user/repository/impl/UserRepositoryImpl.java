@@ -194,8 +194,8 @@ public class UserRepositoryImpl implements UserRepository {
 
       rs = psmt.executeQuery();
       int result = 0;
-      while (rs.next()) {
-        result++;
+      if (rs.next()) {
+        result = rs.getInt(1);
       }
       return result;
     } catch (SQLException sqlException) {

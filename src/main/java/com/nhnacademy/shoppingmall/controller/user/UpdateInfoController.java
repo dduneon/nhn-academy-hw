@@ -3,6 +3,7 @@ package com.nhnacademy.shoppingmall.controller.user;
 import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping;
 import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping.Method;
 import com.nhnacademy.shoppingmall.common.mvc.controller.BaseController;
+import com.nhnacademy.shoppingmall.common.util.AlertUtils;
 import com.nhnacademy.shoppingmall.user.domain.User;
 import com.nhnacademy.shoppingmall.user.repository.impl.UserRepositoryImpl;
 import com.nhnacademy.shoppingmall.user.service.UserService;
@@ -29,23 +30,19 @@ public class UpdateInfoController implements BaseController {
     HttpSession session = req.getSession(false);
     if (Objects.isNull(session)) {
       // popup alert
-      req.setAttribute("msg", "세션이 만료되어 접근할 수 없습니다. 다시 로그인해 주세요");
-      req.setAttribute("url", "/login.do");
-      return "alert/alert";
+      return AlertUtils.alert(req, "세션이 만료되어 접근할 수 없습니다. 다시 로그인해 주세요", "/login.do");
+
     }
     String userId = (String) session.getAttribute("USER_ID_SESSION");
     if (Objects.isNull(userId)) {
       // popup alert
-      req.setAttribute("msg", "세션이 만료되어 접근할 수 없습니다. 다시 로그인해 주세요");
-      req.setAttribute("url", "/login.do");
-      return "alert/alert";
+      session.invalidate();
+      return AlertUtils.alert(req, "세션이 만료되어 접근할 수 없습니다. 다시 로그인해 주세요", "/login.do");
     }
     log.debug("Session userID: {}", userId);
     User user = userService.getUser(userId);
     if (Objects.isNull(user)) {
-      req.setAttribute("msg", "오류가 발생하였습니다.");
-      req.setAttribute("url", "/index.do");
-      return "alert/alert";
+      return AlertUtils.alert(req, "오류가 발생하였습니다.", "/index.do");
     }
     log.debug("success to set attribute user");
     req.setAttribute("USER_REQ", user);
