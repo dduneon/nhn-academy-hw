@@ -44,6 +44,6 @@ public class ShoppingCartController implements BaseController {
     } else {
       return AlertUtils.alert(req, "정보를 불러오는 데에 실패하였습니다.", "/index.do");
     }
-    return "shop/user/cart";
+    return "shop/cart/cart";
   }
 }

@@ -46,6 +46,6 @@ public class UpdateInfoController implements BaseController {
     }
     log.debug("success to set attribute user");
     req.setAttribute("USER_REQ", user);
-    return "shop/user/mypage/update_info";
+    return "shop/user/func/update_info";
   }
 }

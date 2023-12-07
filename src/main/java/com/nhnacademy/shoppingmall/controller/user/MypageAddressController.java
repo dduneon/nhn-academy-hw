@@ -18,6 +18,6 @@ public class MypageAddressController implements BaseController {
    */
   @Override
   public String execute(HttpServletRequest req, HttpServletResponse resp) {
-    return "shop/user/mypage/manage_address";
+    return "shop/user/func/manage_address";
   }
 }

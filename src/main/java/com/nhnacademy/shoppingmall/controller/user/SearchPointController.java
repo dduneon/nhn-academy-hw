@@ -23,6 +23,6 @@ public class SearchPointController implements BaseController {
    */
   @Override
   public String execute(HttpServletRequest req, HttpServletResponse resp) {
-    return "shop/user/mypage/search_point";
+    return "shop/user/func/search_point";
   }
 }

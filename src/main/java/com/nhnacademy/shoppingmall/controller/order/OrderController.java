@@ -1,4 +1,4 @@
-package com.nhnacademy.shoppingmall.controller.user;
+package com.nhnacademy.shoppingmall.controller.order;
 
 import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping;
 import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping.Method;
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RequestMapping(method = Method.GET, value = "/user/mypage/orders.do")
-public class SearchOrdersController implements BaseController {
+@RequestMapping(method = Method.GET, value = "/user/order.do")
+public class OrderController implements BaseController {
 
   /**
    * @param req
@@ -18,6 +18,6 @@ public class SearchOrdersController implements BaseController {
    */
   @Override
   public String execute(HttpServletRequest req, HttpServletResponse resp) {
-    return "shop/user/func/search_orders";
+    return "shop/order/order";
   }
 }

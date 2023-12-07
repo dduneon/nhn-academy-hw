@@ -82,7 +82,9 @@
     <!-- 주문하기 버튼 중앙 정렬 -->
     <div class="row justify-content-center mb-1">
         <div class="row justify-content-center">
-            <button class="btn btn-primary" style="width: 30%"> 주문하기</button>
+            <form action="/user/order.do" method="get">
+                <button class="btn btn-primary" style="width: 30%" type="submit">주문하기</button>
+            </form>
         </div>
     </div>
 </div>
