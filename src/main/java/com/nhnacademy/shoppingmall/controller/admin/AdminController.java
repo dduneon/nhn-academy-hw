@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@RequestMapping(method = RequestMapping.Method.GET, value = "/admin.do")
+@RequestMapping(method = RequestMapping.Method.GET, value = "/admin/admin.do")
 public class AdminController implements BaseController {
 
   @Override

@@ -31,7 +31,7 @@
         <div class="col-md-6">
             <!-- 상품 정보 -->
             <!-- todo 카테고리 수정 -->
-            <p style="color: gray">아우터 > 패딩</p>
+            <p style="color: rgb(128,128,128)">아우터 > 패딩</p>
             <h2 class="mb-3">${PRODUCT.getModelName()}</h2>
             <p style="padding-bottom: 10px">${PRODUCT.getDescription()}</p>
             <p>상품명 : ${PRODUCT.getModelNumber()}</p>
@@ -42,7 +42,10 @@
             </h3>
             </p>
             <!-- 장바구니 담기 버튼 -->
-            <button class="btn btn-primary">장바구니 담기</button>
+            <form action="/user/additem.do" method="post">
+                <input type="hidden" name="productId" value="${PRODUCT.getProductId()}">
+                <button type="submit" class="btn btn-primary">장바구니 담기</button>
+            </form>
         </div>
     </div>
 </div>

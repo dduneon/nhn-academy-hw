@@ -45,7 +45,10 @@
 
                 <div class="text-end">
                     <a class="btn btn-outline-light me-2" href="/logout.do">로그아웃</a>
-                    <a class="btn btn-warning" href="/admin.do">관리자 페이지</a>
+                    <!-- todo admin page -->
+                    <a class="btn btn-warning" href="/admin.do">상품 카테고리 관리</a>
+                    <a class="btn btn-warning" href="/admin.do">상품 관리</a>
+                    <a class="btn btn-warning" href="/admin.do">회원 관리</a>
                 </div>
             </div>
         </div>
