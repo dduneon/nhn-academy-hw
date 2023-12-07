@@ -2,6 +2,7 @@ package com.nhnacademy.shoppingmall.controller.auth;
 
 import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping;
 import com.nhnacademy.shoppingmall.common.mvc.controller.BaseController;
+import com.nhnacademy.shoppingmall.common.util.AlertUtils;
 import com.nhnacademy.shoppingmall.user.domain.User;
 import com.nhnacademy.shoppingmall.user.exception.UserNotFoundException;
 import com.nhnacademy.shoppingmall.user.repository.impl.UserRepositoryImpl;
@@ -37,16 +38,14 @@ public class LoginPostController implements BaseController {
       } catch (UserNotFoundException userNotFoundException) {
         log.error("user not found, redirect to login.do");
         // popup alert
-        req.setAttribute("msg", "없는 아이디 이거나, 틀린 비밀번호를 입력하셨습니다.");
-        req.setAttribute("url", "/login.do");
-        return "alert/alert";
+        return AlertUtils.alert(req, "없는 아이디 이거나, 틀린 비밀번호를 입력하셨습니다.", "/login.do");
+
       }
       return "redirect:/index.do";
     }
     log.error("id or pw is null, redirect to login.do");
     // popup alert
-    req.setAttribute("msg", "아이디, 비밀번호를 잘못 입력하셨습니다.");
-    req.setAttribute("url", "/login.do");
-    return "redirect:/login.do";
+    return AlertUtils.alert(req, "아이디, 비밀번호를 잘못 입력하셨습니다.", "redirect:/login.do");
+
   }
 }

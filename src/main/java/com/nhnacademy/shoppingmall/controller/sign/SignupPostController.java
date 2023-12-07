@@ -3,6 +3,7 @@ package com.nhnacademy.shoppingmall.controller.sign;
 import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping;
 import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping.Method;
 import com.nhnacademy.shoppingmall.common.mvc.controller.BaseController;
+import com.nhnacademy.shoppingmall.common.util.AlertUtils;
 import com.nhnacademy.shoppingmall.user.domain.User;
 import com.nhnacademy.shoppingmall.user.domain.User.Auth;
 import com.nhnacademy.shoppingmall.user.exception.UserAlreadyExistsException;
@@ -53,15 +54,11 @@ public class SignupPostController implements BaseController {
     } catch (UserAlreadyExistsException userAlreadyExistsException) {
       log.error("Signup Failed: {}", userAlreadyExistsException.getMessage());
       // popup alert
-      req.setAttribute("msg", "이미 존재하는 아이디 입니다. 아이디를 변경해 주세요.");
-      req.setAttribute("url", "/signup.do");
-      return "alert/alert";
+      return AlertUtils.alert(req, "이미 존재하는 아이디 입니다. 아이디를 변경해 주세요.", "/signup.do");
     } catch (RuntimeException runtimeException) {
       log.error("Signup Failed: {}", runtimeException.getMessage());
       // popup alert
-      req.setAttribute("msg", "회원가입에 실패하였습니다. 다시 시도해주세요.");
-      req.setAttribute("url", "/signup.do");
-      return "alert/alert";
+      return AlertUtils.alert(req, "회원가입에 실패하였습니다. 다시 시도해주세요.", "/signup.do");
     }
     return "redirect:/index.do";
   }

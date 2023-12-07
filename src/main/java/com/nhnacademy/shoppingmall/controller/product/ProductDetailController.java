@@ -2,6 +2,7 @@ package com.nhnacademy.shoppingmall.controller.product;
 
 import com.nhnacademy.shoppingmall.common.mvc.annotation.RequestMapping;
 import com.nhnacademy.shoppingmall.common.mvc.controller.BaseController;
+import com.nhnacademy.shoppingmall.common.util.AlertUtils;
 import com.nhnacademy.shoppingmall.product.domain.Product;
 import com.nhnacademy.shoppingmall.product.repository.impl.ProductRepositoryImpl;
 import com.nhnacademy.shoppingmall.product.service.ProductService;
@@ -33,9 +34,7 @@ public class ProductDetailController implements BaseController {
     if (Objects.isNull(productId)) {
       log.error("ProductId is null {}", productId);
       // popup alert
-      req.setAttribute("msg", "잘못된 상품 페이지 접근입니다.");
-      req.setAttribute("url", "/index.do");
-      return "alert/alert";
+      return AlertUtils.alert(req, "잘못된 상품 페이지 접근입니다.", "/index.do");
     }
     req.setAttribute("PRODUCT", product);
     return "shop/product/detail";

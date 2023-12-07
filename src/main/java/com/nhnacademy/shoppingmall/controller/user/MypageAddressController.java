@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequestMapping(method = Method.GET, value = "/user/mypage/address.do")
-public class MagageAddressController implements BaseController {
+public class MypageAddressController implements BaseController {
 
   /**
    * @param req
