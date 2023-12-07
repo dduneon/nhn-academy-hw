@@ -1,8 +1,8 @@
 package com.nhnacademy.shoppingmall.cart.service.impl;
 
-import com.nhnacademy.shoppingmall.cart.domain.Cart;
 import com.nhnacademy.shoppingmall.cart.repository.CartRepository;
 import com.nhnacademy.shoppingmall.cart.service.CartService;
+import com.nhnacademy.shoppingmall.join.domain.ProductInfoInCart;
 import java.util.List;
 import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
@@ -21,8 +21,8 @@ public class CartServiceImpl implements CartService {
    * @return
    */
   @Override
-  public List<Cart> getUserCartList(String userId) {
-    List<Cart> cart = cartRepository.getCart(userId);
+  public List<ProductInfoInCart> getUserCartList(String userId) {
+    List<ProductInfoInCart> cart = cartRepository.getProductInfoInCart(userId);
     log.debug("get cart length: {}", cart.size());
     if (Objects.isNull(cart)) {
       log.error("cart is null");
@@ -38,17 +38,8 @@ public class CartServiceImpl implements CartService {
    */
   @Override
   public boolean isExistProductInCart(int productId, String userId) {
-    List<Cart> cart = getUserCartList(userId);
-    if (Objects.isNull(cart)) {
-      log.error("cart is null");
-      throw new RuntimeException("cart is null");
-    }
-    for (Cart c : cart) {
-      if (c.getProductId() == productId) {
-        return true;
-      }
-    }
-    return false;
+    int result = cartRepository.countByProductIdUserId(productId, userId);
+    return result > 0;
   }
 
   /**

@@ -1,11 +1,11 @@
 package com.nhnacademy.shoppingmall.cart.service;
 
-import com.nhnacademy.shoppingmall.cart.domain.Cart;
+import com.nhnacademy.shoppingmall.join.domain.ProductInfoInCart;
 import java.util.List;
 
 public interface CartService {
 
-  List<Cart> getUserCartList(String userId);
+  List<ProductInfoInCart> getUserCartList(String userId);
 
   boolean isExistProductInCart(int productId, String userId);
 
