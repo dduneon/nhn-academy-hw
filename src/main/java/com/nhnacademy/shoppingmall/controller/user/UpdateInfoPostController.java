@@ -68,9 +68,14 @@ public class UpdateInfoPostController implements BaseController {
     }
     user.setUserName(name);
     user.setUserPassword(newPassword);
-    user.setUserBirth(birthday);
+    user.setUserBirth(birthday.replace("-", ""));
 
     userService.updateUser(user);
-    return "/user/mypage.do";
+    // 세션 초기화를 위한 재 로그인 요청
+    req.setAttribute("msg", "회원 정보 변경에 성공하였습니다. 변경된 회원 정보로 다시 로그인해 주세요");
+    req.setAttribute("url", "/index.do");
+    session.invalidate();
+
+    return "alert/alert";
   }
 }

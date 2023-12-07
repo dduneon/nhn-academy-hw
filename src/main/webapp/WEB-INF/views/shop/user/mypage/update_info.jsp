@@ -48,7 +48,7 @@
                     <!-- todo 이거 좋은데 signup에서도 쓸수 있도록 -->
                     <!-- fn:replace - to "" -->
                     <input type="date" class="form-control" id="birthday" name="birthday"
-                           value="${requestScope.USER_REQ.getUserBirth()}"
+                           value="${requestScope.USER_REQ.getUserBirthToDateFormat()}"
                            required>
                 </div>
 

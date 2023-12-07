@@ -27,8 +27,7 @@ public class SignupPostController implements BaseController {
     String inputId = req.getParameter("user_id");
     String inputPw = req.getParameter("user_password");
     String inputName = req.getParameter("user_name");
-    String inputBirth = req.getParameter("user_birth_year") + req.getParameter("user_birth_month")
-        + req.getParameter("user_birth_day");
+    String inputBirth = req.getParameter("user_birth");
     log.debug("(signup req) userid: {}, userpw: {}, username: {}, userbirth: {}", inputId, inputPw,
         inputName, inputBirth);
 
@@ -39,7 +38,8 @@ public class SignupPostController implements BaseController {
     }
 
     // user instance
-    User user = new User(inputId, inputName, inputPw, inputBirth, Auth.ROLE_USER, 1000000,
+    User user = new User(inputId, inputName, inputPw, inputBirth.replace("-", ""), Auth.ROLE_USER,
+        1000000,
         LocalDateTime.now(), null);
 
     // register and try login
