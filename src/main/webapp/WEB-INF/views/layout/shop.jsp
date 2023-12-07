@@ -48,10 +48,11 @@
                         <c:when test="${sessionScope.USER_ID_SESSION ne null}">
                             <a class="btn btn-outline-light me-2" href="/logout.do">로그아웃</a>
                             <c:if test="${sessionScope.USER_AUTH_SESSION eq 'ROLE_ADMIN'}">
-                                <a class="btn btn-warning" href="/admin.do">관리자 페이지</a>
+                                <a class="btn btn-warning" href="/admin/admin.do">관리자 페이지</a>
                             </c:if>
                             <c:if test="${sessionScope.USER_AUTH_SESSION eq 'ROLE_USER'}">
-                                <a class="btn btn-warning" href="/user/mypage.do">마이페이지</a>
+                                <a class="btn btn-warning me-2" href="/user/mypage.do">마이페이지</a>
+                                <a class="btn btn-warning" href="/user/cart.do">장바구니</a>
                             </c:if>
                         </c:when>
                         <c:otherwise>
