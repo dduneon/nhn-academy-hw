@@ -38,6 +38,11 @@ public class SignupPostController implements BaseController {
       return "redirect:/login.do";
     }
 
+    // null check
+    if(inputId.isEmpty() || inputPw.isEmpty() || inputName.isEmpty() || inputBirth.isEmpty()) {
+      return "redirect:/login.do";
+    }
+
     // user instance
     User user = new User(inputId, inputName, inputPw, inputBirth.replace("-", ""), Auth.ROLE_USER,
         1000000,
