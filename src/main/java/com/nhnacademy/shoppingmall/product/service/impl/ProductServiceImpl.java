@@ -104,5 +104,4 @@ public class ProductServiceImpl implements ProductService {
     List<Product> products = productRepository.getLimitedList(offset, row_count);
     return new Page<>(products, productRepository.getProductCount(), currentIndex);
   }
-
 }

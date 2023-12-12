@@ -68,7 +68,7 @@ public class FrontServlet extends HttpServlet {
       req.setAttribute("message", req.getAttribute(ERROR_MESSAGE));
       req.setAttribute("exception", req.getAttribute(ERROR_EXCEPTION));
       req.setAttribute("request_uri", req.getAttribute(ERROR_REQUEST_URI));
-      RequestDispatcher rd = req.getRequestDispatcher("/error.jsp");
+      RequestDispatcher rd = req.getRequestDispatcher(viewResolver.getPath("/error/error"));
       rd.forward(req, resp);
 
     } finally {
