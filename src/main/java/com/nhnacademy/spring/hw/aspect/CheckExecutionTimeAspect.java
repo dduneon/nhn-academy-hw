@@ -1,9 +1,12 @@
 package com.nhnacademy.spring.hw.aspect;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.util.StopWatch;
 import org.aspectj.lang.ProceedingJoinPoint;
 
 public class CheckExecutionTimeAspect {
+  private static final Log log = LogFactory.getLog(CheckExecutionTimeAspect.class);
   public Object doChecking(ProceedingJoinPoint pjp) throws Throwable{
     StopWatch stopWatch = new StopWatch();
     String className = pjp.getTarget().getClass().getSimpleName();
@@ -16,7 +19,7 @@ public class CheckExecutionTimeAspect {
     } finally {
       stopWatch.stop();
       long executionTime = stopWatch.getTotalTimeMillis();
-      System.out.println(className + "." + methodName + " " + executionTime + "ms");
+      log.info(className + "." + methodName + " " + executionTime + "ms");
     }
   }
 

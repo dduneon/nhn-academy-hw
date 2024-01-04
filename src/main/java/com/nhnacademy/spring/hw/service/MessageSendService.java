@@ -9,9 +9,10 @@ public class MessageSendService {
     this.messageSender = messageSender;
   }
 
-  public void doSendMessage(String name, String message) {
-    System.out.println("---Sending ...---");
-    messageSender.sendMessage(name, message);
-    System.out.println("---Send Success---");
+  public boolean doSendMessage(String name, String message) {
+    System.out.println(">>>>> Sending ...");
+    boolean result = messageSender.sendMessage(name, message);
+    System.out.println(">>>>> Send Success");
+    return result;
   }
 }
