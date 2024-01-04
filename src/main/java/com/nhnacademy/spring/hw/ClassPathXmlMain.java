@@ -22,10 +22,6 @@ public class ClassPathXmlMain {
       throw new RuntimeException("Error occured while read string");
     }
 
-    if(Objects.isNull(name) || Objects.isNull(message) || name.isEmpty() || message.isEmpty()) {
-      throw new RuntimeException("Name or Message must not be null or empty string");
-    }
-
     try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml")) {
       MessageSendService messageSendService = context.getBean("messageSendService", MessageSendService.class);
       messageSendService.doSendMessage(name, message);
