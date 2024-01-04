@@ -10,9 +10,4 @@
   <bean id="messageSendService" class="com.nhnacademy.spring.hw.service.MessageSendService">
     <constructor-arg ref="doorayMessageSender"/>
   </bean>
-
-  <bean id=""
-  <bean id="doorayHookSender" class="com.nhn.dooray.client.DoorayHookSender">
-    <constructor-arg ref=""
-  </bean>
 </beans>
