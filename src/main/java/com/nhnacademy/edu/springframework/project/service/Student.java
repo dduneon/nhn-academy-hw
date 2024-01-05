@@ -20,6 +20,14 @@ public class Student {
         return this.score;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getSeq() {
+        return seq;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
