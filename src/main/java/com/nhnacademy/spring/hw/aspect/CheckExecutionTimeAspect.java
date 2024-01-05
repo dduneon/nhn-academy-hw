@@ -2,11 +2,16 @@ package com.nhnacademy.spring.hw.aspect;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.springframework.util.StopWatch;
 import org.aspectj.lang.ProceedingJoinPoint;
 
+@Aspect
 public class CheckExecutionTimeAspect {
   private static final Log log = LogFactory.getLog(CheckExecutionTimeAspect.class);
+
+  @Around("com.nhnacademy.spring.hw.pointcut.CommonPointcuts.inDoorayMessageSender() && com.nhnacademy.spring.hw.pointcut.CommonPointcuts.hasCheckExecutionTimeAnnotation()")
   public Object doChecking(ProceedingJoinPoint pjp) throws Throwable{
     StopWatch stopWatch = new StopWatch();
     String className = pjp.getTarget().getClass().getSimpleName();
