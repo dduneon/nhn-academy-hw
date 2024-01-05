@@ -17,7 +17,7 @@ public class DoorayMessageSender implements MessageSender {
   @Override
   public boolean sendMessage(String name, String message) {
     if(Objects.isNull(name) || Objects.isNull(message) || name.isEmpty() || message.isEmpty()) {
-      throw new RuntimeException("Name or Message must not be null or empty string");
+      throw new IllegalArgumentException("Name or Message must not be null or empty string");
     }
 
     doorayHookSender.send(DoorayHook.builder()
