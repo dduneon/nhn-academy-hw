@@ -5,7 +5,9 @@ import com.nhn.dooray.client.DoorayHookSender;
 import com.nhnacademy.spring.hw.annotation.CheckExecutionTime;
 import com.nhnacademy.spring.hw.sender.MessageSender;
 import java.util.Objects;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DoorayMessageSender implements MessageSender {
   private DoorayHookSender doorayHookSender;
 

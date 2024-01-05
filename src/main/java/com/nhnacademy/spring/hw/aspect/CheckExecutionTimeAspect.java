@@ -4,10 +4,12 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 import org.aspectj.lang.ProceedingJoinPoint;
 
 @Aspect
+@Component
 public class CheckExecutionTimeAspect {
   private static final Log log = LogFactory.getLog(CheckExecutionTimeAspect.class);
 

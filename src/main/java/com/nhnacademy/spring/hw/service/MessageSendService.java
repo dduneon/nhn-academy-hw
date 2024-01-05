@@ -1,10 +1,14 @@
 package com.nhnacademy.spring.hw.service;
 
 import com.nhnacademy.spring.hw.sender.MessageSender;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MessageSendService {
   private MessageSender messageSender;
 
+  @Autowired
   public MessageSendService(MessageSender messageSender) {
     this.messageSender = messageSender;
   }
