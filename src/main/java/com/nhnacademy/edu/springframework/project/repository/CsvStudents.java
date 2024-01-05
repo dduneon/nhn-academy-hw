@@ -15,7 +15,7 @@ import java.util.List;
 
 public class CsvStudents implements Students {
     private static final CsvStudents csvStudents = new CsvStudents();
-    private static final Collection<Student> studentList = new ArrayList<>();
+    private static final List<Student> studentList = new ArrayList<>();
 
     /** TODO 3 :
      * Java Singleton 패턴으로 getInstance() 를 구현하세요.

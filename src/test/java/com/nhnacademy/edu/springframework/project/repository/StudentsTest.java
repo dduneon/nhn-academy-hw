@@ -32,6 +32,16 @@ class StudentsTest {
 
     @Test
     void findAll() {
+        students.load();
+        List<Student> actual = (List<Student>) students.findAll();
+        System.out.println(actual.size());
+
+        Assertions.assertEquals(expected.size(), actual.size());
+
+        for(int i=0; i<expected.size(); i++) {
+            Assertions.assertEquals(expected.get(i).getSeq(), actual.get(i).getSeq());
+            Assertions.assertEquals(expected.get(i).getName(), actual.get(i).getName());
+        }
     }
 
     @Test
