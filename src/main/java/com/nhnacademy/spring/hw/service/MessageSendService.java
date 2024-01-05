@@ -11,8 +11,18 @@ public class MessageSendService {
 
   public boolean doSendMessage(String name, String message) {
     System.out.println(">>>>> Sending ...");
-    boolean result = messageSender.sendMessage(name, message);
-    System.out.println(">>>>> Send Success");
+    boolean result;
+    try {
+      result = messageSender.sendMessage(name, message);
+    } catch (RuntimeException e) {
+      System.out.println(">>>>> Send Failed (Name or Message is null or empty)");
+      return false;
+    }
+    if (result)
+      System.out.println(">>>>> Send Success");
+    else {
+      System.out.println(">>>>> Send Failed");
+    }
     return result;
   }
 }

@@ -1,11 +1,9 @@
 package com.nhnacademy.spring.hw;
 
-import com.nhnacademy.spring.hw.sender.MessageSender;
 import com.nhnacademy.spring.hw.service.MessageSendService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Objects;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class ClassPathXmlMain {

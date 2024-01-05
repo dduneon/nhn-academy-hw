@@ -11,7 +11,6 @@
   <logger name="chapters.configuration" level="INFO" />
   <logger name="chapters.configuration.Foo" level="DEBUG" />
 
-  <!-- turn OFF all logging (children can override) -->
   <root level="INFO">
     <appender-ref ref="STDOUT" />
   </root>
