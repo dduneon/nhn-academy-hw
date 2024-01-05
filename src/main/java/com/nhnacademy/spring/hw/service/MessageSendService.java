@@ -14,7 +14,7 @@ public class MessageSendService {
     boolean result;
     try {
       result = messageSender.sendMessage(name, message);
-    } catch (RuntimeException e) {
+    } catch (IllegalArgumentException e) {
       System.out.println(">>>>> Send Failed (Name or Message is null or empty)");
       return false;
     }

@@ -4,9 +4,10 @@ import com.nhnacademy.spring.hw.service.MessageSendService;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class ClassPathXmlMain {
+public class AnnotationConfigMain {
   public static void main(String[] args){
     String name, message;
 
@@ -20,10 +21,8 @@ public class ClassPathXmlMain {
       throw new RuntimeException("Error occured while read string");
     }
 
-    try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("beans.xml")) {
-      MessageSendService messageSendService = context.getBean("messageSendService", MessageSendService.class);
-      messageSendService.doSendMessage(name, message);
-    }
-
+    AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("com.nhnacademy.spring.hw.config");
+    MessageSendService service = context.getBean("messageSendService", MessageSendService.class);
+    service.doSendMessage(name, message);
   }
 }
