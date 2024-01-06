@@ -12,6 +12,8 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+.idea/vcs.xml
+
 target/
 
 # AWS User-specific
@@ -149,7 +151,8 @@ replay_pid*
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
