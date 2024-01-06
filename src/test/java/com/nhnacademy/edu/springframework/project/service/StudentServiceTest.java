@@ -1,35 +1,37 @@
 package com.nhnacademy.edu.springframework.project.service;
 
+import com.nhnacademy.edu.springframework.project.config.ComponentConfig;
+import com.nhnacademy.edu.springframework.project.config.ServiceConfig;
 import com.nhnacademy.edu.springframework.project.domain.Student;
-import com.nhnacademy.edu.springframework.project.repository.impl.CsvScores;
-import com.nhnacademy.edu.springframework.project.repository.impl.CsvStudents;
 import com.nhnacademy.edu.springframework.project.domain.Score;
-import com.nhnacademy.edu.springframework.project.repository.Scores;
 import com.nhnacademy.edu.springframework.project.repository.Students;
-import com.nhnacademy.edu.springframework.project.service.impl.CsvDataLoadService;
 import com.nhnacademy.edu.springframework.project.service.impl.DefaultStudentService;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {ServiceConfig.class, ComponentConfig.class})
 class StudentServiceTest {
     @InjectMocks
-    private StudentService studentService;
-    @InjectMocks
+    private DefaultStudentService studentService;
+
+    @Autowired
     private DataLoadService dataLoadService;
-    private List<Student> expected;
+    private List<Student> studentList;
     @Mock
     Students students;
-    @Mock
-    Scores scores;
 
     @BeforeEach
     public void setup() {
@@ -37,18 +39,15 @@ class StudentServiceTest {
         dataLoadService.loadAndMerge();
 
         Student student1 = new Student(1, "A");
-        student1.setScore(new Score(1, 30));
-
         Student student2 = new Student(2, "B");
-        student2.setScore(new Score(2, 80));
-
         Student student3 = new Student(3, "A");
-        student3.setScore(new Score(3, 70));
-
         Student student4 = new Student(4, "D");
-
-        expected = List.of(
+        studentList = List.of(
             student1, student2, student3, student4);
+
+        student1.setScore(new Score(1, 30));
+        student2.setScore(new Score(2, 80));
+        student3.setScore(new Score(3, 70));
     }
 
     @Test
@@ -59,6 +58,7 @@ class StudentServiceTest {
         passedStudent3.setScore(new Score(3, 70));
         List<Student> expectedPassedStudents = List.of(passedStudent2, passedStudent3);
 
+        Mockito.when(students.findAll()).thenReturn(studentList);
         List<Student> actualPassedStudents = (List<Student>) studentService.getPassedStudents();
         Assertions.assertEquals(expectedPassedStudents.size(), actualPassedStudents.size());
 
@@ -74,8 +74,10 @@ class StudentServiceTest {
 
     @Test
     void getStudentsOrderByScoreTest() {
-        List<Student> expectedOrderedList = expected.stream().filter(student -> Objects.nonNull(student.getScore())).sorted((o1, o2) -> o2.getScore()
+        List<Student> expectedOrderedList = studentList.stream().filter(student -> Objects.nonNull(student.getScore())).sorted((o1, o2) -> o2.getScore()
             .getScore()-o1.getScore().getScore()).collect(Collectors.toList());
+
+        Mockito.when(students.findAll()).thenReturn(studentList);
         List<Student> actualOrderedList = (List<Student>) studentService.getStudentsOrderByScore();
         Assertions.assertEquals(expectedOrderedList.size(), actualOrderedList.size());
 

@@ -14,12 +14,14 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.csv.Csv;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = ComponentConfig.class)
 class ScoresTest {
+    @Autowired
     private Scores scores;
     private List<Score> expected;
 
