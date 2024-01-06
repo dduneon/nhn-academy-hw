@@ -1,8 +1,9 @@
 package com.nhnacademy.edu.springframework.project.service;
 
+import com.nhnacademy.edu.springframework.project.domain.Student;
 import com.nhnacademy.edu.springframework.project.repository.CsvScores;
 import com.nhnacademy.edu.springframework.project.repository.CsvStudents;
-import com.nhnacademy.edu.springframework.project.repository.Score;
+import com.nhnacademy.edu.springframework.project.domain.Score;
 import com.nhnacademy.edu.springframework.project.repository.Scores;
 import com.nhnacademy.edu.springframework.project.repository.StudentService;
 import com.nhnacademy.edu.springframework.project.repository.Students;

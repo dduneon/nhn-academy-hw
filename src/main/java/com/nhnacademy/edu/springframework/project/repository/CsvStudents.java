@@ -1,9 +1,9 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
-import com.nhnacademy.edu.springframework.project.service.Student;
+import com.nhnacademy.edu.springframework.project.domain.Score;
+import com.nhnacademy.edu.springframework.project.domain.Student;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -14,6 +14,8 @@ import java.util.List;
 
 
 public class CsvStudents implements Students {
+    private final Students students;
+
     private static final CsvStudents csvStudents = new CsvStudents();
     private static final List<Student> studentList = new ArrayList<>();
 

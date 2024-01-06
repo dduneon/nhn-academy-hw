@@ -1,14 +1,13 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
-import com.nhnacademy.edu.springframework.project.service.Student;
+import com.nhnacademy.edu.springframework.project.domain.Score;
+import com.nhnacademy.edu.springframework.project.domain.Student;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class StudentsTest {
     private static Students students;

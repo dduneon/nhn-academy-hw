@@ -1,16 +1,11 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
-import java.io.PrintWriter;
+import com.nhnacademy.edu.springframework.project.domain.Score;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.provider.CsvFileSource;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class ScoresTest {
     private static Scores scores;

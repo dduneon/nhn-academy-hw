@@ -1,5 +1,6 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
+import com.nhnacademy.edu.springframework.project.domain.Score;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

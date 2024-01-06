@@ -1,6 +1,7 @@
 package com.nhnacademy.edu.springframework.project.service;
 
-import com.nhnacademy.edu.springframework.project.repository.Score;
+import com.nhnacademy.edu.springframework.project.domain.Score;
+import com.nhnacademy.edu.springframework.project.domain.Student;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -8,11 +9,6 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.mockito.internal.matchers.Null;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class GradeQueryServiceTest {
     static GradeQueryService gradeQueryService;
