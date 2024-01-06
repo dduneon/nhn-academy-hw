@@ -39,7 +39,6 @@ class StudentsTest {
     void load() {
         students.load();
         Assertions.assertEquals(4, students.findAll().size());
-        //TODO throw exception test
     }
 
     @Test

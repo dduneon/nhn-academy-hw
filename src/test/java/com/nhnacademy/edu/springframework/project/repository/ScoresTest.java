@@ -29,7 +29,6 @@ class ScoresTest {
     void load() {
         scores.load();
         Assertions.assertEquals(3, scores.findAll().size());
-        //TODO throw exception test
     }
 
     @Test
