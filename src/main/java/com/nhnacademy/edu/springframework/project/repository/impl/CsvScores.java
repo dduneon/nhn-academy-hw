@@ -1,6 +1,7 @@
-package com.nhnacademy.edu.springframework.project.repository;
+package com.nhnacademy.edu.springframework.project.repository.impl;
 
 import com.nhnacademy.edu.springframework.project.domain.Score;
+import com.nhnacademy.edu.springframework.project.repository.Scores;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,12 +12,12 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CsvScores implements Scores {
-    private static List<Score> scoreList = new ArrayList<>();
+    private List<Score> scoreList;
 
     // TODO 5 : score.csv 파일에서 데이터를 읽어 멤버 변수에 추가하는 로직을 구현하세요.
     @Override
     public void load() {
-        scoreList.clear();
+        scoreList = new ArrayList<>();
         try (
             InputStream inputStream = getClass().getResourceAsStream("/data/score.csv");
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))

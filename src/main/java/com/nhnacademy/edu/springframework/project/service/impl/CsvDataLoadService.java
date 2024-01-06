@@ -1,8 +1,8 @@
-package com.nhnacademy.edu.springframework.project.service;
+package com.nhnacademy.edu.springframework.project.service.impl;
 
-import com.nhnacademy.edu.springframework.project.repository.CsvStudents;
 import com.nhnacademy.edu.springframework.project.repository.Scores;
 import com.nhnacademy.edu.springframework.project.repository.Students;
+import com.nhnacademy.edu.springframework.project.service.DataLoadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

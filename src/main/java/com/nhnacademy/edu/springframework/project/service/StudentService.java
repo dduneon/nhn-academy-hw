@@ -1,4 +1,4 @@
-package com.nhnacademy.edu.springframework.project.repository;
+package com.nhnacademy.edu.springframework.project.service;
 
 import com.nhnacademy.edu.springframework.project.domain.Student;
 

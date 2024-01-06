@@ -1,7 +1,7 @@
-package com.nhnacademy.edu.springframework.project.service;
+package com.nhnacademy.edu.springframework.project.service.impl;
 
 import com.nhnacademy.edu.springframework.project.domain.Student;
-import com.nhnacademy.edu.springframework.project.repository.StudentService;
+import com.nhnacademy.edu.springframework.project.service.StudentService;
 import com.nhnacademy.edu.springframework.project.repository.Students;
 
 import java.util.Collection;

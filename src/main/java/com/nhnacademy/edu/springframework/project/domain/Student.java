@@ -1,7 +1,5 @@
 package com.nhnacademy.edu.springframework.project.domain;
 
-import com.nhnacademy.edu.springframework.project.domain.Score;
-
 public class Student {
     private final int seq;
     private final String name;

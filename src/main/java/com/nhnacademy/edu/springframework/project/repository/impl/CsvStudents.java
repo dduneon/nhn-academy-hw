@@ -1,8 +1,9 @@
-package com.nhnacademy.edu.springframework.project.repository;
+package com.nhnacademy.edu.springframework.project.repository.impl;
 
 import com.nhnacademy.edu.springframework.project.domain.Score;
 import com.nhnacademy.edu.springframework.project.domain.Student;
 
+import com.nhnacademy.edu.springframework.project.repository.Students;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CsvStudents implements Students {
-    private static final List<Student> studentList = new ArrayList<>();
+    private List<Student> studentList;
 
     /** TODO 3 :
      * Java Singleton 패턴으로 getInstance() 를 구현하세요.
@@ -26,7 +27,7 @@ public class CsvStudents implements Students {
     // 데이터를 적재하고 읽기 위해서, 적절한 자료구조를 사용하세요.
     @Override
     public void load() {
-        studentList.clear();
+        studentList = new ArrayList<>();
         try (
             InputStream is = getClass().getResourceAsStream("/data/student.csv");
             BufferedReader br = new BufferedReader(new InputStreamReader(is))

@@ -1,12 +1,13 @@
 package com.nhnacademy.edu.springframework.project.service;
 
 import com.nhnacademy.edu.springframework.project.domain.Student;
-import com.nhnacademy.edu.springframework.project.repository.CsvScores;
-import com.nhnacademy.edu.springframework.project.repository.CsvStudents;
+import com.nhnacademy.edu.springframework.project.repository.impl.CsvScores;
+import com.nhnacademy.edu.springframework.project.repository.impl.CsvStudents;
 import com.nhnacademy.edu.springframework.project.domain.Score;
 import com.nhnacademy.edu.springframework.project.repository.Scores;
-import com.nhnacademy.edu.springframework.project.repository.StudentService;
 import com.nhnacademy.edu.springframework.project.repository.Students;
+import com.nhnacademy.edu.springframework.project.service.impl.CsvDataLoadService;
+import com.nhnacademy.edu.springframework.project.service.impl.DefaultStudentService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -15,17 +16,26 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 class StudentServiceTest {
-    static StudentService service;
-    static List<Student> expected;
+    @InjectMocks
+    private StudentService studentService;
+    @InjectMocks
+    private DataLoadService dataLoadService;
+    private List<Student> expected;
+    @Mock
     Students students;
+    @Mock
     Scores scores;
 
-    @BeforeAll
-    static void setup() {
-        service = new DefaultStudentService();
-        expected = new ArrayList<>();
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+        dataLoadService.loadAndMerge();
+
         Student student1 = new Student(1, "A");
         student1.setScore(new Score(1, 30));
 
@@ -37,30 +47,19 @@ class StudentServiceTest {
 
         Student student4 = new Student(4, "D");
 
-        expected.add(student1);
-        expected.add(student2);
-        expected.add(student3);
-        expected.add(student4);
+        expected = List.of(
+            student1, student2, student3, student4);
     }
 
-    @BeforeEach
-    void loadData() {
-        students = CsvStudents.getInstance();
-        scores = CsvScores.getInstance();
-
-        new CsvDataLoadService().loadAndMerge();
-    }
     @Test
     void getPassedStudentsTest() {
-        List<Student> expectedPassedStudents = new ArrayList<>();
         Student passedStudent2 = new Student(2, "B");
         passedStudent2.setScore(new Score(2, 80));
         Student passedStudent3 = new Student(3, "A");
         passedStudent3.setScore(new Score(3, 70));
-        expectedPassedStudents.add(passedStudent2);
-        expectedPassedStudents.add(passedStudent3);
+        List<Student> expectedPassedStudents = List.of(passedStudent2, passedStudent3);
 
-        List<Student> actualPassedStudents = (List<Student>) service.getPassedStudents();
+        List<Student> actualPassedStudents = (List<Student>) studentService.getPassedStudents();
         Assertions.assertEquals(expectedPassedStudents.size(), actualPassedStudents.size());
 
         for(int i=0; i<expectedPassedStudents.size(); i++) {
@@ -77,7 +76,7 @@ class StudentServiceTest {
     void getStudentsOrderByScoreTest() {
         List<Student> expectedOrderedList = expected.stream().filter(student -> Objects.nonNull(student.getScore())).sorted((o1, o2) -> o2.getScore()
             .getScore()-o1.getScore().getScore()).collect(Collectors.toList());
-        List<Student> actualOrderedList = (List<Student>) service.getStudentsOrderByScore();
+        List<Student> actualOrderedList = (List<Student>) studentService.getStudentsOrderByScore();
         Assertions.assertEquals(expectedOrderedList.size(), actualOrderedList.size());
 
         for(int i=0; i<expectedOrderedList.size(); i++) {
