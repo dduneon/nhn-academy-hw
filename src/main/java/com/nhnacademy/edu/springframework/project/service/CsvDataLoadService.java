@@ -9,17 +9,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class CsvDataLoadService implements DataLoadService {
     private final Scores scores;
+    private final Students students;
 
     @Autowired
-    public CsvDataLoadService(Scores scores) {
+    public CsvDataLoadService(Scores scores, Students students) {
         this.scores = scores;
+        this.students = students;
     }
 
     @Override
     public void loadAndMerge() {
         scores.load();
-
-        Students students = CsvStudents.getInstance();
         students.load();
         students.merge(scores.findAll());
     }
