@@ -18,6 +18,12 @@ public class DefaultGradeQueryService implements GradeQueryService {
     @Override
     public Score getScoreByStudentSeq(int seq) {
         // TODO 6 : 학번으로 점수를 반환합니다. seq 인자가 학번입니다.
-        return CsvStudents.getInstance().findAll().stream().filter(student -> student.getSeq() == seq).map(Student::getScore).findFirst().orElse(null);
+        try {
+            return CsvStudents.getInstance().findAll().stream()
+                .filter(student -> student.getSeq() == seq).map(Student::getScore).findFirst()
+                .orElse(null);
+        } catch (NullPointerException npe) {
+            return null;
+        }
     }
 }
