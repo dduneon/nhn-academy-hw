@@ -22,10 +22,8 @@ public class DefaultWaterUsagePriceService implements WaterUsagePriceService {
   @Override
   public List<WaterBill> calculatePrice(int waterUsage) {
     List<WaterTariff> filteredTariffList = tariffRepository.findPriceBasedOnUsage(waterUsage);
-    List<WaterBill> calculatedBillList = filteredTariffList.stream()
+    return filteredTariffList.stream()
         .map(tariff -> new WaterBill(tariff.getCity(), tariff.getSector(), tariff.getUnitPrice(), Math.multiplyExact(waterUsage, tariff.getUnitPrice())))
         .collect(Collectors.toList());
-
-    return calculatedBillList;
   }
 }

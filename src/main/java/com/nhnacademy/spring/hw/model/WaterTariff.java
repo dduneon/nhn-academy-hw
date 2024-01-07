@@ -64,38 +64,6 @@ public class WaterTariff {
     return unitPrice;
   }
 
-  public int getDefaultFee() {
-    return defaultFee;
-  }
-
-  public void setSeq(int seq) {
-    this.seq = seq;
-  }
-
-  public void setCity(String city) {
-    this.city = city;
-  }
-
-  public void setSector(String sector) {
-    this.sector = sector;
-  }
-
-  public void setLevel(int level) {
-    this.level = level;
-  }
-
-  public void setSectionStart(int sectionStart) {
-    this.sectionStart = sectionStart;
-  }
-
-  public void setSectionEnd(int sectionEnd) {
-    this.sectionEnd = sectionEnd;
-  }
-
-  public void setUnitPrice(int unitPrice) {
-    this.unitPrice = unitPrice;
-  }
-
   public void setDefaultFee(String defaultFee) {
     this.defaultFee = (defaultFee != null && !defaultFee.isEmpty()) ? Integer.parseInt(defaultFee) : 0;
   }

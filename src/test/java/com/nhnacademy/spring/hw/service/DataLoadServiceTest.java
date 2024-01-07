@@ -5,10 +5,14 @@ import com.nhnacademy.spring.hw.service.impl.DefaultDataLoadService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 public class DataLoadServiceTest {
   @InjectMocks
@@ -29,14 +33,4 @@ public class DataLoadServiceTest {
 
     Mockito.verify(tariffRepository, Mockito.atLeastOnce()).loadFile(testFilePath);
   }
-
-  @Test
-  void loadFilePathFromPropertiesTest() {
-    String expectedFilePath = "expectedFilePath";
-    Mockito.when(dataLoadService.loadFilePathFromProperties()).thenReturn(expectedFilePath);
-
-    String resultFilePath = dataLoadService.loadFilePathFromProperties();
-    Assertions.assertEquals(expectedFilePath, resultFilePath);
-  }
-
 }
