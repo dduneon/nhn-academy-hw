@@ -32,6 +32,11 @@ class ScoresTest {
     }
 
     @Test
+    void loadExceptionTest() {
+
+    }
+
+    @Test
     void findAll() {
         scores.load();
         List<Score> actual = scores.findAll();

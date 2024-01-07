@@ -1,11 +1,13 @@
 package com.nhnacademy.edu.springframework.project.repository;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CsvScores implements Scores {
 
@@ -27,8 +29,12 @@ public class CsvScores implements Scores {
         scoreList.clear();
         try (
             InputStream inputStream = getClass().getResourceAsStream("/data/score.csv");
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))
         ) {
+            if(Objects.isNull(inputStream)) {
+                throw new FileNotFoundException("/data/score.csv file not found");
+            }
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
+
             String inputLine = br.readLine();
             while(inputLine != null && !inputLine.isEmpty()) {
                 String[] splitLine = inputLine.split(",");
