@@ -1,4 +1,4 @@
-package com.nhnacademy.spring.hw.service;
+package com.nhnacademy.spring.hw.parser;
 
 import com.nhnacademy.spring.hw.config.ParserConfig;
 import com.nhnacademy.spring.hw.model.WaterTariff;

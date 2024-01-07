@@ -2,6 +2,7 @@ package com.nhnacademy.spring.hw.service.impl;
 
 import com.nhnacademy.spring.hw.repository.TariffRepository;
 import com.nhnacademy.spring.hw.service.DataLoadService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ public class DefaultDataLoadService implements DataLoadService {
   @Value("${filePath}")
   String filePath;
 
+  @Autowired
   public DefaultDataLoadService(TariffRepository tariffRepository) {
     this.tariffRepository = tariffRepository;
   }
