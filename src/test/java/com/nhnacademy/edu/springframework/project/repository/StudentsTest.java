@@ -45,7 +45,6 @@ class StudentsTest {
     void findAll() {
         students.load();
         List<Student> actual = (List<Student>) students.findAll();
-        System.out.println(actual.size());
 
         Assertions.assertEquals(expected.size(), actual.size());
 

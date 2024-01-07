@@ -32,15 +32,9 @@ class ScoresTest {
     }
 
     @Test
-    void loadExceptionTest() {
-
-    }
-
-    @Test
     void findAll() {
         scores.load();
         List<Score> actual = scores.findAll();
-        System.out.println(actual.size());
         Assertions.assertEquals(expected.size(), actual.size());
 
         for(int i=0; i<expected.size(); i++) {

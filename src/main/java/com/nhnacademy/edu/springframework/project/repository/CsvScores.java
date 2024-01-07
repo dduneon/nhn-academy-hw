@@ -29,12 +29,8 @@ public class CsvScores implements Scores {
         scoreList.clear();
         try (
             InputStream inputStream = getClass().getResourceAsStream("/data/score.csv");
-        ) {
-            if(Objects.isNull(inputStream)) {
-                throw new FileNotFoundException("/data/score.csv file not found");
-            }
             BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
-
+        ) {
             String inputLine = br.readLine();
             while(inputLine != null && !inputLine.isEmpty()) {
                 String[] splitLine = inputLine.split(",");
