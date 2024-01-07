@@ -12,7 +12,10 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+.idea/vcs.xml
+
 target/
+.idea/compiler.xml
 
 # AWS User-specific
 .idea/**/aws.xml
@@ -57,6 +60,8 @@ cmake-build-*/
 
 # IntelliJ
 out/
+
+*.idea
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/
@@ -149,7 +154,8 @@ replay_pid*
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
