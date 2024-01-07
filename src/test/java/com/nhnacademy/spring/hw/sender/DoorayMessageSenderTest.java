@@ -1,23 +1,25 @@
 package com.nhnacademy.spring.hw.sender;
 
 
-import static org.mockito.Mockito.when;
-
+import com.nhn.dooray.client.DoorayHookSender;
+import com.nhnacademy.spring.hw.sender.impl.DoorayMessageSender;
 import com.nhnacademy.spring.hw.service.MessageSendService;
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
+import org.mockito.Matchers;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 public class DoorayMessageSenderTest {
 
   @InjectMocks
-  private MessageSendService messageSendService;
+  private DoorayMessageSender doorayMessageSender;
 
   @Mock
-  private MessageSender messageSender;
+  private DoorayHookSender doorayHookSender;
 
   @BeforeEach
   public void setup() {
@@ -26,24 +28,22 @@ public class DoorayMessageSenderTest {
 
   @Test
   void testDoorayMessageSender() {
-    when(messageSender.sendMessage("name", "message")).thenReturn(true);
-    boolean actual = messageSendService.doSendMessage("name", "message");
-    Assertions.assertThat(actual).isEqualTo(true);
+    Assertions.assertTrue(doorayMessageSender.sendMessage("name", "message"));
   }
 
   @Test
   void testSendMessageWithNullParameters() {
-    when(messageSender.sendMessage(null, null)).thenThrow(new IllegalArgumentException("Invalid parameters"));
-
-    boolean actual = messageSendService.doSendMessage(null, null);
-    Assertions.assertThat(actual).isEqualTo(false);
+    Assertions.assertThrows(IllegalArgumentException.class, () -> doorayMessageSender.sendMessage(null, null));
   }
 
   @Test
   void testSendMessageWithEmptyParameters() {
-    when(messageSender.sendMessage("", "")).thenThrow(new IllegalArgumentException("Invalid parameters"));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> doorayMessageSender.sendMessage("", ""));
+  }
 
-    boolean actual = messageSendService.doSendMessage("", "");
-    Assertions.assertThat(actual).isEqualTo(false);
+  @Test
+  void testSendMethodCall() {
+    doorayMessageSender.sendMessage("test", "test");
+    Mockito.verify(doorayHookSender, Mockito.atLeastOnce()).send(Matchers.any());
   }
 }
