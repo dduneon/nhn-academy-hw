@@ -1,5 +1,6 @@
 package com.nhnacademy.spring.hw.parser.impl;
 
+import com.nhnacademy.spring.hw.condition.CsvFormatCondition;
 import com.nhnacademy.spring.hw.model.WaterTariff;
 import com.nhnacademy.spring.hw.parser.DataParser;
 import java.io.BufferedReader;
@@ -10,16 +11,18 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Component;
 
 @Component
+@Conditional(CsvFormatCondition.class)
 public class CsvDataParser implements DataParser {
 
   @Override
   public List<WaterTariff> parse(String filePath) {
     List<WaterTariff> parsedDataList = new ArrayList<>();
     try (
-        InputStream csvInputStream = getClass().getResourceAsStream(filePath);
+        InputStream csvInputStream = getClass().getClassLoader().getResourceAsStream(filePath);
         BufferedReader br = new BufferedReader(new InputStreamReader(csvInputStream));
     ) {
       br.readLine();

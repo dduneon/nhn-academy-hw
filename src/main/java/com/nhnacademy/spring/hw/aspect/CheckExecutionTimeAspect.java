@@ -26,7 +26,7 @@ public class CheckExecutionTimeAspect {
       stopWatch.stop();
       long executionTime = stopWatch.getTotalTimeMillis();
 
-      String message = targetClassName + "." + targetMethodName + " " + executionTime;
+      String message = targetClassName + "." + targetMethodName + " " + executionTime + "ms";
       log.info(message);
     }
   }

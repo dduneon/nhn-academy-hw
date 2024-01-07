@@ -8,11 +8,20 @@
     </encoder>
   </appender>
 
+  <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+    <file>elapse.log</file>
+    <encoder>
+      <pattern>
+        %d{HH:mm:ss.SSS} [%thread] %-5level %msg%n
+      </pattern>
+    </encoder>
+  </appender>
+
   <logger name="chapters.configuration" level="INFO" />
   <logger name="chapters.configuration.Foo" level="DEBUG" />
 
   <root level="INFO">
-    <appender-ref ref="STDOUT" />
+    <appender-ref ref="FILE" />
   </root>
 
 </configuration>
