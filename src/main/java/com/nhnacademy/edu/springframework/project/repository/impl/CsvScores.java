@@ -20,14 +20,12 @@ public class CsvScores implements Scores {
         scoreList = new ArrayList<>();
         try (
             InputStream inputStream = getClass().getResourceAsStream("/data/score.csv");
-            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))
-        ) {
+            BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
             String inputLine = br.readLine();
             while(inputLine != null && !inputLine.isEmpty()) {
                 String[] splitLine = inputLine.split(",");
                 if(splitLine.length != 2) {
-                    throw new IllegalArgumentException("csv parsing error");
-                }
+                    throw new IllegalArgumentException("csv parsing error"); }
                 int studentSeq = Integer.parseInt(splitLine[0]);
                 int studentScore = Integer.parseInt(splitLine[1]);
                 Score newScore = new Score(studentSeq, studentScore);
