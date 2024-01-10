@@ -6,6 +6,7 @@ import com.nhnacademy.springmvc.hw.exception.StudentNotFoundException;
 import com.nhnacademy.springmvc.hw.exception.ValidationFailedException;
 import com.nhnacademy.springmvc.hw.repository.StudentRepository;
 import java.util.Objects;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,26 +31,38 @@ public class StudentRestController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public void createStudent(@Valid @RequestBody StudentRegisterRequest studentRegisterRequest, BindingResult bindingResult) {
-    if(bindingResult.hasErrors())
+  public void createStudent(@Valid @RequestBody StudentRegisterRequest studentRegisterRequest, BindingResult bindingResult, HttpServletResponse response) {
+    if(bindingResult.hasErrors()) {
+      response.setStatus(400);
       throw new ValidationFailedException(bindingResult);
+    }
     studentRepository.register(studentRegisterRequest.getName(), studentRegisterRequest.getEmail()
     ,studentRegisterRequest.getScore(), studentRegisterRequest.getComment());
   }
 
   @GetMapping("/{studentId}")
-  public Student searchStudent(@PathVariable(name = "studentId") long studentId) {
+  @ResponseStatus(HttpStatus.OK)
+  public Student searchStudent(@PathVariable(name = "studentId") long studentId, HttpServletResponse response) {
     Student student = studentRepository.getStudent(studentId);
-    if(Objects.isNull(student))
+    if(Objects.isNull(student)) {
+      response.setStatus(404);
       throw new StudentNotFoundException();
+    }
     return student;
   }
 
   @PutMapping("/{studentId}")
-  public void modifyStudent(@RequestBody StudentRegisterRequest studentRegisterRequest, @PathVariable(name="studentId") long studentId) {
+  @ResponseStatus(HttpStatus.OK)
+  public void modifyStudent(@Valid @RequestBody StudentRegisterRequest studentRegisterRequest, BindingResult bindingResult, @PathVariable(name="studentId") long studentId, HttpServletResponse response) {
+    if(bindingResult.hasErrors()) {
+      response.setStatus(400);
+      throw new ValidationFailedException(bindingResult);
+    }
     Student student = studentRepository.getStudent(studentId);
-    if(Objects.isNull(student))
+    if(Objects.isNull(student)) {
+      response.setStatus(404);
       throw new StudentNotFoundException();
+    }
 
     student.setName(studentRegisterRequest.getName());
     student.setEmail(studentRegisterRequest.getEmail());
