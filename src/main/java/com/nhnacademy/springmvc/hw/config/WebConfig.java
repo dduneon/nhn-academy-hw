@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
@@ -45,7 +46,8 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware, Mes
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(new LoginCheckInterceptor())
         .addPathPatterns("/**")
-        .excludePathPatterns("/student/register", "/login", "/");
+        .excludePathPatterns("/student/register", "/login", "/", "/students/**");
+    registry.addInterceptor(new LocaleChangeInterceptor());
     // todo interceptor add
   }
 

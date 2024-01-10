@@ -5,6 +5,7 @@ import com.nhnacademy.springmvc.hw.domain.StudentLoginRequest;
 import com.nhnacademy.springmvc.hw.repository.StudentRepository;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,12 @@ public class LoginController {
   }
 
   @GetMapping
-  public String getLogin() {
+  public String getLogin(HttpServletRequest request) {
+    // 로그인을 한 유저가 로그인 페이지를 다시 들어온 경우를 검사
+    HttpSession session = request.getSession(false);
+    if(Objects.nonNull(session) && (Objects.nonNull(session.getAttribute("student")))) {
+        return "redirect:/";
+    }
     return "login";
   }
 

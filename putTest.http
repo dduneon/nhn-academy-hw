@@ -1,0 +1,9 @@
+PUT http://localhost:8080/students/1 HTTP/1.1
+Content-type: application/json
+
+{
+  "name": "tes",
+  "email": "test@naver.com",
+  "score": 100,
+  "comment": "완벽"
+}

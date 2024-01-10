@@ -5,11 +5,11 @@
     <title>학생 정보 조회</title>
 </head>
 <body>
-<p th:text="#{name}"></p>: <span th:text="${student.name}"></span> <br />
-<p th:text="#{email}"></p>: <span th:text="${student.email}"></span><br />
-<p th:text="#{score}"></p>: <span th:text="${student.score}"></span><br />
-<p th:text="#{comment}"></p>: <span th:text="${student.comment}"></span><br />
+<span th:text="#{name}"></span>: <span th:text="${student.name}"></span> <br />
+<span th:text="#{email}"></span>: <span th:text="${student.email}"></span><br />
+<span th:text="#{score}"></span>: <span th:text="${student.score}"></span><br />
+<span th:text="#{comment}"></span>: <span th:text="${student.comment}"></span><br />
 <br />
-<a th:href="@{/student/${student.id}/modify}"><p th:text="#{modify}"></p></a><br />
+<a th:href="@{/student/{id}/modify(id=${student.id})}"><p th:text="#{modify}"></p></a><br />
 </body>
 </html>
