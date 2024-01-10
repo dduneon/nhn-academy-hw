@@ -8,4 +8,6 @@ public interface StudentRepository {
   Student register(String name, String email, int score, String comment);
 
   Student getStudent(long id);
+
+  void modify(Student student);
 }

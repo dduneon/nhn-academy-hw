@@ -3,10 +3,12 @@ package com.nhnacademy.springmvc.hw;
 import com.nhnacademy.springmvc.hw.config.RootConfig;
 import com.nhnacademy.springmvc.hw.config.WebConfig;
 import javax.servlet.Filter;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+@Order(2)
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
   @Override
@@ -22,14 +24,5 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
   @Override
   protected String[] getServletMappings() {
     return new String[] { "/" };
-  }
-
-  @Override
-  protected Filter[] getServletFilters() {
-    CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-    encodingFilter.setEncoding("UTF-8");
-    encodingFilter.setForceEncoding(true);
-
-    return new Filter[] { encodingFilter, new HiddenHttpMethodFilter()};
   }
 }
