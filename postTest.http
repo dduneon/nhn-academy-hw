@@ -2,8 +2,8 @@ POST http://localhost:8080/students HTTP/1.1
 Content-type: application/json
 
 {
-  "name": "test",
-  "email": "test@naver.com",
+  "name": "",
+  "email": "",
   "score": 100,
-  "comment": "완벽"
+  "comment": ""
 }
