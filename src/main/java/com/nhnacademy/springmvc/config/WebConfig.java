@@ -1,6 +1,6 @@
 package com.nhnacademy.springmvc.config;
 
-import com.nhnacademy.springmvc.controller.BaseController;
+import com.nhnacademy.springmvc.controller.ContollerBase;
 import com.nhnacademy.springmvc.interceptor.AdminCheckInterceptor;
 import com.nhnacademy.springmvc.interceptor.LoginCheckInterceptor;
 import org.springframework.beans.BeansException;
@@ -9,6 +9,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -17,8 +18,9 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
+@EnableWebMvc
 @Configuration
-@ComponentScan(basePackageClasses = BaseController.class)
+@ComponentScan(basePackageClasses = ContollerBase.class)
 public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
   private ApplicationContext applicationContext;
   @Override
@@ -30,11 +32,9 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(new LoginCheckInterceptor())
-        .order(1)
         .addPathPatterns("/**")
         .excludePathPatterns("/cs/login");
     registry.addInterceptor(new AdminCheckInterceptor())
-        .order(2)
         .addPathPatterns("/cs/admin/**");
   }
 
