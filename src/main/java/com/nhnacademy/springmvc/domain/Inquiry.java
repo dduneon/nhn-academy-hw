@@ -11,7 +11,7 @@ public class Inquiry {
   private String author;
   private String title;
   private String category;
-  private String comment;
+  private String content;
   private MultipartFile attachment;
   private LocalDateTime created;
   // todo change type

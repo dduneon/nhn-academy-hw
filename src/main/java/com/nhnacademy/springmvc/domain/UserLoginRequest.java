@@ -5,13 +5,13 @@ import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Value;
 
 //todo check
-@AllArgsConstructor
-@Getter
+@Value
 @NotBlank
 @NotNull
 public class UserLoginRequest {
-  private String id;
-  private String password;
+  String id;
+  String password;
 }

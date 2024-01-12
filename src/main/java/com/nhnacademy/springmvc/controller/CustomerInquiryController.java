@@ -1,30 +1,22 @@
 package com.nhnacademy.springmvc.controller;
 
-import com.nhnacademy.springmvc.domain.Inquiry;
 import com.nhnacademy.springmvc.domain.InquiryPostRequest;
 import com.nhnacademy.springmvc.domain.User;
 import com.nhnacademy.springmvc.exception.ValidationFailedException;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
 import java.nio.file.Paths;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import java.util.Objects;
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.ResourceUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/cs/inquiry")
 public class CustomerInquiryController {
-  private static final String UPLOAD_DIR = "C:\\dev";
+  private static final String UPLOAD_DIR = "C:\\Users\\S20184366\\Documents\\test\\";
 
   private final InquiryRepository inquiryRepository;
 
@@ -48,11 +40,13 @@ public class CustomerInquiryController {
   }
 
   @PostMapping
-  public String createInquiry(@Valid @ModelAttribute InquiryPostRequest inquiryPostRequest, BindingResult bindingResult, Model model) throws IOException {
+  public String createInquiry(@Valid @ModelAttribute InquiryPostRequest inquiryPostRequest, @RequestParam(name="attachment") MultipartFile file, BindingResult bindingResult, Model model) throws IOException {
+    log.debug("createInquiry(): inquiry request is null?{}", Objects.isNull(inquiryPostRequest));
+    log.debug("createInquiry(): {}, {}, {}, {}", inquiryPostRequest.getAuthor(), inquiryPostRequest.getTitle()
+    , inquiryPostRequest.getCategory(), inquiryPostRequest.getContent());
     if(bindingResult.hasErrors())
       throw new ValidationFailedException(bindingResult);
-
-    MultipartFile uploadFile = inquiryPostRequest.getAttachment();
+    MultipartFile uploadFile = file;
     uploadFile.transferTo(Paths.get(UPLOAD_DIR + uploadFile.getOriginalFilename()));
 
     model.addAttribute("fileName", uploadFile.getOriginalFilename());

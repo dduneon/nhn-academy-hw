@@ -1,27 +1,25 @@
 package com.nhnacademy.springmvc.domain;
 
-import java.time.LocalDateTime;
 import javax.validation.constraints.NotBlank;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.validation.constraints.NotNull;
+import lombok.Value;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
 
-@NoArgsConstructor
-@Setter
-@Getter
+@Value
 public class InquiryPostRequest {
   @NotBlank
-  private String author;
+  @NotNull
+  String author;
+  @NotNull
   @NotBlank
   @Length(min=2, max=200)
-  private String title;
+  String title;
   @NotBlank
-  private String category;
+  @NotNull
+  String category;
   @NotBlank
+  @NotNull
   @Length(min=0, max=40000)
-  private String comment;
-  private MultipartFile attachment;
-
+  String content;
 }
