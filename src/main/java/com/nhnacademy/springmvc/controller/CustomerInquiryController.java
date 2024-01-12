@@ -3,6 +3,7 @@ package com.nhnacademy.springmvc.controller;
 import com.nhnacademy.springmvc.domain.Inquiry;
 import com.nhnacademy.springmvc.domain.InquiryPostRequest;
 import com.nhnacademy.springmvc.domain.User;
+import com.nhnacademy.springmvc.exception.ValidationFailedException;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -49,7 +50,7 @@ public class CustomerInquiryController {
   @PostMapping
   public String createInquiry(@Valid @ModelAttribute InquiryPostRequest inquiryPostRequest, BindingResult bindingResult, Model model) throws IOException {
     if(bindingResult.hasErrors())
-      throw new ValidationException();
+      throw new ValidationFailedException(bindingResult);
 
     MultipartFile uploadFile = inquiryPostRequest.getAttachment();
     uploadFile.transferTo(Paths.get(UPLOAD_DIR + uploadFile.getOriginalFilename()));
