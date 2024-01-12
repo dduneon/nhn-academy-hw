@@ -36,9 +36,9 @@ public class InquiryRepositoryImpl implements InquiryRepository {
   }
 
   public void save(Inquiry inquiry) {
-    if(!inquiryMap.containsKey(inquiry.getWriter()))
-      inquiryMap.put(inquiry.getWriter(), new ArrayList<>());
+    if(!inquiryMap.containsKey(inquiry.getAuthor()))
+      inquiryMap.put(inquiry.getAuthor(), new ArrayList<>());
 
-    inquiryMap.get(inquiry.getWriter()).add(inquiry);
+    inquiryMap.get(inquiry.getAuthor()).add(inquiry);
   }
 }

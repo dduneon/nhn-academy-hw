@@ -7,9 +7,14 @@
 <body>
 <h1>문의사항 작성</h1>
 
-<!-- 폼 태그 -->
-<form action="/submit" method="post">
+<form action="/cs/inquiry" method="post">
   <table>
+    <tr>
+      <td><label for="author">작성자:</label></td>
+      <td>
+        <input type="text" id="author" name="author" th:value="${user.id}" disabled>
+      </td>
+    </tr>
     <tr>
       <td><label for="title">제목:</label></td>
       <td><input type="text" id="title" name="title" required></td>
@@ -30,12 +35,6 @@
       <td><label for="content">본문:</label></td>
       <td>
         <textarea id="content" name="content" rows="4" required></textarea>
-      </td>
-    </tr>
-    <tr>
-      <td><label for="author">작성자:</label></td>
-      <td>
-        <input type="text" id="author" name="author" required>
       </td>
     </tr>
     <tr>

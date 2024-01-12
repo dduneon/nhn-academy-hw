@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 @Slf4j
 @Controller
@@ -22,9 +23,7 @@ public class CustomerMainController {
     this.inquiryRepository = inquiryRepository;
   }
   @GetMapping
-  public String getInquiry(HttpServletRequest request, Model model) {
-    HttpSession session = request.getSession(false);
-    User user = (User) session.getAttribute("userSession");
+  public String getInquiry(@SessionAttribute(name="userSession") User user, Model model) {
     List<Inquiry> inquiryList = inquiryRepository.findById(user.getId());
 
     model.addAttribute("user", user);

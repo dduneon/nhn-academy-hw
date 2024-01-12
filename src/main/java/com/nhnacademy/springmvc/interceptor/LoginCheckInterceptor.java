@@ -21,7 +21,6 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
       return false;
     }
     log.debug("LoginCheckInterceptor.preHandle(): userSession found");
-    // todo test
     return true;
   }
 }

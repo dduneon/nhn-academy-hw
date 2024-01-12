@@ -33,8 +33,9 @@ public class RootConfig{
   @Bean
   public InquiryRepository inquiryRepository() {
     InquiryRepository inquiryRepository = new InquiryRepositoryImpl();
-    inquiryRepository.save(new Inquiry("test", "test", "test", LocalDateTime.now(), "user", null, false));
-    inquiryRepository.save(new Inquiry("test", "test", "test", LocalDateTime.now().minusDays(1), "user", null, false));
+    inquiryRepository.save(new Inquiry("user", "test", "test", "comment", null, LocalDateTime.now(), false));
+    inquiryRepository.save(new Inquiry("user", "test", "test", "comment", null, LocalDateTime.now().minusDays(1), false));
+
     return inquiryRepository;
   }
 }
