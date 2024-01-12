@@ -1,9 +1,12 @@
 package com.nhnacademy.springmvc.controller;
 
+import com.nhnacademy.springmvc.domain.Role;
 import com.nhnacademy.springmvc.domain.User;
 import com.nhnacademy.springmvc.domain.UserLoginRequest;
+import com.nhnacademy.springmvc.exception.PasswordNotCorrectException;
 import com.nhnacademy.springmvc.exception.UserNotFoundException;
 import com.nhnacademy.springmvc.repository.UserRepository;
+import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -24,8 +27,10 @@ public class LoginController {
   }
 
   @GetMapping
-  public String getLogin() {
-    return "login";
+  public String getLogin(HttpServletRequest request) {
+    // 이미 로그인되어 있는 경우를 체크하고, 메인 페이지로 redirect
+    HttpSession session = request.getSession(false);
+    return Objects.nonNull(session) && Objects.nonNull(session.getAttribute("userSession")) ? "redirect:/cs" : "login";
   }
 
   @PostMapping
@@ -39,12 +44,13 @@ public class LoginController {
     User user = userRepository.findById(userLoginRequest.getId());
     if(!user.getPassword().equals(userLoginRequest.getPassword())) {
       // Login Failure
+      // todo throw exception or redirect?
       log.debug("postLogin(): Login failed");
-      return "redirect:/cs/login";
+      throw new PasswordNotCorrectException();
     }
-    log.debug("postLogin(): Login success");
+    log.debug("postLogin(): Login success (Role: {})", user.getRole());
     HttpSession session = request.getSession(true);
     session.setAttribute("userSession", user);
-    return "redirect:/cs";
+    return (user.getRole() == Role.Customer) ? "redirect:/cs" : "redirect:/cs/admin";
   }
 }
