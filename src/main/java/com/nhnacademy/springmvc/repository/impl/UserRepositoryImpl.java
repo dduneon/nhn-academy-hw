@@ -18,12 +18,12 @@ public class UserRepositoryImpl implements UserRepository {
 
   @Override
   public User findById(String id) {
-    return isExist(id) ? userMap.get(id) : null;
+    return userMap.get(id);
   }
 
   @Override
   public void save(User user) {
-    if(isExist(user.getId()))
+    if(userMap.containsKey(user.getId()))
       throw new UserAlreadyExistException();
 
     userMap.put(user.getId(), user);

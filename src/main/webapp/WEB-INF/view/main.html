@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>고객 메인 페이지</title>
 </head>
 <body>
-
+<table>
+  <tr>
+    <th>제목</th>
+    <th>분류</th>
+    <th>작성 일시</th>
+    <th>답변 여부</th>
+  </tr>
+  <tr th:each="inquiry: ${inquiryList}">
+    <td th:text="${inquiry.title}"></td>
+    <td th:text="${inquiry.category}"></td>
+    <td th:text="${inquiry.created}"></td>
+    <td th:text="${inquiry.isResponse}"></td>
+  </tr>
+</table>
+<form method="post" action="/cs/inquiry">
+  <button type="submit">문의하기</button>
 </body>
 </html>

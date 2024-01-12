@@ -1,10 +1,15 @@
 package com.nhnacademy.springmvc.config;
 
 import com.nhnacademy.springmvc.Base;
+import com.nhnacademy.springmvc.domain.Inquiry;
 import com.nhnacademy.springmvc.domain.Role;
 import com.nhnacademy.springmvc.domain.User;
+import com.nhnacademy.springmvc.repository.InquiryRepository;
 import com.nhnacademy.springmvc.repository.UserRepository;
+import com.nhnacademy.springmvc.repository.impl.InquiryRepositoryImpl;
 import com.nhnacademy.springmvc.repository.impl.UserRepositoryImpl;
+import java.time.LocalDateTime;
+import java.time.Month;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,8 +24,17 @@ public class RootConfig{
   @Bean
   public UserRepository userRepository() {
     UserRepository userRepository = new UserRepositoryImpl();
-    userRepository.save(new User("test", "test", "김준현", Role.User));
-    log.debug("userRepository: test user exist: {}", userRepository.isExist("test"));
+    userRepository.save(new User("user", "user", "사용자", Role.Customer));
+    userRepository.save(new User("admin", "admin", "관리자", Role.Admin));
     return userRepository;
+  }
+
+  //todo test remove
+  @Bean
+  public InquiryRepository inquiryRepository() {
+    InquiryRepository inquiryRepository = new InquiryRepositoryImpl();
+    inquiryRepository.save(new Inquiry("test", "test", "test", LocalDateTime.now(), "user", null, false));
+    inquiryRepository.save(new Inquiry("test", "test", "test", LocalDateTime.now().minusDays(1), "user", null, false));
+    return inquiryRepository;
   }
 }

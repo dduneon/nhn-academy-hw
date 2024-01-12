@@ -32,9 +32,11 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
   @Override
   public void addInterceptors(InterceptorRegistry registry) {
     registry.addInterceptor(new LoginCheckInterceptor())
+        .order(1)
         .addPathPatterns("/**")
         .excludePathPatterns("/cs/login");
     registry.addInterceptor(new AdminCheckInterceptor())
+        .order(2)
         .addPathPatterns("/cs/admin/**");
   }
 
@@ -72,7 +74,6 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
-    //todo start page
     registry.addViewController("/").setViewName("main");
   }
 }
