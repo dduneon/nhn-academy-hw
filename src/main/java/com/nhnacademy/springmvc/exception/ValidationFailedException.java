@@ -1,5 +1,5 @@
 package com.nhnacademy.springmvc.exception;
 
-public class ValidationFailedException {
+public class ValidationFailedException extends RuntimeException{
 
 }
