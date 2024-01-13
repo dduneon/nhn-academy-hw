@@ -1,5 +1,5 @@
 package com.nhnacademy.springmvc.domain;
 
-public class Response {
+public class Answer {
 
 }
