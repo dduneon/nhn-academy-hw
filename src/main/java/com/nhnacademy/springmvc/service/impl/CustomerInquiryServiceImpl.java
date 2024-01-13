@@ -1,5 +1,6 @@
 package com.nhnacademy.springmvc.service.impl;
 
+import com.nhnacademy.springmvc.domain.Inquiry;
 import com.nhnacademy.springmvc.domain.InquiryPostRequest;
 import com.nhnacademy.springmvc.exception.FileUploadFailedException;
 import com.nhnacademy.springmvc.exception.FilenameExtensionNotSupportedException;
@@ -8,6 +9,9 @@ import com.nhnacademy.springmvc.service.CustomerInquiryService;
 import com.nhnacademy.springmvc.util.FileCheckUtils;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -45,5 +49,15 @@ public class CustomerInquiryServiceImpl implements CustomerInquiryService {
         throw new FileUploadFailedException();
       }
     }
+  }
+
+  @Override
+  public List<Inquiry> getUserInquiriesByCategory(String userId, String category) {
+    return inquiryRepository.findByUserId(userId).entrySet()
+        .stream()
+        .sorted(Map.Entry.comparingByKey())
+        .map(Map.Entry::getValue)
+        .filter(inquiry -> inquiry.getCategory().equals(category))
+        .collect(Collectors.toList());
   }
 }

@@ -1,8 +1,6 @@
 package com.nhnacademy.springmvc.domain;
 
-import com.nhnacademy.springmvc.util.DateUtils;
 import java.time.LocalDateTime;
-import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,7 +17,7 @@ public class Inquiry {
   private MultipartFile[] attachment;
   private LocalDateTime created;
   @Setter
-  private boolean isResponded = false;
+  private boolean isRespond = false;
 
   public Inquiry(long id, InquiryPostRequest inquiryPostRequest, MultipartFile[] files) {
     this.id = id;
