@@ -20,16 +20,14 @@
     <th>작성자</th>
     <th>답변하기</th>
   </tr>
-  <tr th:each="inquiry: ${notRespondedInquiries}">
-    <td th:text="${inquiry.title}"></td>
-    <td th:text="${inquiry.category}"></td>
-    <td th:text="${#temporals.format(inquiry.created, 'yyyy년 MM월 dd일 a K시MM분ss초')}"></td>
-    <td th:text="${inquiry.author}"></td>
-    <td>
-      <form method="get" >
-        <button type="submit">답변하기</button>
-      </form>
-    </td>
+  <tr th:each="inquiry: ${notRespondInquiries}">
+    <form method="get" th:action="@{/cs/admin/answer/{inquiryId}(inquiryId=${inquiry.id})}">
+      <td th:text="${inquiry.title}"></td>
+      <td th:text="${inquiry.category}"></td>
+      <td th:text="${#temporals.format(inquiry.created, 'yyyy년 MM월 dd일 a K시MM분ss초')}"></td>
+      <td th:text="${inquiry.author}"></td>
+      <td><button type="submit">답변하기</button></td>
+    </form>
   </tr>
 </table>
 </body>

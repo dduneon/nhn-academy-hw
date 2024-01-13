@@ -80,7 +80,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
   @Override
   public void addViewControllers(ViewControllerRegistry registry) {
-    registry.addViewController("/").setViewName("main");
+    registry.addViewController("/").setViewName("redirect:/cs");
   }
 
   @Bean

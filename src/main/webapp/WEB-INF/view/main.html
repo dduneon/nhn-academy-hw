@@ -37,12 +37,10 @@
     <td th:text="${inquiry.category}"></td>
     <td th:text="${#temporals.format(inquiry.created, 'yyyy년 MM월 dd일 a K시MM분ss초')}"></td>
     <td>
-      <div th:switch="${inquiry.isRespond}">
-        <p th:case="${true}">답변 완료</p>
-        <p th:case="${false}">답변 대기</p>
+      <div th:switch="${inquiry.isAnswered}">
+        <span th:case="${true}">답변 완료</span>
+        <span th:case="${false}">답변 대기</span>
       </div>
-<!--      <p th:if="${inquiry.isResponded}">답변 완료</p>-->
-<!--      <p th:if="${!inquiry.isResponded}">답변 대기중</p>-->
     </td>
   </tr>
 </table>
