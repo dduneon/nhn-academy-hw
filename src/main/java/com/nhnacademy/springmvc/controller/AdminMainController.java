@@ -21,7 +21,7 @@ public class AdminMainController {
 
   @GetMapping
   public String getAdminMain(@SessionAttribute(name = "userSession") User user, Model model) {
-    TreeSet<Inquiry> notRespondedInquiries = inquiryRepository.getNotRespondedInquiry();
+    TreeSet<Inquiry> notRespondedInquiries = inquiryRepository.findAll();
 
     model.addAttribute("user", user);
     model.addAttribute("notRespondedInquiries", notRespondedInquiries);

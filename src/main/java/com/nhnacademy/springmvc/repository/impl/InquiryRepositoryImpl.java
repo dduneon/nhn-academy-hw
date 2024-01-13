@@ -3,10 +3,8 @@ package com.nhnacademy.springmvc.repository.impl;
 import com.nhnacademy.springmvc.domain.Inquiry;
 import com.nhnacademy.springmvc.domain.InquiryPostRequest;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,51 +16,36 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Repository
 public class InquiryRepositoryImpl implements InquiryRepository {
-  private final Map<String, Map<Long, Inquiry>> inquiryMap = new HashMap<>();
-  private final Comparator<Inquiry> sortedByCreated = ((inquiry1, inquiry2) -> inquiry2.getCreated().compareTo(inquiry1.getCreated()));
+  private final Map<String, Map<Long, Inquiry>> inquiryDataBase = new HashMap<>();
 
   @Override
-  public boolean isExist(String author) {
-    return inquiryMap.containsKey(author);
+  public Map<Long, Inquiry> findByUserId(String userId) {
+    Map<Long, Inquiry> userInquiryMap = inquiryDataBase.get(userId);
+    return Objects.nonNull(userInquiryMap) ? userInquiryMap : Collections.emptyMap();
   }
 
   @Override
-  public TreeSet<Inquiry> findByAuthor(String id) {
-    Map<Long, Inquiry> userInquiryMap = inquiryMap.get(id);
-    List<Inquiry> userInquiryList = new ArrayList<>();
-    for(Long : userInquiryMap.keySet().stream().sorted(Comparator.naturalOrder()).collect(
-        Collectors.toList()))
-    userInquiryMap.
-    return Objects.nonNull(userInquirySet) ? userInquirySet : new TreeSet<>(Collections.emptySet());
-  }
-
-  @Override
-  public TreeSet<Inquiry> findByIdWithCategory(String id, String category) {
-    TreeSet<Inquiry> userInquirySet = findByAuthor(id);
-    //todo 분리 or 그대로?
-    if(category.equals("전체 보기"))
-      return userInquirySet;
-    return userInquirySet.stream().filter(inquiry -> inquiry.getCategory().equals(category))
-        .collect(Collectors.toCollection(() -> new TreeSet<>(sortedByCreated)));
-  }
-
   public void save(InquiryPostRequest inquiryPostRequest, MultipartFile[] files) {
-    if(!inquiryMap.containsKey(inquiryPostRequest.getAuthor()))
-      inquiryMap.put(inquiryPostRequest.getAuthor(), new TreeSet<>(sortedByCreated));
+    String userId = inquiryPostRequest.getAuthor();
 
-    long id =
-    inquiryMap.get(inquiryPostRequest.getAuthor()).add(inquiryPostRequest);
+    if(!inquiryDataBase.containsKey(userId))
+      inquiryDataBase.put(userId, new HashMap<>());
+
+    long id = inquiryDataBase.values()
+        .stream()
+        .flatMap(innerMap -> innerMap.keySet().stream())
+        .max(Long::compare)
+        .orElse(1L);
+
+    Inquiry inquiry = new Inquiry(id, inquiryPostRequest, files);
+    inquiryDataBase.get(userId).put(id, inquiry);
   }
 
-  public TreeSet<Inquiry> getNotRespondedInquiry() {
-    TreeSet<Inquiry> notRespondedInquirySet = new TreeSet<>(sortedByCreated);
-    Collection<TreeSet<Inquiry>> inquiries = inquiryMap.values();
-    for(TreeSet<Inquiry> inquirySet: inquiries) {
-      for(Inquiry inquiry: inquirySet) {
-        if(!inquiry.isResponded())
-          notRespondedInquirySet.add(inquiry);
-      }
-    }
-    return notRespondedInquirySet;
+  @Override
+  public List<Inquiry> findAll() {
+    return inquiryDataBase.values()
+        .stream()
+        .flatMap(innerMap -> innerMap.values().stream())
+        .collect(Collectors.toList());
   }
 }

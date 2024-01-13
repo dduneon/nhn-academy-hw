@@ -1,17 +1,15 @@
 package com.nhnacademy.springmvc.controller;
 
-import com.nhnacademy.springmvc.domain.Inquiry;
 import com.nhnacademy.springmvc.domain.InquiryPostRequest;
 import com.nhnacademy.springmvc.domain.User;
 import com.nhnacademy.springmvc.exception.FileUploadFailedException;
 import com.nhnacademy.springmvc.exception.FilenameExtensionNotSupportedException;
 import com.nhnacademy.springmvc.exception.ValidationFailedException;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
+import com.nhnacademy.springmvc.service.CustomerInquiryService;
 import com.nhnacademy.springmvc.util.FileCheckUtils;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.util.Date;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -32,10 +30,10 @@ import org.springframework.web.multipart.MultipartFile;
 public class CustomerInquiryController {
   private static final String UPLOAD_DIR = "/Users/dduneon/Documents/test";
 
-  private final InquiryRepository inquiryRepository;
+  private final CustomerInquiryService customerInquiryService;
 
-  public CustomerInquiryController(InquiryRepository inquiryRepository) {
-    this.inquiryRepository = inquiryRepository;
+  public CustomerInquiryController(CustomerInquiryService customerInquiryService) {
+    this.customerInquiryService = customerInquiryService;
   }
 
   @GetMapping
@@ -52,24 +50,7 @@ public class CustomerInquiryController {
     if(bindingResult.hasErrors())
       throw new ValidationFailedException(bindingResult);
 
-    log.debug("createInquiry(): number of upload file -> {}", files.length);
-    for(MultipartFile file: files) {
-      log.debug("createInquiry(): fileName -> {}", file.getOriginalFilename());
-      if(!StringUtils.hasText(file.getOriginalFilename()))
-        break;
-      try {
-        log.debug("{}", file.getOriginalFilename());
-        if(FileCheckUtils.CheckFilenameExtension(file.getOriginalFilename())) {
-          file.transferTo(Paths.get(UPLOAD_DIR + file.getOriginalFilename()));
-        } else {
-          throw new FilenameExtensionNotSupportedException();
-        }
-      } catch (IOException ioException) {
-        throw new FileUploadFailedException();
-      }
-    }
-
-    inquiryRepository.save(inquiryPostRequest, files);
+    customerInquiryService.addUserInquiry(inquiryPostRequest, files);
     return "redirect:/cs";
   }
 }

@@ -18,17 +18,16 @@ public class Inquiry {
   private String content;
   private MultipartFile[] attachment;
   private LocalDateTime created;
-  // todo change type
   @Setter
-  private boolean isResponded;
+  private boolean isResponded = false;
 
-  public Inquiry(InquiryPostRequest inquiryPostRequest, MultipartFile[]  file) {
+  public Inquiry(long id, InquiryPostRequest inquiryPostRequest, MultipartFile[] files) {
+    this.id = id;
     this.author = inquiryPostRequest.getAuthor();
     this.title = inquiryPostRequest.getTitle();
     this.category = inquiryPostRequest.getCategory();
     this.content = inquiryPostRequest.getContent();
-    this.attachment = file;
+    this.attachment = files;
     this.created = LocalDateTime.now();
-    isResponded = false;
   }
 }
