@@ -1,16 +1,22 @@
 package com.nhnacademy.springmvc.controller;
 
+import com.nhnacademy.springmvc.domain.Inquiry;
 import com.nhnacademy.springmvc.domain.InquiryPostRequest;
 import com.nhnacademy.springmvc.domain.User;
+import com.nhnacademy.springmvc.exception.FileUploadFailedException;
+import com.nhnacademy.springmvc.exception.FilenameExtensionNotSupportedException;
 import com.nhnacademy.springmvc.exception.ValidationFailedException;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
+import com.nhnacademy.springmvc.util.FileCheckUtils;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.util.Date;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -24,7 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/cs/inquiry")
 public class CustomerInquiryController {
-  private static final String UPLOAD_DIR = "C:\\Users\\S20184366\\Documents\\test\\";
+  private static final String UPLOAD_DIR = "/Users/dduneon/Documents/test";
 
   private final InquiryRepository inquiryRepository;
 
@@ -40,17 +46,30 @@ public class CustomerInquiryController {
   }
 
   @PostMapping
-  public String createInquiry(@Valid @ModelAttribute InquiryPostRequest inquiryPostRequest, @RequestParam(name="attachment") MultipartFile file, BindingResult bindingResult, Model model) throws IOException {
-    log.debug("createInquiry(): inquiry request is null?{}", Objects.isNull(inquiryPostRequest));
+  public String createInquiry(@Valid @ModelAttribute InquiryPostRequest inquiryPostRequest, BindingResult bindingResult, @RequestParam(name="attachment", required = false) MultipartFile[] files, Model model){
     log.debug("createInquiry(): {}, {}, {}, {}", inquiryPostRequest.getAuthor(), inquiryPostRequest.getTitle()
-    , inquiryPostRequest.getCategory(), inquiryPostRequest.getContent());
+        , inquiryPostRequest.getCategory(), inquiryPostRequest.getContent());
     if(bindingResult.hasErrors())
       throw new ValidationFailedException(bindingResult);
-    MultipartFile uploadFile = file;
-    uploadFile.transferTo(Paths.get(UPLOAD_DIR + uploadFile.getOriginalFilename()));
 
-    model.addAttribute("fileName", uploadFile.getOriginalFilename());
-    model.addAttribute("size", uploadFile.getSize());
-    return "test";
+    log.debug("createInquiry(): number of upload file -> {}", files.length);
+    for(MultipartFile file: files) {
+      log.debug("createInquiry(): fileName -> {}", file.getOriginalFilename());
+      if(!StringUtils.hasText(file.getOriginalFilename()))
+        break;
+      try {
+        log.debug("{}", file.getOriginalFilename());
+        if(FileCheckUtils.CheckFilenameExtension(file.getOriginalFilename())) {
+          file.transferTo(Paths.get(UPLOAD_DIR + file.getOriginalFilename()));
+        } else {
+          throw new FilenameExtensionNotSupportedException();
+        }
+      } catch (IOException ioException) {
+        throw new FileUploadFailedException();
+      }
+    }
+
+    inquiryRepository.save(inquiryPostRequest, files);
+    return "redirect:/cs";
   }
 }

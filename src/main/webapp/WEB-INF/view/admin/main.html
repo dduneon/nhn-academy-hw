@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Title</title>
+  <title>관리자 메인 페이지</title>
 </head>
 <body>
-
+<h1>CS 관리자 페이지</h1>
+<h2>로그인 정보</h2>
+<b>아이디: </b><span th:text="${user.id}"></span><br>
+<b>이름: </b><span th:text="${user.name}"></span><br>
+<b>역할: </b><span th:text="${user.role}"></span><br>
+<br>
+<h2>고객 문의 목록</h2>
+<table>
+  <tr>
+    <th>제목</th>
+    <th>분류</th>
+    <th>작성 일시</th>
+    <th>작성자</th>
+    <th>답변하기</th>
+  </tr>
+  <tr th:each="inquiry: ${notRespondedInquiries}">
+    <td th:text="${inquiry.title}"></td>
+    <td th:text="${inquiry.category}"></td>
+    <td th:text="${#temporals.format(inquiry.created, 'yyyy년 MM월 dd일 a K시MM분ss초')}"></td>
+    <td th:text="${inquiry.author}"></td>
+    <td>
+      <form method="get" >
+        <button type="submit">답변하기</button>
+      </form>
+    </td>
+  </tr>
+</table>
 </body>
 </html>
