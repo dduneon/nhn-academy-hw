@@ -9,6 +9,7 @@ import com.nhnacademy.springmvc.service.CustomerInquiryService;
 import com.nhnacademy.springmvc.util.FileCheckUtils;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -32,7 +33,6 @@ public class CustomerInquiryServiceImpl implements CustomerInquiryService {
 
   @Override
   public void addUserInquiry(InquiryPostRequest inquiryPostRequest, MultipartFile[] files) {
-    inquiryRepository.save(inquiryPostRequest, files);
     log.debug("addUserInquiry(): number of upload file -> {}", files.length);
     for(MultipartFile file: files) {
       log.debug("addUserInquiry(): fileName -> {}", file.getOriginalFilename());
@@ -49,15 +49,16 @@ public class CustomerInquiryServiceImpl implements CustomerInquiryService {
         throw new FileUploadFailedException();
       }
     }
+    inquiryRepository.save(inquiryPostRequest, files);
   }
 
   @Override
   public List<Inquiry> getUserInquiriesByCategory(String userId, String category) {
     return inquiryRepository.findByUserId(userId).entrySet()
         .stream()
-        .sorted(Map.Entry.comparingByKey())
+        .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
         .map(Map.Entry::getValue)
-        .filter(inquiry -> inquiry.getCategory().equals(category))
+        .filter(inquiry -> category.equals("전체 보기") || inquiry.getCategory().equals(category))
         .collect(Collectors.toList());
   }
 }

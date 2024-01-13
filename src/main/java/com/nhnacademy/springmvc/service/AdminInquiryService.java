@@ -5,4 +5,5 @@ import java.util.List;
 
 public interface AdminInquiryService {
   List<Inquiry> getNotRespondInquiries();
+  Inquiry getInquiryById(long inquiryId);
 }

@@ -17,7 +17,7 @@ public class Inquiry {
   private MultipartFile[] attachment;
   private LocalDateTime created;
   @Setter
-  private boolean isRespond = false;
+  private boolean isAnswered = false;
 
   public Inquiry(long id, InquiryPostRequest inquiryPostRequest, MultipartFile[] files) {
     this.id = id;

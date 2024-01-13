@@ -28,8 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/cs/inquiry")
 public class CustomerInquiryController {
-  private static final String UPLOAD_DIR = "/Users/dduneon/Documents/test";
-
   private final CustomerInquiryService customerInquiryService;
 
   public CustomerInquiryController(CustomerInquiryService customerInquiryService) {

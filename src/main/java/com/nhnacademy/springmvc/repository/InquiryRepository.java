@@ -9,5 +9,5 @@ import org.springframework.web.multipart.MultipartFile;
 public interface InquiryRepository {
   Map<Long, Inquiry> findByUserId(String userId);
   void save(InquiryPostRequest inquiryPostRequest, MultipartFile[] files);
-  List<Inquiry> findAll();
+  Map<Long, Inquiry> findAll();
   }

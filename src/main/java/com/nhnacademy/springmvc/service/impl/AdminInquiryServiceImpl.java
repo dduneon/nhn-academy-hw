@@ -17,9 +17,15 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
 
   @Override
   public List<Inquiry> getNotRespondInquiries() {
-    return inquiryRepository.findAll()
+    return inquiryRepository.findAll().values()
         .stream()
-        .filter(inquiry -> !inquiry.isRespond())
+        .filter(inquiry -> !inquiry.isAnswered())
+        .sorted((inq1, inq2) -> Math.toIntExact(inq2.getId() - inq1.getId()))
         .collect(Collectors.toList());
+  }
+
+  @Override
+  public Inquiry getInquiryById(long inquiryId) {
+    return inquiryRepository.findAll().get(inquiryId);
   }
 }
