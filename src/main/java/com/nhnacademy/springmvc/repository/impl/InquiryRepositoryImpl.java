@@ -21,7 +21,14 @@ public class InquiryRepositoryImpl implements InquiryRepository {
   private final Map<String, Map<Long, Inquiry>> inquiryDataBase = new HashMap<>();
 
   @Override
+  public void initUser(String userId) {
+    if(!inquiryDataBase.containsKey(userId))
+      inquiryDataBase.put(userId, new HashMap<>());
+  }
+
+  @Override
   public Map<Long, Inquiry> findByUserId(String userId) {
+    initUser(userId);
     Map<Long, Inquiry> userInquiryMap = inquiryDataBase.get(userId);
     // Todo test del
     log.debug("findByUserId(): map size -> {}", userInquiryMap.size());
@@ -33,8 +40,7 @@ public class InquiryRepositoryImpl implements InquiryRepository {
     String userId = inquiryPostRequest.getAuthor();
     log.debug("save(): userId -> {}", userId);
 
-    if(!inquiryDataBase.containsKey(userId))
-      inquiryDataBase.put(userId, new HashMap<>());
+    initUser(userId);
 
     long newInquiryId = inquiryDataBase.values()
         .stream()
@@ -59,5 +65,12 @@ public class InquiryRepositoryImpl implements InquiryRepository {
             Map.Entry::getValue,
             (existing, replacement) -> existing
         ));
+  }
+
+  @Override
+  public void updateAnsweredStatus(Long inquiryId, String author) {
+    Inquiry inquiry = findByUserId(author).get(inquiryId);
+    if(Objects.nonNull(inquiry))
+      inquiry.setAnswered(true);
   }
 }

@@ -1,5 +1,6 @@
 package com.nhnacademy.springmvc.service.impl;
 
+import com.nhnacademy.springmvc.domain.Answer;
 import com.nhnacademy.springmvc.domain.Inquiry;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
 import com.nhnacademy.springmvc.service.AdminInquiryService;
@@ -27,5 +28,10 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
   @Override
   public Inquiry getInquiryById(long inquiryId) {
     return inquiryRepository.findAll().get(inquiryId);
+  }
+
+  @Override
+  public void modifyAnsweredStatus(long inquiryId, String author) {
+    inquiryRepository.updateAnsweredStatus(inquiryId, author);
   }
 }

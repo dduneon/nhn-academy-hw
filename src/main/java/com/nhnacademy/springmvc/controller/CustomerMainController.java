@@ -1,6 +1,7 @@
 package com.nhnacademy.springmvc.controller;
 
 import com.nhnacademy.springmvc.domain.Inquiry;
+import com.nhnacademy.springmvc.domain.Role;
 import com.nhnacademy.springmvc.domain.User;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
 import com.nhnacademy.springmvc.service.CustomerInquiryService;
@@ -26,7 +27,9 @@ public class CustomerMainController {
 
   @GetMapping
   public String getInquiry(@SessionAttribute(name="userSession") User user, @RequestParam(name="category", defaultValue = "전체 보기") String category, Model model) {
-    log.debug("getInquiry(): category -> {}, userId -> {}", category, user.getId());
+    log.debug("getInquiry(): category -> {}, userId -> {}, role -> {}", category, user.getId(), user.getRole());
+    if(user.getRole() != Role.Customer)
+      return "redirect:/cs/admin";
     List<Inquiry> inquiries = customerInquiryService.getUserInquiriesByCategory(user.getId(), category);
     log.debug("getInquiry(): total {} inquiry user({}) have", inquiries.size(), user.getId());
 

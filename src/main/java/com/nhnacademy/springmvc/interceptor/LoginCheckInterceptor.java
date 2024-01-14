@@ -1,5 +1,6 @@
 package com.nhnacademy.springmvc.interceptor;
 
+import com.nhnacademy.springmvc.domain.User;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,9 +16,11 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
       throws Exception {
     log.debug("LoginCheckInterceptor.preHandle(): called");
     HttpSession session = request.getSession(false);
+    log.debug("LoginCheckInterceptor.preHandle(): session -> {}, attribute(userSession) -> {}", Objects.nonNull(session),
+        Objects.nonNull(session) && Objects.nonNull(session.getAttribute("userSession")));
     if(Objects.isNull(session) || Objects.isNull(session.getAttribute("userSession"))) {
-      log.debug("LoginCheckInterceptor.preHandle(): session or attribute(userSession) is null");
       response.sendRedirect("/cs/login");
+      // todo thr exception or redirect?
       return false;
     }
     log.debug("LoginCheckInterceptor.preHandle(): userSession found");

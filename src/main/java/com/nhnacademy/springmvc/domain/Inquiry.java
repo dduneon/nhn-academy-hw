@@ -6,16 +6,15 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
-@AllArgsConstructor
 @Getter
 public class Inquiry {
-  private long id;
+  private final long id;
   private String author;
   private String title;
   private String category;
   private String content;
   private MultipartFile[] attachment;
-  private LocalDateTime created;
+  private final LocalDateTime created;
   @Setter
   private boolean isAnswered = false;
 

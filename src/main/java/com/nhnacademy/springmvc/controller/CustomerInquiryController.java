@@ -1,5 +1,7 @@
 package com.nhnacademy.springmvc.controller;
 
+import com.nhnacademy.springmvc.domain.Answer;
+import com.nhnacademy.springmvc.domain.Inquiry;
 import com.nhnacademy.springmvc.domain.InquiryPostRequest;
 import com.nhnacademy.springmvc.domain.User;
 import com.nhnacademy.springmvc.exception.FileUploadFailedException;
@@ -10,6 +12,7 @@ import com.nhnacademy.springmvc.service.CustomerInquiryService;
 import com.nhnacademy.springmvc.util.FileCheckUtils;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Objects;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -50,5 +54,16 @@ public class CustomerInquiryController {
 
     customerInquiryService.addUserInquiry(inquiryPostRequest, files);
     return "redirect:/cs";
+  }
+
+  @GetMapping("/{inquiryId}")
+  public String getInquiryDetail(@PathVariable(name="inquiryId") long inquiryId,@SessionAttribute("userSession") User user, Model model) {
+    Inquiry inquiry = customerInquiryService.getSpecifiedInquiry(user.getId(), inquiryId);
+    Answer answer = customerInquiryService.getSpecifiedAnswer(inquiryId);
+
+    model.addAttribute("inquiry", inquiry);
+    if(Objects.nonNull(answer))
+      model.addAttribute("answer", answer);
+    return "customer/inquiryDetail";
   }
 }

@@ -31,6 +31,7 @@
     <th>분류</th>
     <th>작성 일시</th>
     <th>답변 여부</th>
+    <th>상세 보기</th>
   </tr>
   <tr th:each="inquiry: ${inquiries}">
     <td th:text="${inquiry.title}"></td>
@@ -41,6 +42,11 @@
         <span th:case="${true}">답변 완료</span>
         <span th:case="${false}">답변 대기</span>
       </div>
+    </td>
+    <td>
+      <form method="get" th:action="@{/cs/inquiry/{inquiryId}(inquiryId=${inquiry.id})}">
+        <button type="submit">보기</button>
+      </form>
     </td>
   </tr>
 </table>

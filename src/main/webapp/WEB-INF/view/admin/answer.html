@@ -47,13 +47,15 @@
 <table>
   <tr>
     <th>답변 내용</th>
+    <form method="post" action="/cs/admin/answer">
     <td>
+      <input type="hidden" id="author" name="author" th:value="${inquiry.author}"/>
+      <input type="hidden" id="inquiryId" name="inquiryId" th:value="${inquiry.id}"/>
       <textarea id="answer" name="answer" rows="10" required></textarea>
     </td>
-    <form method="post" action="/cs/admin/answer">
     <button type="submit">확인</button>
     </form>
-    <form method="get" action="/cs">
+    <form method="get" action="/cs/admin">
       <button type="submit">취소</button>
     </form>
   </tr>
