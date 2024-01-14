@@ -1,14 +1,15 @@
 package com.nhnacademy.springmvc.domain;
 
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import lombok.NonNull;
 import lombok.Value;
 import org.hibernate.validator.constraints.Length;
 
 @Value
-@NonNull
 public class AnswerPostRequest {
+  @NotEmpty
+  @NotNull
   String author;
   long inquiryId;
   @NotNull

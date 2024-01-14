@@ -14,19 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/cs/logout")
 public class LogoutController {
   @GetMapping
-  public String getLogout(HttpServletRequest request, HttpServletResponse response) {
-    HttpSession session = request.getSession(false);
+  public String getLogout(HttpSession session) {
     if(Objects.nonNull(session)) {
+      session.removeAttribute("userSession");
       session.invalidate();
-      Cookie cookie = Arrays.stream(request.getCookies()).filter(c -> c.getName().equals("JSESSIONID"))
-          .findFirst().orElse(null);
-      if(Objects.nonNull(cookie)) {
-        Cookie selectedCookie = new Cookie(cookie.getName(), null);
-        selectedCookie.setMaxAge(0);
-        selectedCookie.setPath("/");
-        response.addCookie(cookie);
-      }
     }
-    return "redirect:/cs";
+    return "redirect:/cs/login";
   }
 }

@@ -1,6 +1,7 @@
 package com.nhnacademy.springmvc.service.impl;
 
 import com.nhnacademy.springmvc.domain.Answer;
+import com.nhnacademy.springmvc.exception.AddAnswerFailedException;
 import com.nhnacademy.springmvc.repository.AnswerRepository;
 import com.nhnacademy.springmvc.service.AdminAnswerService;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class AdminAnswerServiceImpl implements AdminAnswerService {
   }
 
   public void addInquiryAnswer(long inquiryId, Answer answer) {
-    answerRepository.save(inquiryId, answer);
+    if(!answerRepository.save(inquiryId, answer))
+      throw new AddAnswerFailedException();
   }
-
 }

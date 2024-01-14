@@ -27,14 +27,16 @@ public class LoginController {
   }
 
   @GetMapping
-  public String getLogin(HttpServletRequest request) {
+  public String getLogin(HttpSession session) {
+    log.debug("getLogin(): called");
+    log.debug("getLogin(): {}, {}", Objects.nonNull(session), Objects.nonNull(session) && Objects.nonNull(session.getAttribute("userSession")));
+    log.debug("{}", session.isNew());
     // 이미 로그인되어 있는 경우를 체크하고, 메인 페이지로 redirect
-    HttpSession session = request.getSession(false);
-    return Objects.nonNull(session) && Objects.nonNull(session.getAttribute("userSession")) ? "redirect:/cs" : "login";
+    return Objects.nonNull(session) && Objects.nonNull(session.getAttribute("userSession")) ? "redirect:/cs" : "signin";
   }
 
   @PostMapping
-  public String doLogin(@ModelAttribute UserLoginRequest userLoginRequest, HttpServletRequest request) {
+  public String doLogin(@ModelAttribute UserLoginRequest userLoginRequest, HttpSession session) {
     log.debug("postLogin(): called");
     log.debug("postLogin(): id({}), pw({})", userLoginRequest.getId(), userLoginRequest.getPassword());
 
@@ -44,12 +46,10 @@ public class LoginController {
     User user = userRepository.findById(userLoginRequest.getId());
     if(!user.getPassword().equals(userLoginRequest.getPassword())) {
       // Login Failure
-      // todo throw exception or redirect?
       log.debug("postLogin(): Login failed");
       throw new PasswordNotCorrectException();
     }
     log.debug("postLogin(): Login success (Role: {})", user.getRole());
-    HttpSession session = request.getSession(true);
     session.setAttribute("userSession", user);
     return (user.getRole() == Role.Customer) ? "redirect:/cs" : "redirect:/cs/admin";
   }

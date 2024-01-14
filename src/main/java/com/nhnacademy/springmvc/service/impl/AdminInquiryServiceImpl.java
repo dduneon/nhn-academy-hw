@@ -2,6 +2,7 @@ package com.nhnacademy.springmvc.service.impl;
 
 import com.nhnacademy.springmvc.domain.Answer;
 import com.nhnacademy.springmvc.domain.Inquiry;
+import com.nhnacademy.springmvc.exception.NotModifiedAnswerStatusException;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
 import com.nhnacademy.springmvc.service.AdminInquiryService;
 import java.util.List;
@@ -32,6 +33,8 @@ public class AdminInquiryServiceImpl implements AdminInquiryService {
 
   @Override
   public void modifyAnsweredStatus(long inquiryId, String author) {
-    inquiryRepository.updateAnsweredStatus(inquiryId, author);
+    if(!inquiryRepository.updateAnsweredStatus(inquiryId, author)) {
+      throw new NotModifiedAnswerStatusException();
+    }
   }
 }

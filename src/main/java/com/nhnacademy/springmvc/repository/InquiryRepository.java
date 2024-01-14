@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 public interface InquiryRepository {
   void initUser(String userId);
   Map<Long, Inquiry> findByUserId(String userId);
-  void save(InquiryPostRequest inquiryPostRequest, MultipartFile[] files);
+  long save(InquiryPostRequest inquiryPostRequest, MultipartFile[] files);
   Map<Long, Inquiry> findAll();
-  void updateAnsweredStatus(Long inquiryId, String author);
+  boolean updateAnsweredStatus(Long inquiryId, String author);
   }

@@ -1,7 +1,11 @@
 package com.nhnacademy.springmvc.exception;
 
-import java.io.IOException;
-
 public class FileUploadFailedException extends RuntimeException {
 
+  public FileUploadFailedException(Exception exception) {
+    super(exception);
+  }
+
+  public FileUploadFailedException() {
+  }
 }

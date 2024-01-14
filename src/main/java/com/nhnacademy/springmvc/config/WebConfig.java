@@ -41,7 +41,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
         .excludePathPatterns("/cs/login");
     registry.addInterceptor(new AdminCheckInterceptor())
         .order(2)
-        .addPathPatterns("/cs/admin/**");
+        .addPathPatterns("/cs/admin", "/cs/admin/**");
   }
 
   @Override

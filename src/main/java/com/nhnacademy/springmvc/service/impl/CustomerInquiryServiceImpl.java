@@ -10,6 +10,7 @@ import com.nhnacademy.springmvc.repository.AnswerRepository;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
 import com.nhnacademy.springmvc.service.CustomerInquiryService;
 import com.nhnacademy.springmvc.util.FileCheckUtils;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Comparator;
@@ -40,7 +41,16 @@ public class CustomerInquiryServiceImpl implements CustomerInquiryService {
 
   @Override
   public void addUserInquiry(InquiryPostRequest inquiryPostRequest, MultipartFile[] files) {
-    log.debug("addUserInquiry(): number of upload file -> {}", files.length);
+    long inquiryId = inquiryRepository.save(inquiryPostRequest, files);
+    String userDir = UPLOAD_DIR + inquiryPostRequest.getAuthor() + "/" + inquiryId;
+
+    File folder = new File(userDir);
+    if (!folder.exists())
+      folder.mkdirs();
+
+    if(Objects.isNull(files))
+      throw new FileUploadFailedException();
+
     for(MultipartFile file: files) {
       log.debug("addUserInquiry(): fileName -> {}", file.getOriginalFilename());
       if(!StringUtils.hasText(file.getOriginalFilename()))
@@ -48,15 +58,14 @@ public class CustomerInquiryServiceImpl implements CustomerInquiryService {
       try {
         log.debug("{}", file.getOriginalFilename());
         if(FileCheckUtils.CheckFilenameExtension(file.getOriginalFilename())) {
-          file.transferTo(Paths.get(UPLOAD_DIR + file.getOriginalFilename()));
+          file.transferTo(Paths.get(userDir + "/" + file.getOriginalFilename()));
         } else {
           throw new FilenameExtensionNotSupportedException();
         }
       } catch (IOException ioException) {
-        throw new FileUploadFailedException();
+        throw new FileUploadFailedException(ioException);
       }
     }
-    inquiryRepository.save(inquiryPostRequest, files);
   }
 
   @Override

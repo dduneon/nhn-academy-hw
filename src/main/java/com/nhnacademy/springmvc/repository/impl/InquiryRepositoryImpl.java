@@ -36,7 +36,7 @@ public class InquiryRepositoryImpl implements InquiryRepository {
   }
 
   @Override
-  public void save(InquiryPostRequest inquiryPostRequest, MultipartFile[] files) {
+  public long save(InquiryPostRequest inquiryPostRequest, MultipartFile[] files) {
     String userId = inquiryPostRequest.getAuthor();
     log.debug("save(): userId -> {}", userId);
 
@@ -54,6 +54,7 @@ public class InquiryRepositoryImpl implements InquiryRepository {
     Inquiry inquiry = new Inquiry(newInquiryId, inquiryPostRequest, files);
     inquiryDataBase.get(userId).put(newInquiryId, inquiry);
     log.debug("save(): {}", inquiryDataBase.get(userId).get(newInquiryId).getTitle());
+    return newInquiryId;
   }
 
   @Override
@@ -68,9 +69,12 @@ public class InquiryRepositoryImpl implements InquiryRepository {
   }
 
   @Override
-  public void updateAnsweredStatus(Long inquiryId, String author) {
+  public boolean updateAnsweredStatus(Long inquiryId, String author) {
     Inquiry inquiry = findByUserId(author).get(inquiryId);
-    if(Objects.nonNull(inquiry))
+    if(Objects.nonNull(inquiry)) {
       inquiry.setAnswered(true);
+      return true;
+    }
+    return false;
   }
 }
