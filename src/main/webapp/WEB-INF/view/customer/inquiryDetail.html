@@ -21,19 +21,6 @@
     <td th:text="${inquiry.content}"></td>
   </tr>
   <tr>
-    <th>첨부파일</th>
-    <td>
-      <table>
-        <tr th:each="attachment : ${inquiry.attachment}">
-          <td>
-            <!-- todo -->
-            test.jpg
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-  <tr>
     <th>분류</th>
     <td th:text="${inquiry.category}"></td>
   </tr>

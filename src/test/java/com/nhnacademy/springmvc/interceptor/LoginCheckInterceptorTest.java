@@ -1,33 +1,31 @@
-package com.nhnacademy.springmvc.controller.advice;
+package com.nhnacademy.springmvc.interceptor;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import com.nhnacademy.springmvc.config.RootConfig;
 import com.nhnacademy.springmvc.config.WebConfig;
-import com.nhnacademy.springmvc.exception.UserNotFoundException;
+import com.nhnacademy.springmvc.domain.Role;
+import com.nhnacademy.springmvc.domain.User;
+import com.nhnacademy.springmvc.exception.NoPermissionException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.ContextHierarchy;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
-import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.util.NestedServletException;
 
 @ExtendWith(SpringExtension.class)
 @WebAppConfiguration
@@ -35,22 +33,33 @@ import org.springframework.web.util.NestedServletException;
     @ContextConfiguration(classes = RootConfig.class),
     @ContextConfiguration(classes = WebConfig.class)
 })
-class WebControllerAdviceTest {
+
+class LoginCheckInterceptorTest {
   private MockMvc mockMvc;
   @Autowired
   private WebApplicationContext webApplicationContext;
-
+  private MockHttpSession session;
   @BeforeEach
-  void setup() {
-    this.mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+  void setUp() {
+    mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+    session = mock(MockHttpSession.class);
+  }
+  @Test
+  void preHandleNullSessionAttributeTest() throws Exception{
+    when(session.getAttribute("userSession")).thenReturn(null);
+
+    mockMvc.perform(MockMvcRequestBuilders.get("/cs")
+            .session(session))
+        .andExpect(redirectedUrl("/cs/login"));
   }
 
   @Test
-  void handleException() throws Exception{
-    mockMvc.perform(MockMvcRequestBuilders.post("/cs/login")
-        .param("id", "invalidId")
-        .param("password", "invalidPassword"))
-        .andExpect(view().name("error"))
-        .andReturn();
+  void preHandleTest() throws Exception{
+    User user = new User("testId", "testPw", "testName", Role.Customer);
+
+    when(session.getAttribute("userSession")).thenReturn(user);
+    mockMvc.perform(MockMvcRequestBuilders.get("/cs")
+            .session(session))
+        .andExpect(view().name("main"));
   }
 }

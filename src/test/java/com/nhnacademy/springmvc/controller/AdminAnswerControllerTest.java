@@ -8,6 +8,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import com.nhnacademy.springmvc.domain.Inquiry;
@@ -104,5 +105,14 @@ class AdminAnswerControllerTest {
             .session(session))
         .andExpect(redirectedUrl("/cs/admin"))
         .andReturn();
+  }
+
+  @Test
+  void downloadFile() throws Exception{
+    mockMvc.perform(MockMvcRequestBuilders.post("/cs/admin/answer/download")
+        .param("downloadFilename", "yourFileName")
+        .param("downloadInquiryId", "1")
+        .param("downloadInquiryAuthor", "yourAuthor"))
+        .andExpect(status().isOk());
   }
 }

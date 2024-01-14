@@ -75,7 +75,7 @@ class CustomerInquiryControllerTest {
 
   @Test
   void getInquiryDetail() throws Exception{
-    Inquiry inquiry = new Inquiry(1, "author", "title", "category", "content", null, LocalDateTime.now(), false);
+    Inquiry inquiry = new Inquiry(1, "testId", "title", "category", "content", null, LocalDateTime.now(), false);
     Answer answer = new Answer(1, "adminId", "content");
 
     when(customerInquiryService.getSpecifiedInquiry("testId", 1)).thenReturn(inquiry);
@@ -86,6 +86,5 @@ class CustomerInquiryControllerTest {
         .andExpect(model().attribute("inquiry", inquiry))
         .andExpect(model().attribute("answer", answer))
         .andExpect(view().name("customer/inquiryDetail"));
-
   }
 }

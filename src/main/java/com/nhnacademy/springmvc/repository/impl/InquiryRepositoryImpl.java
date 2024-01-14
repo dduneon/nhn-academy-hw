@@ -30,7 +30,6 @@ public class InquiryRepositoryImpl implements InquiryRepository {
   public Map<Long, Inquiry> findByUserId(String userId) {
     initUser(userId);
     Map<Long, Inquiry> userInquiryMap = inquiryDataBase.get(userId);
-    // Todo test del
     log.debug("findByUserId(): map size -> {}", userInquiryMap.size());
     return Objects.nonNull(userInquiryMap) ? userInquiryMap : Collections.emptyMap();
   }

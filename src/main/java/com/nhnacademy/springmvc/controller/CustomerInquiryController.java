@@ -6,6 +6,7 @@ import com.nhnacademy.springmvc.domain.InquiryPostRequest;
 import com.nhnacademy.springmvc.domain.User;
 import com.nhnacademy.springmvc.exception.FileUploadFailedException;
 import com.nhnacademy.springmvc.exception.FilenameExtensionNotSupportedException;
+import com.nhnacademy.springmvc.exception.NoPermissionException;
 import com.nhnacademy.springmvc.exception.ValidationFailedException;
 import com.nhnacademy.springmvc.repository.InquiryRepository;
 import com.nhnacademy.springmvc.service.CustomerInquiryService;

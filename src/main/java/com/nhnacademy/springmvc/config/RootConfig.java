@@ -31,7 +31,6 @@ public class RootConfig{
     return userRepository;
   }
 
-  //todo test remove
   @Bean
   public InquiryRepository inquiryRepository() {
     InquiryRepository inquiryRepository = new InquiryRepositoryImpl();

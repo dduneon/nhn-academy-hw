@@ -21,14 +21,6 @@
     <td th:text="${inquiry.content}"></td>
   </tr>
   <tr>
-    <th>첨부파일</th>
-    <td>
-        <tr th:each="attachment : ${inquiry.attachment}">
-          <td th:text="${attachment}"></td>
-        </tr>
-    </td>
-  </tr>
-  <tr>
     <th>분류</th>
     <td th:text="${inquiry.category}"></td>
   </tr>
@@ -36,6 +28,19 @@
     <th>작성일시</th>
     <td th:text="${#temporals.format(inquiry.created, 'yyyy년 MM월 dd일 a K시MM분ss초')}"></td>
   </tr>
+</table>
+
+<h2>첨부파일</h2>
+<table th:each="attachment : ${inquiry.attachment}">
+  <th th:text="${attachment.getOriginalFilename()}"></th>
+  <td>
+    <form method="post" action="/cs/admin/answer/download">
+    <input type="hidden" th:value="${attachment.getOriginalFilename()}" name="downloadFilename">
+    <input type="hidden" th:value="${inquiry.id}" name="downloadInquiryId">
+    <input type="hidden" th:value="${inquiry.author}" name="downloadInquiryAuthor">
+    <button type="submit">다운로드</button>
+    </form>
+  </td>
 </table>
 <br>
 <h2>문의 입력</h2>

@@ -20,7 +20,6 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         Objects.nonNull(session) && Objects.nonNull(session.getAttribute("userSession")));
     if(Objects.isNull(session) || Objects.isNull(session.getAttribute("userSession"))) {
       response.sendRedirect("/cs/login");
-      // todo thr exception or redirect?
       return false;
     }
     log.debug("LoginCheckInterceptor.preHandle(): userSession found");
