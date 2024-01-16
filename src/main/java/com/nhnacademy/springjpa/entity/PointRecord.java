@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PointRecord")
+@Table(name="PointRecords")
 public class PointRecord {
   @Id
   @Column(name = "user_id")
@@ -16,7 +16,7 @@ public class PointRecord {
   private long orderId;
   @Column(name = "user_amount")
   private int amount;
-  @Column(name = "RecordDate")
+  @Column(name = "record_date")
   private LocalDateTime recordDate;
 
 }

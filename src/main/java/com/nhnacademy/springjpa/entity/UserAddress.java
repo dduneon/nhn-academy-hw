@@ -6,11 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="UserAddress")
+@Table(name="UserAddresses")
 public class UserAddress {
   @Id
   @Column(name = "user_id")
-  private String userId;
+  private String id;
   @Column(name = "user_address")
-  private String userAddress;
+  private String address;
 }

@@ -8,19 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Review")
+@Table(name = "Reviews")
 public class Review {
   @Id
   @Column(name = "review_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long reviewId;
+  private long id;
   @Column(name = "user_id")
   private String userId;
   @Column(name = "product_id")
   private long productId;
-  @Column(name = "Rating")
+  @Column(name = "rating")
   private int rating;
-  @Column(name = "Comment")
+  @Column(name = "comment")
   private String comment;
 
 }

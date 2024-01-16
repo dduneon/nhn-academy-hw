@@ -8,21 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "Products")
 public class Product {
   @Id
   @Column(name = "product_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long productId;
-  @Column(name = "ProductNumber")
-  private String productNumber;
-  @Column(name = "ProductName")
-  private String productName;
-  @Column(name = "ProductImage")
-  private String productImage;
-  @Column(name = "UnitCost")
+  private long id;
+  @Column(name = "product_number")
+  private String number;
+  @Column(name = "product_name")
+  private String name;
+  @Column(name = "product_image")
+  private String image;
+  @Column(name = "unit_cost")
   private int unitCost;
-  @Column(name = "Description")
+  @Column(name = "description")
   private String description;
 
 }

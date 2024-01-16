@@ -9,18 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ShoppingCart")
+@Table(name="ShoppingCarts")
 public class ShoppingCart {
   @Id
   @Column(name = "cart_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private long cartId;
+  private long id;
   @Column(name = "user_id")
   private String userId;
   @Column(name = "product_id")
   private long productId;
-  @Column(name = "Quantity")
+  @Column(name = "quantity")
   private int quantity;
-  @Column(name = "CartCreated")
-  private LocalDateTime cartCreated;
+  @Column(name = "cart_created_at")
+  private LocalDateTime createdAt;
 }

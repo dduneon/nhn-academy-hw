@@ -13,15 +13,15 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "OrderDetail")
+@Table(name = "OrderDetails")
 public class OrderDetail {
 
   @EmbeddedId
   private PK pk;
 
-  @Column(name = "order_quantity")
+  @Column(name = "quantity")
   private int quantity;
-  @Column(name = "order_unitcost")
+  @Column(name = "unitcost")
   private int unitCost;
 
   @NoArgsConstructor
