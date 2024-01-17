@@ -19,8 +19,11 @@ public class User {
   @Column(name = "user_id")
   private String id;
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+  @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
   private List<UserAddress> userAddress;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+  private List<ShoppingCart> shoppingCarts;
+
   @Column(name="user_name")
   private String name;
   @Column(name = "user_password")

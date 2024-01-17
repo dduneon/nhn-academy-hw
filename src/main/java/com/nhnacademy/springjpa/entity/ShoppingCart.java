@@ -1,6 +1,8 @@
 package com.nhnacademy.springjpa.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +20,9 @@ public class ShoppingCart {
   @Column(name = "cart_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
+
+  @OneToMany(mappedBy = "shoppingCart", cascade = CascadeType.REMOVE)
+  private List<CartProduct> cartProduct;
 
   @ManyToOne
   @JoinColumn(name = "user_id")

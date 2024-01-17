@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -20,6 +21,7 @@ public class CategoryProduct {
   @NoArgsConstructor
   @Embeddable
   @EqualsAndHashCode
+  @Getter
   public static class PK implements Serializable{
     @Column(name = "category_id")
     private long categoryId;

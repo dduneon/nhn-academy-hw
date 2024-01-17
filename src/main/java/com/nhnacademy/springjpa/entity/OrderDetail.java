@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
@@ -28,6 +29,7 @@ public class OrderDetail {
   @AllArgsConstructor
   @EqualsAndHashCode
   @Embeddable
+  @Getter
   public static class PK implements Serializable {
     @Column(name = "order_id")
     private long orderId;
