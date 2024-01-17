@@ -11,7 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import lombok.Getter;
 
+@Getter
 @Entity
 @Table(name = "Users")
 public class User {
