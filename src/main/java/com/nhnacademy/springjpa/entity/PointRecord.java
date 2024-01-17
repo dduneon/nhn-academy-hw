@@ -4,17 +4,25 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="PointRecords")
 public class PointRecord {
   @Id
-  @Column(name = "user_id")
-  private String userId;
-  @Column(name = "order_id")
-  private long orderId;
-  @Column(name = "user_amount")
+  @Column(name="record_id")
+  private long id;
+
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
+
+  @ManyToOne
+  @JoinColumn(name = "order_id")
+  private Order order;
+  @Column(name = "amount")
   private int amount;
   @Column(name = "record_date")
   private LocalDateTime recordDate;

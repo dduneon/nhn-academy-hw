@@ -1,11 +1,15 @@
 package com.nhnacademy.springjpa.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +18,9 @@ public class User {
   @Id
   @Column(name = "user_id")
   private String id;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.PERSIST)
+  private List<UserAddress> userAddress;
   @Column(name="user_name")
   private String name;
   @Column(name = "user_password")
@@ -25,7 +32,7 @@ public class User {
   private Auth auth;
   @Column(name = "user_point")
   private int point;
-  @Column(name = "user_created_at")
+  @Column(name = "created_at")
   private LocalDateTime createdAt;
   @Column(name = "latest_login_at")
   private LocalDateTime latestLogin;

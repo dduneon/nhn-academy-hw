@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,12 +17,14 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
+  @ManyToOne
+  @Column(name = "user_id")
+  private User user;
+
   @Column(name = "order_date")
   private LocalDateTime orderDate;
   @Column(name = "ship_date")
   private LocalDateTime shipDate;
-  @Column(name = "user_id")
-  private String userId;
   @Column(name = "ship_address")
   private String shipAddress;
 }

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,10 +16,14 @@ public class Review {
   @Column(name = "review_id")
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
-  @Column(name = "user_id")
-  private String userId;
-  @Column(name = "product_id")
-  private long productId;
+
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
+
+  @ManyToOne
+  @JoinColumn(name = "product_id")
+  private Product product;
   @Column(name = "rating")
   private int rating;
   @Column(name = "comment")
