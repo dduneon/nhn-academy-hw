@@ -10,7 +10,7 @@ create table if not exists Products
     product_id    int auto_increment
         primary key,
     product_name  varchar(50)  not null,
-    ModelName     varchar(50)  not null,
+    model_name     varchar(50)  not null,
     product_image varchar(120) null,
     unit_cost     decimal(15)  not null,
     description   text         null
