@@ -2,8 +2,10 @@ package com.nhnacademy.springjpa;
 
 import com.nhnacademy.springjpa.config.RootConfig;
 import com.nhnacademy.springjpa.config.WebConfig;
+import org.springframework.core.annotation.Order;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+@Order(2)
 public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
   @Override
