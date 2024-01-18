@@ -18,7 +18,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class JpaConfig {
   @Bean
-  public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource) {
+  public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
     LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
     emf.setDataSource(dataSource);
     emf.setPackagesToScan("com.nhnacademy.springjpa.entity");
