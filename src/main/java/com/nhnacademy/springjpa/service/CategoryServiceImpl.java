@@ -1,6 +1,8 @@
 package com.nhnacademy.springjpa.service;
 
+import com.nhnacademy.springjpa.domain.CategoryProductDTO;
 import com.nhnacademy.springjpa.entity.Category;
+import com.nhnacademy.springjpa.entity.CategoryProduct;
 import com.nhnacademy.springjpa.entity.Product;
 import com.nhnacademy.springjpa.repository.CategoryRepository;
 import java.util.List;
@@ -18,12 +20,14 @@ public class CategoryServiceImpl implements CategoryService{
     return categoryRepository.findAll();
   }
 
-  public List<Product> getProductsByCategory(long categoryId) {
-
+  @Override
+  public List<Product> getProductsByCategory(int categoryId) {
+    return categoryRepository.findProductsByCategory(categoryId);
   }
 
-  public List<Product> getProductsByCategories(long[] categoryId) {
-
+  @Override
+  public List<CategoryProduct> getProductsByCategories(List<Integer> categoryId) {
+    return categoryRepository.getItemsHavingCategories(categoryId);
   }
 
 }

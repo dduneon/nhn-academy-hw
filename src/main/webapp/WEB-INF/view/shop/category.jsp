@@ -40,9 +40,18 @@
     <h2>Search Results</h2>
     <ul>
         <c:forEach var="result" items="${searchResults}">
-            <li>${result.name}</li>
+            <li>상품 아이디 : ${result.name}</li>
         </c:forEach>
     </ul>
+</c:if>
+
+<c:if test="${not empty multiSearchResults}">
+<h2>Search Results</h2>
+<ul>
+    <c:forEach var="result" items="${multiSearchResults}">
+        <li>카테고리 아이디 : ${result.pk.categoryId}, 상품 아이디 : ${result.pk.productId}</li>
+    </c:forEach>
+</ul>
 </c:if>
 
 </body>

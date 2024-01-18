@@ -25,6 +25,9 @@ public class Product {
   @OneToMany(mappedBy = "product", cascade = CascadeType.REMOVE)
   private List<CartProduct> cartProduct;
 
+  @OneToMany(mappedBy = "product")
+  private List<CategoryProduct> categoryProduct;
+
   @Column(name = "product_number")
   private String number;
   @Column(name = "product_name")

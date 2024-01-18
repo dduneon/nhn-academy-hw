@@ -12,6 +12,6 @@ import org.springframework.data.querydsl.binding.QuerydslPredicate;
 public interface CategoryRepository extends JpaRepository<Category, Integer>, CategoryRepositoryCustom {
   Optional<Category> findById(int id);
 
-  @Query("select p from Product p ")
-  List<Product> findProductsByCategory(long categoryId);
+  @Query("select p from Product p join fetch p.categoryProduct cp join fetch cp.category c where c.id=?1")
+  List<Product> findProductsByCategory(int categoryId);
 }
