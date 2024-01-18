@@ -46,11 +46,6 @@
                                                   maxFractionDigits="3"/>원
             </h3>
             </p>
-            <!-- 장바구니 담기 버튼 -->
-            <form action="/cart/add" method="post">
-                <input type="hidden" name="productId" value="${PRODUCT.getId()}">
-                <button type="submit" class="btn btn-primary">장바구니 담기</button>
-            </form>
             <br>
             <form action="/" method="get">
                 <button type="submit" class="btn btn-primary">홈 화면으로 돌아가기</button>
