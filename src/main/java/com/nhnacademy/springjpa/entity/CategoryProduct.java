@@ -10,7 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
+@NoArgsConstructor
 @Getter
 @Entity
 @Table(name = "CategoryProducts")
