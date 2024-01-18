@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-6 text-center">
             <!-- 상품 이미지 -->
-            <img src="${PRODUCT.getProductImage()}" alt="${PRODUCT.getProductId()}"
+            <img src="${PRODUCT.getImage()}" alt="${PRODUCT.getId()}"
                  class="img-fluid" width="80%" height="200" role="img">
         </div>
         <div class="col-md-6">
@@ -37,9 +37,9 @@
                     <h4 style="color: rgb(128,128,128)">${category} </h4>
                 </c:forEach>
             </div>
-            <h2 class="mb-3">${PRODUCT.getModelName()}</h2>
+            <h2 class="mb-3">${PRODUCT.getName()}</h2>
             <p style="padding-bottom: 10px">${PRODUCT.getDescription()}</p>
-            <p>상품명 : ${PRODUCT.getModelNumber()}</p>
+            <p>상품명 : ${PRODUCT.getNumber()}</p>
             <p>
             <h3 class="fw-bold"><fmt:formatNumber value="${PRODUCT.getUnitCost()}"
                                                   type="number"
@@ -48,8 +48,12 @@
             </p>
             <!-- 장바구니 담기 버튼 -->
             <form action="/cart/add" method="post">
-                <input type="hidden" name="productId" value="${PRODUCT.getProductId()}">
+                <input type="hidden" name="productId" value="${PRODUCT.getId()}">
                 <button type="submit" class="btn btn-primary">장바구니 담기</button>
+            </form>
+            <br>
+            <form action="/" method="get">
+                <button type="submit" class="btn btn-primary">홈 화면으로 돌아가기</button>
             </form>
         </div>
     </div>

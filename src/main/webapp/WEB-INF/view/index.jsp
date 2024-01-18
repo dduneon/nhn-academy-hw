@@ -45,6 +45,11 @@
 
 <div class="album py-5 bg-light">
     <div class="container">
+        <form class="row-12 row-lg-auto mb-3 mb-lg-0 me-lg-3" action="/category">
+            <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">카테고리별 검색으로 이동</button>
+        </form>
+        <br>
+        <br>
         <form class="row-12 row-lg-auto mb-3 mb-lg-0 me-lg-3" action="/search?${productName}">
             <input type="search" class="form-control form-control-dark" id="productName" name="name"
                    placeholder="검색할 상품을 입력하세요.." aria-label="Search">
@@ -100,7 +105,7 @@
                         </c:when>
                         <c:otherwise>
                             <li class="page-item"><a class="page-link"
-                                                     href="?page=${item}">${item}</a></li>
+                                                     href="?name=${NAME}&page=${item}">${item}</a></li>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>

@@ -20,7 +20,8 @@ public class ProductDetailController {
   @GetMapping("/{productId}")
   public String getProductDetail(@PathVariable long productId, Model model) {
     Product product = productService.getProductDetail(productId);
-    return "index";
+    model.addAttribute("PRODUCT", product);
+    return "shop/product_detail";
   }
 
 }

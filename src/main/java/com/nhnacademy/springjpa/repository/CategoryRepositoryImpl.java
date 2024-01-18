@@ -8,4 +8,6 @@ public class CategoryRepositoryImpl extends QuerydslRepositorySupport implements
   public CategoryRepositoryImpl() {
     super(Category.class);
   }
+
+
 }
