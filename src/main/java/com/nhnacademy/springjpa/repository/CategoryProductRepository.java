@@ -7,6 +7,6 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoryProductRepository extends JpaRepository<CategoryProduct, CategoryProduct.PK> {
-  Optional<CategoryProduct> findByPk_ProductId(Long categoryId, long productId);
+  Optional<CategoryProduct> findByPk_ProductId(Long productId);
   List<CategoryProduct> findByPk_CategoryId(Long categoryId);
 }

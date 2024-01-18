@@ -5,9 +5,7 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 
 public class CategoryRepositoryImpl extends QuerydslRepositorySupport implements CategoryRepositoryCustom{
 
-  public CategoryRepositoryImpl(Class<?> domainClass) {
+  public CategoryRepositoryImpl() {
     super(Category.class);
   }
-
-
 }
