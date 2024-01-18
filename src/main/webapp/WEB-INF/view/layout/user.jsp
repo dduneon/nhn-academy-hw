@@ -42,35 +42,12 @@
                     <input type="search" class="form-control form-control-dark"
                            placeholder="Search..." aria-label="Search">
                 </form>
-
-                <div class="text-end">
-                    <c:choose>
-                        <c:when test="${sessionScope.USER_ID_SESSION ne null}">
-                            <a class="btn btn-outline-light me-2" href="/logout">로그아웃</a>
-                            <c:if test="${sessionScope.USER_AUTH_SESSION eq 'ROLE_ADMIN'}">
-                                <a class="btn btn-warning" href="/admin">관리자 페이지</a>
-                            </c:if>
-                            <c:if test="${sessionScope.USER_AUTH_SESSION eq 'ROLE_USER'}">
-                                <a class="btn btn-warning me-2" href="/user/menu">마이페이지</a>
-                                <a class="btn btn-warning" href="/cart">장바구니</a>
-                            </c:if>
-                        </c:when>
-                        <c:otherwise>
-                            <a class="btn btn-outline-light me-2" href="/login">로그인</a>
-                            <a class="btn btn-warning" href="/register">회원가입</a>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
             </div>
         </div>
     </header>
 
     <main>
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <jsp:include page="${layout_content_holder}"/>
-            </div>
-        </div>
+                <jsp:include page="../index.jsp"/>
 
     </main>
 
