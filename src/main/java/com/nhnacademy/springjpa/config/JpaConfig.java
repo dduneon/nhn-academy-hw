@@ -37,7 +37,7 @@ public class JpaConfig {
 
   private Properties jpaProperties() {
     Properties jpaProperties = new Properties();
-    jpaProperties.setProperty("hibernate.show_sql", "false");
+    jpaProperties.setProperty("hibern4ate.show_sql", "false");
     jpaProperties.setProperty("hibernate.format_sql", "true");
     jpaProperties.setProperty("hibernate.use_sql_comments", "true");
     jpaProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
