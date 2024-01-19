@@ -20,7 +20,7 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 @Configuration
 @EnableSpringDataWebSupport
 @ComponentScan(basePackageClasses = ControllerBase.class)
-public class WebConfig implements WebMvcConfigurer,ApplicationContextAware {
+public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
   private ApplicationContext applicationContext;
 
