@@ -94,7 +94,7 @@
 <!--        <a class="page-link" th:href="@{${#httpServletRequest.requestURI}(page=${residentsPage.number - 1})}">Previous</a>-->
 <!--      </li>-->
       <!-- 페이지 번호 링크 -->
-      <li th:each="pageNumber : ${#numbers.sequence(NAVIGATION_START_POS, NAVIGATION_END_POS)}">
+      <li th:each="pageNumber : ${#numbers.sequence(PAGE_INFO.navigationStartPos, PAGE_INFO.navigationEndPos)}">
         <a class="page-link" th:href="'/?page=' + ${pageNumber}" th:text="${pageNumber + 1}"></a>
       </li>
       <!-- 다음 페이지 링크 -->

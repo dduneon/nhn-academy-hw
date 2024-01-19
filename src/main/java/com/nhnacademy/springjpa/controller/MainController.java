@@ -2,6 +2,7 @@ package com.nhnacademy.springjpa.controller;
 
 import com.nhnacademy.springjpa.domain.BirthDeathReportResidentDTO;
 import com.nhnacademy.springjpa.domain.CertificateIssueDTO;
+import com.nhnacademy.springjpa.domain.PagePosDTO;
 import com.nhnacademy.springjpa.domain.ResidentDTO;
 import com.nhnacademy.springjpa.service.ResidentService;
 import java.util.List;
@@ -28,9 +29,9 @@ public class MainController {
   @GetMapping
   public String getResidentList(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
     Page<ResidentDTO> pageableList = residentService.getMainResidentData(pageable);
-    List<ResidentDTO> list = pageableList.getContent();
 
     // log start
+    List<ResidentDTO> list = pageableList.getContent();
     for(ResidentDTO r: list) {
       log.debug("getResidentList(): {}, {}", r.getName(), r.getResidentSerialNumber());
       log.debug("birthDeathReportResident -> {}", r.getBirthDeathReportResident().toString());
@@ -43,10 +44,8 @@ public class MainController {
         - (residentListCount % pageable.getPageSize() == 0 ? 1 : 0);
     navigationEndPos = Math.max(navigationEndPos, 0);
 
+    model.addAttribute("PAGE_INFO", new PagePosDTO(navigationStartPos, navigationEndPos));
     model.addAttribute("CURRENT_PAGE_LIST", pageableList);
-    model.addAttribute("CURRENT_PAGE_POS", pageable.getPageNumber());
-    model.addAttribute("NAVIGATION_START_POS", navigationStartPos);
-    model.addAttribute("NAVIGATION_END_POS", navigationEndPos);
     return "main";
   }
 }

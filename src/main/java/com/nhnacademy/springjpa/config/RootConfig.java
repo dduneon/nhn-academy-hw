@@ -19,11 +19,11 @@ public class RootConfig {
     dataSource.setPassword("EOcV(baaATcu3lny");
 
     dataSource.setInitialSize(10);
-    dataSource.setMaxTotal(10);
+    dataSource.setMaxTotal(50);
     dataSource.setMinIdle(10);
-    dataSource.setMaxIdle(10);
+    dataSource.setMaxIdle(30);
 
-    dataSource.setMaxWaitMillis(1000);
+    dataSource.setMaxWaitMillis(5000);
 
     dataSource.setTestOnBorrow(true);
     dataSource.setTestOnReturn(true);
