@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주민등록등본</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .grid-cell {
+      width: 100px;
+      height: 100px;
+    }
+    .table-header {
+      background-color: #f3f4f6; /* Tailwind light gray for light theme */
+    }
+    .table-data {
+      background-color: #ffffff; /* White for light theme */
+    }
+    .blue-text {
+      color: #60a5fa; /* Tailwind blue color */
+    }
+    th, td {
+      border: 1px solid #444444;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+<div class="container mx-auto px-4 py-8">
+  <table class="min-w-full divide-y divide-gray-200 mb-8">
+    <thead class="table-header">
+    <tr>
+      <th scope="row" class="px-6 py-5 text-center text-s font-large text-gray-500 uppercase tracking-wider" colspan="5">주민등록등본</th>
+    </tr>
+    </thead>
+    <tbody class="table-header">
+    <!-- data -->
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="2">
+        발급일 :
+        <span class="blue-text">2021-10-15</span>
+      </th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="3">
+        증명서확인번호 :
+        <span class="blue-text">98765432-10987654</span>
+      </th>
+    </tr>
+    </tbody>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        세대주 성명
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        남기준
+      </td>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        세대구성 사유 및 일자
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="2">
+        세대분리 2009-10-02
+      </td>
+    </tr>
+    <thead class="table-header">
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="3">
+        주소
+      </th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="2">
+        신고일
+      </th>
+    </tr>
+    </thead>
+    <tbody class="table-data">
+    <tr>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        현주소
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="2">
+        광주광역시 서구 마륵복개로 164 성우아파트 101-1503
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="2">
+        2022-10-14
+      </td>
+    </tr>
+    </tbody>
+    <thead class="table-header">
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider">세대주 관계</th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider">성명</th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider">주민등록번호</th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider">신고일</th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider">변동사유</th>
+    </tr>
+    </thead>
+    <tbody class="table-data">
+    <tr>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">본인</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">2009-10-12</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">세대분리</td>
+    </tr>
+    <tr>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">본인</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">2009-10-12</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">세대분리</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

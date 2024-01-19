@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가족관계증명서</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .grid-cell {
+      width: 100px;
+      height: 100px;
+    }
+    .table-header {
+      background-color: #f3f4f6; /* Tailwind light gray for light theme */
+    }
+    .table-data {
+      background-color: #ffffff; /* White for light theme */
+    }
+    .blue-text {
+      color: #60a5fa; /* Tailwind blue color */
+    }
+    th, td {
+      border: 1px solid #444444;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+<div class="container mx-auto px-4 py-8">
+  <table class="min-w-full divide-y divide-gray-200 mb-8">
+    <thead class="table-header">
+    <tr>
+      <th scope="row" class="px-6 py-5 text-center text-s font-large text-gray-500 uppercase tracking-wider" colspan="5">가족관계증명서</th>
+    </tr>
+    </thead>
+    <tbody class="table-header">
+    <!-- data -->
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="2">
+        발급일 :
+        <span class="blue-text">2021-10-15</span>
+      </th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="3">
+        증명서확인번호 :
+        <span class="blue-text">98765432-10987654</span>
+      </th>
+    </tr>
+    </tbody>
+    <tr>
+      <th scope="col" class="px-6 py-4 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        등록기준지(본적)
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text table-data" colspan="3">
+        경기도 성남시 분당구 대왕판교로 645번길
+      </td>
+    </tr>
+    <tr class="table-header">
+      <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">구분</th>
+      <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">성명</th>
+      <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">출생년월일</th>
+      <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">주민등록번호</th>
+      <th scope="col" class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">성별</th>
+    </tr>
+    <tr class="table-data">
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">본인</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">1999년 12월 30일</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">남</td>
+    </tr>
+    <tr class="table-data">
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">부</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">1999년 12월 30일</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">남</td>
+    </tr>
+    <tr class="table-data">
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">모</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">1999년 12월 30일</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">남</td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

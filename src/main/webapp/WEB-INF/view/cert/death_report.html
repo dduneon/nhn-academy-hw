@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사망신고서</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .grid-cell {
+      width: 100px;
+      height: 100px;
+    }
+    .table-header {
+      background-color: #f3f4f6; /* Tailwind light gray for light theme */
+    }
+    .table-data {
+      background-color: #ffffff; /* White for light theme */
+    }
+    .blue-text {
+      color: #60a5fa; /* Tailwind blue color */
+    }
+    th, td {
+      border: 1px solid #444444;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+<div class="container mx-auto px-4 py-8">
+  <table class="min-w-full divide-y divide-gray-200 mb-8">
+    <thead class="table-header">
+    <tr>
+      <th scope="row" class="px-6 py-5 text-center text-s font-large text-gray-500 uppercase tracking-wider" colspan="6">사망신고서</th>
+    </tr>
+    </thead>
+    <thead class="table-header">
+    <!-- data -->
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="6">
+        신고일 :
+        <span class="blue-text">2021년 10월 15일</span>
+      </th>
+    </tr>
+    </thead>
+    <tr>
+      <th class="px-1 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" rowspan="4">
+        사망자
+      </th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        성명
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        남기석
+      </td>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        주민등록번호
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        991230-*******
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        사망일시
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="3">
+        2012년 03월 15일 14시 59분
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" rowspan="2">
+        사망장소
+      </th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        구분
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="3">
+        1 주택 2 의료기관 3 사회복지시설(양로원, 고아원 등) 4 산업장 5 공공시설 ..
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        주소
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="3">
+        경기도 성남시 분당구 대왕판교로 645번길
+      </td>
+    </tr>
+    <tr>
+      <th class="px-1 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" rowspan="3">
+        신고인
+      </th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        성명
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        남기준
+      </td>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        주민등록번호
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        991230-*******
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        자격
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="3">
+        1 동거친족 2 비동거친족 3 동거자 4 기타
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        이메일
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        nhn@nhn.com
+      </td>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        전화번호
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        010-9465-3421
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
