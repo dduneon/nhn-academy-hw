@@ -1,5 +1,5 @@
 package com.nhnacademy.springjpa;
 
-public class Base {
+public interface Base {
 
 }
