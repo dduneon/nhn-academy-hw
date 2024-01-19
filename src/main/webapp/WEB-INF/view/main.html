@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주민 목록</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .grid-cell {
+      width: 100px;
+      height: 100px;
+    }
+    .table-header {
+      background-color: #f3f4f6; /* Tailwind light gray for light theme */
+    }
+    .table-data {
+      background-color: #ffffff; /* White for light theme */
+    }
+    .blue-text {
+      color: #60a5fa; /* Tailwind blue color */
+    }
+    th, td {
+      border: 1px solid #444444;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+<div class="container mx-auto px-4 py-8">
+  <table class="min-w-full divide-y divide-gray-200 mb-8">
+    <thead class="table-header">
+    <tr>
+      <th scope="row" class="px-6 py-5 text-center text-s font-large text-gray-500 uppercase tracking-wider" colspan="7">주민 목록</th>
+    </tr>
+    <tr class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider">
+      <td>
+        이름
+      </td>
+      <td>
+        주민등록등본
+      </td>
+      <td>
+        가족관계증명서
+      </td>
+      <td>
+        출생신고서
+      </td>
+      <td>
+        사망신고서
+      </td>
+      <td>
+        발급목록
+      </td>
+      <td>
+        삭제
+      </td>
+    </tr>
+    </thead>
+    <tbody class="table-body">
+    <!-- data -->
+    <tr>
+      <td class="px-6 py-4 text-center whitespace-nowrap">
+        남기준
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a href="/">주민등록등본</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a href="/">가족관계증명서</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a href="/">출생신고서</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a href="/">사망신고서</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a href="/">발급목록</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a href="/">삭제</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
