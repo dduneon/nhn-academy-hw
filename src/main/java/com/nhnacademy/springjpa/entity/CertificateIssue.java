@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "certicifate_issue")
+@Table(name = "certificate_issue")
 public class CertificateIssue {
   @Id
   @Column(name = "certificate_confirmation_number")
