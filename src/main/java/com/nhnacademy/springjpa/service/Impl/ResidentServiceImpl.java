@@ -1,6 +1,6 @@
 package com.nhnacademy.springjpa.service.Impl;
 
-import com.nhnacademy.springjpa.domain.ResidentDTO;
+import com.nhnacademy.springjpa.domain.IssuableResidentDTO;
 import com.nhnacademy.springjpa.repository.ResidentRepository;
 import com.nhnacademy.springjpa.service.ResidentService;
 import java.util.List;
@@ -18,8 +18,8 @@ public class ResidentServiceImpl implements ResidentService {
     this.residentRepository = residentRepository;
   }
 
-  public Page<ResidentDTO> getMainResidentData(Pageable pageable) {
-    List<ResidentDTO> residentList =  residentRepository.findResidentInfoWithBirthDeathAndCertificate();
+  public Page<IssuableResidentDTO> getMainResidentData(Pageable pageable) {
+    List<IssuableResidentDTO> residentList =  residentRepository.findResidentInfoWithBirthDeathAndCertificate();
     PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
     int start = (int) pageRequest.getOffset();
     int end = Math.min((start + pageable.getPageSize()), residentList.size());

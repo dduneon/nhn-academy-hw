@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/cert/register")
+@RequestMapping("/cert/resident")
 public class ResidentRegisterController {
   @GetMapping("/{serialNumber}")
   public String getResidentResidentRegister(@PathVariable(name="serialNumber") int serialNumber, Model model) {
