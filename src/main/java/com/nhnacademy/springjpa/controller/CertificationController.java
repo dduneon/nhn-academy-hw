@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/cert")
 public class CertificationController {
-
-
-
+  @GetMapping("/{serialNumber}")
+  public String getResidentBirthReport(@PathVariable(name="serialNumber") int serialNumber, Model model) {
+    return "cert/birth_report";
+  }
 }

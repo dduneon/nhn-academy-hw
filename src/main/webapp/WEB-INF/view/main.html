@@ -82,7 +82,7 @@
         <a th:if="${#lists.size(resident.certificateIssue) > 0}" th:href="@{'/cert/list/' + ${resident.residentSerialNumber}}">발급목록</a>
       </td>
       <td class="px-6 py-4 text-center whitespace-nowrap red-text">
-        <a th:href="@{'/cert/delete/' + ${resident.residentSerialNumber}}">삭제</a>
+        <a th:href="@{'/delete/' + ${resident.residentSerialNumber}}">삭제</a>
       </td>
     </tr>
     </tbody>
