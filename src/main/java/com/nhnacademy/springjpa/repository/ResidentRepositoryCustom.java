@@ -1,10 +1,9 @@
 package com.nhnacademy.springjpa.repository;
 
-import com.nhnacademy.springjpa.domain.ResidentDTO;
+import com.nhnacademy.springjpa.domain.IssuableResidentDTO;
 import java.util.List;
-import org.springframework.data.domain.Page;
 
 public interface ResidentRepositoryCustom {
-  List<ResidentDTO> findResidentInfoWithBirthDeathAndCertificate();
+  List<IssuableResidentDTO> findResidentInfoWithBirthDeathAndCertificate();
 
 }

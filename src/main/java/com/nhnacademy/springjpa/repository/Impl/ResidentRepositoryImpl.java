@@ -1,27 +1,27 @@
-package com.nhnacademy.springjpa.repository;
+package com.nhnacademy.springjpa.repository.Impl;
 
 import static com.querydsl.core.group.GroupBy.groupBy;
 import static com.querydsl.core.group.GroupBy.list;
 
-import com.nhnacademy.springjpa.domain.BirthDeathReportResidentDTO;
-import com.nhnacademy.springjpa.domain.CertificateIssueDTO;
-import com.nhnacademy.springjpa.domain.ResidentDTO;
+import com.nhnacademy.springjpa.domain.IssuableResidentDTO;
 import com.nhnacademy.springjpa.entity.QBirthDeathReportResident;
 import com.nhnacademy.springjpa.entity.QCertificateIssue;
 import com.nhnacademy.springjpa.entity.QResident;
 import com.nhnacademy.springjpa.entity.Resident;
+import com.nhnacademy.springjpa.repository.ResidentRepositoryCustom;
 import com.querydsl.core.types.Projections;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
-public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements ResidentRepositoryCustom{
+public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements
+    ResidentRepositoryCustom {
 
   public ResidentRepositoryImpl() {
     super(Resident.class);
   }
 
-  public List<ResidentDTO> findResidentInfoWithBirthDeathAndCertificate() {
+  public List<IssuableResidentDTO> findResidentInfoWithBirthDeathAndCertificate() {
     QResident resident = QResident.resident;
     QCertificateIssue certificateIssue = QCertificateIssue.certificateIssue;
     QBirthDeathReportResident birthDeathReportResident = QBirthDeathReportResident.birthDeathReportResident;
@@ -31,34 +31,34 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements
         .leftJoin(resident.birthDeathReportResidents, birthDeathReportResident)
         .select(
             Projections.fields(
-                ResidentDTO.class,
+                IssuableResidentDTO.class,
                 resident.residentSerialNumber,
                 resident.name
             ),
             Projections.fields(
-                BirthDeathReportResidentDTO.class,
+                IssuableResidentDTO.BirthDeathReportResidentDTO.class,
                 birthDeathReportResident.pk.birthDeathTypeCode
             ).as("birthDeathReportResident"),
             Projections.fields(
-                CertificateIssueDTO.class,
+                IssuableResidentDTO.CertificateIssueDTO.class,
                 certificateIssue.certificateConfirmationNumber
             ).as("certificateIssue")
         )
         .transform(
             groupBy(resident.residentSerialNumber).list(
                 Projections.fields(
-                    ResidentDTO.class,
+                    IssuableResidentDTO.class,
                     resident.residentSerialNumber,
                     resident.name,
                     list(
                         Projections.fields(
-                            BirthDeathReportResidentDTO.class,
+                            IssuableResidentDTO.BirthDeathReportResidentDTO.class,
                             birthDeathReportResident.pk.birthDeathTypeCode
                         )
                     ).as("birthDeathReportResident"),
                     list(
                         Projections.fields(
-                            CertificateIssueDTO.class,
+                            IssuableResidentDTO.CertificateIssueDTO.class,
                             certificateIssue.certificateConfirmationNumber
                         )
                     ).as("certificateIssue")

@@ -1,12 +1,9 @@
 package com.nhnacademy.springjpa.controller;
 
-import com.nhnacademy.springjpa.domain.BirthDeathReportResidentDTO;
-import com.nhnacademy.springjpa.domain.CertificateIssueDTO;
 import com.nhnacademy.springjpa.domain.PagePosDTO;
-import com.nhnacademy.springjpa.domain.ResidentDTO;
+import com.nhnacademy.springjpa.domain.IssuableResidentDTO;
 import com.nhnacademy.springjpa.service.ResidentService;
 import java.util.List;
-import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,11 +25,11 @@ public class MainController {
 
   @GetMapping
   public String getResidentList(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
-    Page<ResidentDTO> pageableList = residentService.getMainResidentData(pageable);
+    Page<IssuableResidentDTO> pageableList = residentService.getMainResidentData(pageable);
 
     // log start
-    List<ResidentDTO> list = pageableList.getContent();
-    for(ResidentDTO r: list) {
+    List<IssuableResidentDTO> list = pageableList.getContent();
+    for(IssuableResidentDTO r: list) {
       log.debug("getResidentList(): {}, {}", r.getName(), r.getResidentSerialNumber());
       log.debug("birthDeathReportResident -> {}", r.getBirthDeathReportResident().toString());
       log.debug("certificateIssue -> {}", r.getCertificateIssue().toString());
