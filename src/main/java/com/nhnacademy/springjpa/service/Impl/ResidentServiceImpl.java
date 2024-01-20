@@ -1,6 +1,6 @@
 package com.nhnacademy.springjpa.service.Impl;
 
-import com.nhnacademy.springjpa.domain.IssuableResidentDTO;
+import com.nhnacademy.springjpa.domain.dto.resident.IssuableResidentDTO;
 import com.nhnacademy.springjpa.repository.ResidentRepository;
 import com.nhnacademy.springjpa.service.ResidentService;
 import java.util.List;
@@ -12,13 +12,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ResidentServiceImpl implements ResidentService {
+  // todo 이름 뭘로 바꿀지?
   private ResidentRepository residentRepository;
 
   public ResidentServiceImpl(ResidentRepository residentRepository) {
     this.residentRepository = residentRepository;
   }
 
-  public Page<IssuableResidentDTO> getMainResidentData(Pageable pageable) {
+  public Page<IssuableResidentDTO> getPagedResidentList(Pageable pageable) {
     List<IssuableResidentDTO> residentList =  residentRepository.findResidentInfoWithBirthDeathAndCertificate();
     PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
     int start = (int) pageRequest.getOffset();
@@ -30,5 +31,6 @@ public class ResidentServiceImpl implements ResidentService {
   public int getResidentCount() {
     return (int) residentRepository.count();
   }
+
 
 }

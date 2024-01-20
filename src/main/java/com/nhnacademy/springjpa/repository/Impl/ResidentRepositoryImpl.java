@@ -3,12 +3,12 @@ package com.nhnacademy.springjpa.repository.Impl;
 import static com.querydsl.core.group.GroupBy.groupBy;
 import static com.querydsl.core.group.GroupBy.list;
 
-import com.nhnacademy.springjpa.domain.IssuableResidentDTO;
+import com.nhnacademy.springjpa.domain.dto.resident.IssuableResidentDTO;
 import com.nhnacademy.springjpa.entity.QBirthDeathReportResident;
 import com.nhnacademy.springjpa.entity.QCertificateIssue;
 import com.nhnacademy.springjpa.entity.QResident;
 import com.nhnacademy.springjpa.entity.Resident;
-import com.nhnacademy.springjpa.repository.ResidentRepositoryCustom;
+import com.nhnacademy.springjpa.repository.custom.ResidentRepositoryCustom;
 import com.querydsl.core.types.Projections;
 import java.util.List;
 import java.util.stream.Collectors;

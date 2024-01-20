@@ -26,7 +26,12 @@ public class FamilyRelationship {
   @ManyToOne
   @MapsId("baseResidentSerialNumber")
   @JoinColumn(name = "base_resident_serial_number")
-  private Resident resident;
+  private Resident baseResident;
+
+  @ManyToOne
+  @MapsId("familyResidentSerialNumber")
+  @JoinColumn(name = "family_resident_serial_number")
+  private Resident familyResident;
 
   @NoArgsConstructor
   @AllArgsConstructor

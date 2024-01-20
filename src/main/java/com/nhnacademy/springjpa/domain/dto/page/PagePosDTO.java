@@ -1,4 +1,4 @@
-package com.nhnacademy.springjpa.domain;
+package com.nhnacademy.springjpa.domain.dto.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

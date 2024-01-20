@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,6 +17,7 @@ import lombok.Getter;
 @Table(name = "resident")
 public class Resident {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "resident_serial_number")
   private int residentSerialNumber;
 

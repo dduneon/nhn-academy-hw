@@ -1,7 +1,7 @@
 package com.nhnacademy.springjpa.controller;
 
-import com.nhnacademy.springjpa.domain.PagePosDTO;
-import com.nhnacademy.springjpa.domain.IssuableResidentDTO;
+import com.nhnacademy.springjpa.domain.dto.page.PagePosDTO;
+import com.nhnacademy.springjpa.domain.dto.resident.IssuableResidentDTO;
 import com.nhnacademy.springjpa.service.ResidentService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class MainController {
 
   @GetMapping
   public String getResidentList(@PageableDefault(page = 0, size = 5) Pageable pageable, Model model) {
-    Page<IssuableResidentDTO> pageableList = residentService.getMainResidentData(pageable);
+    Page<IssuableResidentDTO> pageableList = residentService.getPagedResidentList(pageable);
 
     // log start
     List<IssuableResidentDTO> list = pageableList.getContent();

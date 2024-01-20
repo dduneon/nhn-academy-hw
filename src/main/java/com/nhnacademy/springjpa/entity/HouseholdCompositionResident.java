@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
 @Table(name = "household_composition_resident")
 public class HouseholdCompositionResident {
   @EmbeddedId

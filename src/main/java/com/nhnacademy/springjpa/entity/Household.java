@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "household")
 public class Household {
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "household_serial_number")
   private int householdSerialNumber;
 

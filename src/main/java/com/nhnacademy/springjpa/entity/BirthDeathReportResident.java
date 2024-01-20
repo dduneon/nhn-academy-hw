@@ -26,6 +26,11 @@ public class BirthDeathReportResident {
   @JoinColumn(name="resident_serial_number")
   private Resident resident;
 
+  @ManyToOne
+  @MapsId("reportResidentSerialNumber")
+  @JoinColumn(name="report_resident_serial_number")
+  private Resident reportResident;
+
   @Column(name = "birth_death_report_date")
   private LocalDate birthDeathReportDate;
   @Column(name = "birth_report_qualifications_code", length = 20)

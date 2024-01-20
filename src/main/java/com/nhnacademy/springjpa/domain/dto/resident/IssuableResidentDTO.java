@@ -1,4 +1,4 @@
-package com.nhnacademy.springjpa.domain;
+package com.nhnacademy.springjpa.domain.dto.resident;
 
 import java.util.ArrayList;
 import java.util.List;
