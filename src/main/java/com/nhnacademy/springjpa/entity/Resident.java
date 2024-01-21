@@ -27,6 +27,9 @@ public class Resident {
   @OneToMany(mappedBy = "resident")
   private List<BirthDeathReportResident> birthDeathReportResidents;
 
+  @OneToMany(mappedBy = "resident")
+  private List<HouseholdCompositionResident> householdCompositionResidents;
+
   @Column(name = "name", length = 100)
   private String name;
   @Column(name = "resident_registration_number", length = 300)

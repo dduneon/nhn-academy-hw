@@ -1,6 +1,6 @@
 package com.nhnacademy.springjpa.controller;
 
-import com.nhnacademy.springjpa.domain.dto.residentregister.ResidentRegisterDTO;
+import com.nhnacademy.springjpa.domain.dto.residentregister.ResidentRegisterCertificateDTO;
 import com.nhnacademy.springjpa.service.IssueCertificateService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +19,7 @@ public class ResidentRegisterController {
 
   @GetMapping("/{serialNumber}")
   public String getResidentResidentRegister(@PathVariable(name="serialNumber") int serialNumber, Model model) {
-    ResidentRegisterDTO residentRegister = issueCertificateService.getResidentRegisterData(serialNumber);
+    ResidentRegisterCertificateDTO residentRegister = issueCertificateService.getResidentRegisterData(serialNumber);
 
     model.addAttribute("RESIDENT_REGISTER_INFO", residentRegister);
     return "cert/resident_register";

@@ -6,6 +6,7 @@ import static com.querydsl.core.group.GroupBy.list;
 import com.nhnacademy.springjpa.domain.dto.resident.IssuableResidentDTO;
 import com.nhnacademy.springjpa.entity.QBirthDeathReportResident;
 import com.nhnacademy.springjpa.entity.QCertificateIssue;
+import com.nhnacademy.springjpa.entity.QHouseholdCompositionResident;
 import com.nhnacademy.springjpa.entity.QResident;
 import com.nhnacademy.springjpa.entity.Resident;
 import com.nhnacademy.springjpa.repository.custom.ResidentRepositoryCustom;
@@ -25,6 +26,7 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements
     QResident resident = QResident.resident;
     QCertificateIssue certificateIssue = QCertificateIssue.certificateIssue;
     QBirthDeathReportResident birthDeathReportResident = QBirthDeathReportResident.birthDeathReportResident;
+    QHouseholdCompositionResident householdCompositionResident = QHouseholdCompositionResident.householdCompositionResident;
 
     return from(resident)
         .leftJoin(resident.certificateIssues, certificateIssue)
@@ -33,7 +35,8 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements
             Projections.fields(
                 IssuableResidentDTO.class,
                 resident.residentSerialNumber,
-                resident.name
+                resident.name,
+                householdCompositionResident.pk.householdSerialNumber
             ),
             Projections.fields(
                 IssuableResidentDTO.BirthDeathReportResidentDTO.class,
@@ -50,6 +53,7 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements
                     IssuableResidentDTO.class,
                     resident.residentSerialNumber,
                     resident.name,
+                    householdCompositionResident.pk.householdSerialNumber,
                     list(
                         Projections.fields(
                             IssuableResidentDTO.BirthDeathReportResidentDTO.class,

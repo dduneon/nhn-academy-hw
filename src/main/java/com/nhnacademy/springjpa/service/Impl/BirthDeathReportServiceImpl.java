@@ -7,7 +7,6 @@ import com.nhnacademy.springjpa.domain.dto.birth.BirthReportResidentDTO;
 import com.nhnacademy.springjpa.domain.dto.death.DeathReportDTO;
 import com.nhnacademy.springjpa.domain.dto.death.DeathReportDTO.DeadDTO;
 import com.nhnacademy.springjpa.domain.dto.death.DeathReportResidentDTO;
-import com.nhnacademy.springjpa.domain.dto.residentregister.ResidentRegisterDTO;
 import com.nhnacademy.springjpa.repository.BirthDeathReportResidentRepository;
 import com.nhnacademy.springjpa.repository.FamilyRelationshipRepository;
 import com.nhnacademy.springjpa.repository.ResidentRepository;
