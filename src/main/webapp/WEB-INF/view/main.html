@@ -67,7 +67,7 @@
         <p th:text="${resident.name}"></p>
       </td>
       <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
-        <a th:href="@{'/cert/resident/' + ${resident.residentSerialNumber}}">주민등록등본</a>
+        <a th:unless="${#strings.isEmpty(resident.householdSerialNumber)}" th:href="@{'/cert/resident/' + ${resident.residentSerialNumber}}">주민등록등본</a>
       </td>
       <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
         <a th:href="@{'/cert/family/' + ${resident.residentSerialNumber}}">가족관계증명서</a>

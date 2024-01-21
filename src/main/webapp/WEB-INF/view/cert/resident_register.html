@@ -38,11 +38,11 @@
     <tr>
       <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="2">
         발급일 :
-        <span class="blue-text">2021-10-15</span>
+        <span class="blue-text" th:text="${RESIDENT_REGISTER_INFO.certificateIssue.certificateIssueDate}"></span>
       </th>
       <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="3">
         증명서확인번호 :
-        <span class="blue-text">98765432-10987654</span>
+        <span class="blue-text" th:text="${RESIDENT_REGISTER_INFO.certificateIssue.certificationConfirmationNumber}"></span>
       </th>
     </tr>
     </tbody>
@@ -50,14 +50,12 @@
       <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
         세대주 성명
       </th>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
-        남기준
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${RESIDENT_REGISTER_INFO.householdResidentInfo.name}">
       </td>
       <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
         세대구성 사유 및 일자
       </th>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="2">
-        세대분리 2009-10-02
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="2" th:text="${RESIDENT_REGISTER_INFO.householdResidentInfo.householdCompositionReasonCode} + ' ' + ${RESIDENT_REGISTER_INFO.householdResidentInfo.householdCompositionDate}">
       </td>
     </tr>
     <thead class="table-header">
@@ -71,17 +69,20 @@
     </tr>
     </thead>
     <tbody class="table-data">
-    <tr>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
-        현주소
-      </td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="2">
-        광주광역시 서구 마륵복개로 164 성우아파트 101-1503
-      </td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="2">
-        2022-10-14
-      </td>
-    </tr>
+    <div th:each="address, stat : ${RESIDENT_REGISTER_INFO.houseMovementAddressLogList}">
+      <tr>
+        <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:if="${stat.first}">
+          현주소
+        </td>
+        <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:unless="${stat.first}">
+          전주소
+        </td>
+        <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="2" th:text="${address.houseMovementAddress}">
+        </td>
+        <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="2" th:text="${address.houseMovementReportDate}">
+        </td>
+      </tr>
+    </div>
     </tbody>
     <thead class="table-header">
     <tr>
@@ -93,20 +94,15 @@
     </tr>
     </thead>
     <tbody class="table-data">
+    <div th:each="resident : ${RESIDENT_REGISTER_INFO.householdCompositionResidentList}">
     <tr>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">본인</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">2009-10-12</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">세대분리</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${resident.householdRelationshipCode}"></td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${resident.name}"></td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${resident.residentRegistrationNumber}"></td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${resident.reportDate}"></td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${resident.householdCompositionChangeReasonCode}"></td>
     </tr>
-    <tr>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">본인</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">2009-10-12</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">세대분리</td>
-    </tr>
+    </div>
     </tbody>
   </table>
 </div>

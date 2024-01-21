@@ -38,11 +38,11 @@
     <tr>
       <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="2">
         발급일 :
-        <span class="blue-text">2021-10-15</span>
+        <span class="blue-text" th:text="${FAMILY_RELATIONSHIP_CERT_INFO.certificateIssue.certificateIssueDate}"></span>
       </th>
       <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="3">
         증명서확인번호 :
-        <span class="blue-text">98765432-10987654</span>
+        <span class="blue-text" th:text="${FAMILY_RELATIONSHIP_CERT_INFO.certificateIssue.certificationConfirmationNumber}"></span>
       </th>
     </tr>
     </tbody>
@@ -50,8 +50,7 @@
       <th scope="col" class="px-6 py-4 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
         등록기준지(본적)
       </th>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text table-data" colspan="3">
-        경기도 성남시 분당구 대왕판교로 645번길
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text table-data" colspan="3" th:text="${FAMILY_RELATIONSHIP_CERT_INFO.resident.registrationBaseAddress}">
       </td>
     </tr>
     <tr class="table-header">
@@ -63,25 +62,20 @@
     </tr>
     <tr class="table-data">
       <td class="px-6 py-4 text-center whitespace-nowrap blue-text">본인</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">1999년 12월 30일</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">남</td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${FAMILY_RELATIONSHIP_CERT_INFO.resident.name}"></td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${FAMILY_RELATIONSHIP_CERT_INFO.resident.birthDate}"></td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${FAMILY_RELATIONSHIP_CERT_INFO.resident.residentRegistrationNumber}"></td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${FAMILY_RELATIONSHIP_CERT_INFO.resident.genderCode}"></td>
     </tr>
-    <tr class="table-data">
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">부</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">1999년 12월 30일</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">남</td>
-    </tr>
-    <tr class="table-data">
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">모</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">김준현</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">1999년 12월 30일</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">991230-*******</td>
-      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">남</td>
-    </tr>
+    <div th:each="family : ${FAMILY_RELATIONSHIP_CERT_INFO.familyResidents}">
+      <tr class="table-data">
+        <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${family.familyRelationshipCode}"></td>
+        <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${family.name}"></td>
+        <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${family.birthDate}"></td>
+        <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${family.residentRegistrationNumber}"></td>
+        <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${family.genderCode}"></td>
+      </tr>
+    </div>
   </table>
 </div>
 </body>
