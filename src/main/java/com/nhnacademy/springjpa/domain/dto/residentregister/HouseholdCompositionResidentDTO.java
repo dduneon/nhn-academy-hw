@@ -12,4 +12,8 @@ public class HouseholdCompositionResidentDTO {
   private final String residentRegistrationNumber;
   private final LocalDate reportDate;
   private final String householdCompositionChangeReasonCode;
+
+  public String getResidentRegistrationNumber() {
+    return residentRegistrationNumber.substring(0, 6) + "-*******";
+  }
 }

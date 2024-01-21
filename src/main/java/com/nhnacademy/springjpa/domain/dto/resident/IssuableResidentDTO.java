@@ -15,6 +15,7 @@ import lombok.Setter;
 public class IssuableResidentDTO {
   private int residentSerialNumber;
   private String name;
+  private Integer householdSerialNumber;
   private List<BirthDeathReportResidentDTO> birthDeathReportResident = new ArrayList<>();
   private List<CertificateIssueDTO> certificateIssue = new ArrayList<>();
 

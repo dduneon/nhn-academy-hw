@@ -1,6 +1,7 @@
 package com.nhnacademy.springjpa.domain.dto.death;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -18,5 +19,13 @@ public class DeathReportDTO {
     private final LocalDateTime deathDate;
     private final String deathPlaceCode;
     private final String deathPlaceAddress;
+
+    public String getBirthDate() {
+      return deathDate.format(DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 hh시 mm분"));
+    }
+
+    public String getResidentRegistrationNumber() {
+      return residentRegistrationNumber.substring(0, 6) + "-*******";
+    }
   }
 }
