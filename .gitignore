@@ -12,6 +12,8 @@
 .idea/**/dictionaries
 .idea/**/shelf
 
+.mvn
+
 .idea/vcs.xml
 
 target/
