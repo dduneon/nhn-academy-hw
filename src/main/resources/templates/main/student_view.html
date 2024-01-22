@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>학생 정보 조회</title>
+</head>
+<body>
+<span th:text="이름"></span>: <span th:text="${student.name}"></span> <br />
+<span th:text="이메일"></span>: <span th:text="${student.email}"></span><br />
+<span th:text="점수"></span>: <span th:text="${student.score}"></span><br />
+<span th:text="의견"></span>: <span th:text="${student.comment}"></span><br />
+<br />
+<a th:href="@{/student/{id}/modify(id=${student.id})}"><p>수정하기</p></a><br />
+</body>
+</html>
