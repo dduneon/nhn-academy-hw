@@ -11,11 +11,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "birth_death_report_resident")
 public class BirthDeathReportResident {
   @EmbeddedId
@@ -56,5 +58,19 @@ public class BirthDeathReportResident {
 
     @Column(name = "resident_serial_number")
     private int residentSerialNumber;
+  }
+
+  @Builder
+  public BirthDeathReportResident(PK pk, Resident resident, Resident reportResident,
+      LocalDate birthDeathReportDate, String birthReportQualificationsCode,
+      String deathReportQualificationsCode, String emailAddress, String phoneNumber) {
+    this.pk = pk;
+    this.resident = resident;
+    this.reportResident = reportResident;
+    this.birthDeathReportDate = birthDeathReportDate;
+    this.birthReportQualificationsCode = birthReportQualificationsCode;
+    this.deathReportQualificationsCode = deathReportQualificationsCode;
+    this.emailAddress = emailAddress;
+    this.phoneNumber = phoneNumber;
   }
 }

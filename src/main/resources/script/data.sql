@@ -60,7 +60,7 @@ commit;
 
 
 -- 9. certificate_issue 테이블 데이터 추가
-insert into certificate_issue values(1234567891011121, 4, '가족관계증명서', '20211025');
-insert into certificate_issue values(9876543210987654, 4, '주민등록등본', '20211025');
+insert into certificate_issue values(1000000000000001, 4, '가족관계증명서', '20211025');
+insert into certificate_issue values(1000000000000002, 4, '주민등록등본', '20211025');
 
 commit;

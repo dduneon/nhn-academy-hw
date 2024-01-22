@@ -1,5 +1,7 @@
 package com.nhnacademy.springjpa.config;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.nhnacademy.springjpa.Base;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -30,5 +32,11 @@ public class RootConfig {
     dataSource.setTestWhileIdle(true);
 
     return dataSource;
+  }
+  @Bean
+  public ObjectMapper objectMapper() {
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.registerModule(new JavaTimeModule());
+    return objectMapper;
   }
 }

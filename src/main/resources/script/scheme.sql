@@ -9,7 +9,7 @@ drop table if exists certificate_issue;
 create table if not exists resident
 (
     resident_serial_number       int          not null
-        primary key,
+        primary key auto_increment,
     name                         varchar(100) not null,
     resident_registration_number varchar(300) not null,
     gender_code                  varchar(20)  not null,
@@ -39,7 +39,7 @@ create table if not exists birth_death_report_resident
 create table if not exists certificate_issue
 (
     certificate_confirmation_number bigint      not null
-        primary key,
+        primary key auto_increment,
     resident_serial_number          int         not null,
     certificate_type_code           varchar(20) not null,
     certificate_issue_date          date        not null,
@@ -62,7 +62,7 @@ create table if not exists family_relationship
 create table if not exists household
 (
     household_serial_number           int          not null
-        primary key,
+        primary key auto_increment,
     household_resident_serial_number  int          not null,
     household_composition_date        date         not null,
     household_composition_reason_code varchar(20)  not null,

@@ -31,6 +31,7 @@ public class ResidentRepositoryImpl extends QuerydslRepositorySupport implements
     return from(resident)
         .leftJoin(resident.certificateIssues, certificateIssue)
         .leftJoin(resident.birthDeathReportResidents, birthDeathReportResident)
+        .leftJoin(resident.householdCompositionResidents, householdCompositionResident)
         .select(
             Projections.fields(
                 IssuableResidentDTO.class,

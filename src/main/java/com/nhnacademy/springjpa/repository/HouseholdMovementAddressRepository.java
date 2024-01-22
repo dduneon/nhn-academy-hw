@@ -12,4 +12,6 @@ public interface HouseholdMovementAddressRepository extends JpaRepository<Househ
       + " where hma.pk.householdSerialNumber = ?1"
       + " order by hma.pk.houseMovementReportDate desc ")
   List<HouseMovementAddressLogDTO> findAddressesByPkHouseholdSerialNumber(int householdSerialNumber);
+  HouseholdMovementAddress findFirstByPkHouseholdSerialNumberOrderByPkHouseMovementReportDateDesc(int householdSerialNumber);
+  List<HouseholdMovementAddress> findByPkHouseholdSerialNumberAndLastAddressYn(int householdSerialNumber, String lastAddressYn);
 }

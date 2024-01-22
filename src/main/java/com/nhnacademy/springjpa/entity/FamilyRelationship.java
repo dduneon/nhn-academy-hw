@@ -15,6 +15,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "family_relationship")
 public class FamilyRelationship {
   @EmbeddedId
@@ -43,5 +44,13 @@ public class FamilyRelationship {
     private int familyResidentSerialNumber;
     @Column(name = "base_resident_serial_number")
     private int baseResidentSerialNumber;
+  }
+
+  public FamilyRelationship(Resident baseResident,
+      Resident familyResident, String familyRelationshipCode) {
+    this.pk = new PK(familyResident.getResidentSerialNumber(), baseResident.getResidentSerialNumber());
+    this.familyRelationshipCode = familyRelationshipCode;
+    this.baseResident = baseResident;
+    this.familyResident = familyResident;
   }
 }

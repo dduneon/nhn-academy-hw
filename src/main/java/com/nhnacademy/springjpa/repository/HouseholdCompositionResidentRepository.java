@@ -15,4 +15,5 @@ public interface HouseholdCompositionResidentRepository extends JpaRepository<Ho
       + " on hcr.pk.residentSerialNumber = r.residentSerialNumber"
       + " where hcr.pk.householdSerialNumber = ?1")
   List<HouseholdCompositionResidentDTO> findCompositionResidentsByHouseholdSerialNumber(int householdSerialNumber);
+
 }

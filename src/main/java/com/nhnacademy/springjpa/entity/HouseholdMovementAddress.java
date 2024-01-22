@@ -11,11 +11,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "household_movement_address")
 public class HouseholdMovementAddress {
   @EmbeddedId
@@ -29,6 +32,7 @@ public class HouseholdMovementAddress {
   @Column(name = "house_movement_address")
   private String houseMovementAddress;
   @Column(name = "last_address_yn")
+  @Setter
   private String lastAddressYn;
 
   @Embeddable
@@ -36,10 +40,19 @@ public class HouseholdMovementAddress {
   @AllArgsConstructor
   @EqualsAndHashCode
   @Getter
-  public class PK implements Serializable {
+  public static class PK implements Serializable {
     @Column(name = "house_movement_report_date")
     private LocalDate houseMovementReportDate;
     @Column(name = "household_serial_number")
     private int householdSerialNumber;
+  }
+
+  @Builder
+  public HouseholdMovementAddress(PK pk, Household household, String houseMovementAddress,
+      String lastAddressYn) {
+    this.pk = pk;
+    this.household = household;
+    this.houseMovementAddress = houseMovementAddress;
+    this.lastAddressYn = lastAddressYn;
   }
 }

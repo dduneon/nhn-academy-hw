@@ -1,5 +1,8 @@
 package com.nhnacademy.springjpa.service.Impl;
 
+import com.nhnacademy.springjpa.domain.dto.certlist.CertificationIssueDTO;
+import com.nhnacademy.springjpa.domain.dto.certlist.CertificationIssueInfoDTO;
+import com.nhnacademy.springjpa.domain.dto.certlist.ResidentDTO;
 import com.nhnacademy.springjpa.domain.dto.familyrelationship.BaseResidentDTO;
 import com.nhnacademy.springjpa.domain.dto.familyrelationship.FamilyRelationshipCertificateDTO;
 import com.nhnacademy.springjpa.domain.dto.familyrelationship.FamilyResidentDTO;
@@ -19,6 +22,10 @@ import com.nhnacademy.springjpa.repository.ResidentRepository;
 import com.nhnacademy.springjpa.service.IssueCertificateService;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -89,4 +96,18 @@ public class IssueCertificateServiceImpl implements IssueCertificateService {
     return new FamilyRelationshipCertificateDTO(certificateIssueDTO, baseResident, familyResidents);
   }
 
+  public CertificationIssueDTO getCertificationList(int serialNumber, Pageable pageable) {
+    ResidentDTO resident = residentRepository.findResidentByResidentSerialNumber(serialNumber);
+    List<CertificationIssueInfoDTO> certList = certificateIssueRepository.findByResident_ResidentSerialNumber(serialNumber);
+    PageRequest pageRequest = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize());
+    int start = (int) pageRequest.getOffset();
+    int end = Math.min((start + pageable.getPageSize()), certList.size());
+    Page<CertificationIssueInfoDTO> certPageList = new PageImpl<>(certList.subList(start, end), pageRequest, certList.size());
+
+    return new CertificationIssueDTO(resident, certPageList);
+  }
+
+  public int getCertificationListCount(int serialNumber) {
+    return certificateIssueRepository.countByResident_ResidentSerialNumber(serialNumber);
+  }
 }
