@@ -22,4 +22,8 @@ public class AccountClientService {
   public void createAccount(AccountRequest accountRequest) {
     accountAdaptor.createAccount(accountRequest);
   }
+
+  public void deleteAccount(Long id) {
+    accountAdaptor.deleteAccount(id);
+  }
 }

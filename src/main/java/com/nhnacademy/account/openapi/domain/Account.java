@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Account {
   private Long id;
-  private String number;
+  private String name;
   private Integer balance;
 }

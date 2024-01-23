@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountRequest {
-  private String number;
+  private String name;
   private Integer balance;
 }

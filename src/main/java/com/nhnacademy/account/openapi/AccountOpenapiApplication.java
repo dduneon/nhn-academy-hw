@@ -27,11 +27,17 @@ public class AccountOpenapiApplication {
 	@Bean
 	ApplicationListener<ApplicationReadyEvent> applicationReadyEventApplicationListener() {
 		return event -> {
-			accountClientService.createAccount(new AccountRequest("3333058861", 100000));
+			accountClientService.createAccount(new AccountRequest("김준현", 100000));
+			accountClientService.createAccount(new AccountRequest("김민서", 100000));
+			accountClientService.createAccount(new AccountRequest("김갑식", 100000));
+			accountClientService.createAccount(new AccountRequest("김철수", 100000));
 			accountClientService.getAccounts()
 					.forEach(it -> log.info("multi: {}", it));
-
-			log.info("single: {}", accountClientService.getAccount(2L));
+			// id는 Auto increment 속성을 적용하여 1부터 차례차례 올라갑니당..!
+			accountClientService.deleteAccount(1L);
+			accountClientService.deleteAccount(2L);
+			accountClientService.deleteAccount(3L);
+			accountClientService.deleteAccount(4L);
 		};
 	}
 }
