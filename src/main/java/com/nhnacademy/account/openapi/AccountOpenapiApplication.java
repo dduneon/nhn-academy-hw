@@ -33,11 +33,15 @@ public class AccountOpenapiApplication {
 			accountClientService.createAccount(new AccountRequest("김철수", 100000));
 			accountClientService.getAccounts()
 					.forEach(it -> log.info("multi: {}", it));
-			// id는 Auto increment 속성을 적용하여 1부터 차례차례 올라갑니당..!
-			accountClientService.deleteAccount(1L);
-			accountClientService.deleteAccount(2L);
-			accountClientService.deleteAccount(3L);
-			accountClientService.deleteAccount(4L);
+			// id는 Auto increment 속성을 적용하여 1부터 차례차례 올라가게 설정해뒀기 때문에, 데이터베이스에서 확인 후 delete문을 테스트해주시면 감사하겠습니다.
+			// 현재는 9, 10, 11, 12 라는 ID값을 가진 계좌가 데이터베이스에 존재하는 상태입니다.
+			accountClientService.deleteAccount(9L);
+			accountClientService.deleteAccount(10L);
+			accountClientService.deleteAccount(11L);
+			accountClientService.deleteAccount(12L);
+			log.info("after delete --------------");
+			accountClientService.getAccounts()
+					.forEach(it -> log.info("multi: {}", it));
 		};
 	}
 }
