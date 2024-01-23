@@ -1,0 +1,5 @@
+GET http://localhost:9090/accounts
+
+###
+
+GET http://localhost:9090/accounts/1
