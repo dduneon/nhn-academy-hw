@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import javax.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 @RequestMapping("/accounts")
 @RequiredArgsConstructor
@@ -34,12 +36,18 @@ public class AccountRestController {
   @GetMapping
   @ResponseStatus(HttpStatus.OK)
   public List<Account> getAllAccounts() {
+    List<Account> accounts = accountQueryService.readAllAccounts();
+    for(Account a: accounts) {
+      log.debug("getAllAccounts(): account -> {}, {}", a.getId(), a.getName());
+    }
     return accountQueryService.readAllAccounts();
   }
 
   @GetMapping("/{accountId}")
   @ResponseStatus(HttpStatus.OK)
   public Account getAccount(@PathVariable(name = "accountId") Long accountId) {
+    Account account = accountQueryService.readAccountById(accountId);
+    log.debug("getAccount(): account -> {}, {}", account.getId(), account.getName());
     return accountQueryService.readAccountById(accountId);
   }
 

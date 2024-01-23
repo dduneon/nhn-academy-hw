@@ -7,24 +7,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
+@Getter
 @Table(name = "Account")
 public class Account {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name="id")
   private Long id;
-  @Column(name = "number")
-  private String number;
+  @Column(name = "name")
+  private String name;
   @Column(name = "balance")
   private Integer balance;
 
   @Builder
-  public Account(String number, Integer balance) {
-    this.number = number;
+  public Account(String name, Integer balance) {
+    this.name = name;
     this.balance = balance;
   }
 }

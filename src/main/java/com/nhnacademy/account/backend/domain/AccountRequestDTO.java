@@ -12,7 +12,7 @@ import lombok.Setter;
 public class AccountRequestDTO {
   @NotNull
   @NotEmpty
-  private String number;
+  private String name;
   @NotNull
   private Integer balance;
 }

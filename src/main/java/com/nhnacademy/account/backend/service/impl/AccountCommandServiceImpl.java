@@ -18,7 +18,7 @@ public class AccountCommandServiceImpl implements AccountCommandService {
   @Override
   public Account createAccount(AccountRequestDTO request) {
     Account account = Account.builder()
-        .number(request.getNumber())
+        .name(request.getName())
         .balance(request.getBalance())
         .build();
 
