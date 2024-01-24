@@ -9,7 +9,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class AccountRequestDTO {
+public class AccountRequest {
+  @NotNull
+  private Long id;
   @NotNull
   @NotEmpty
   private String name;

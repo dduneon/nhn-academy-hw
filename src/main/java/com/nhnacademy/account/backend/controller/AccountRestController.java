@@ -1,6 +1,6 @@
 package com.nhnacademy.account.backend.controller;
 
-import com.nhnacademy.account.backend.domain.AccountRequestDTO;
+import com.nhnacademy.account.backend.domain.AccountRequest;
 import com.nhnacademy.account.backend.entity.Account;
 import com.nhnacademy.account.backend.exception.AccountNotFoundException;
 import com.nhnacademy.account.backend.service.AccountCommandService;
@@ -12,7 +12,6 @@ import javax.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -53,12 +52,12 @@ public class AccountRestController {
 
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public void postAccount(@Valid @RequestBody AccountRequestDTO request, BindingResult bindingResult) {
+  public void postAccount(@Valid @RequestBody AccountRequest account, BindingResult bindingResult) {
     if(bindingResult.hasErrors()) {
       throw new ValidationException("입력값 검증이 실패하였습니다");
     }
 
-    accountCommandService.createAccount(request);
+    accountCommandService.createAccount(account);
   }
 
   @DeleteMapping("/{accountId}")

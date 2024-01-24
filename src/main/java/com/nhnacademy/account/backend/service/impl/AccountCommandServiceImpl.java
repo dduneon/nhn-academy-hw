@@ -1,6 +1,6 @@
 package com.nhnacademy.account.backend.service.impl;
 
-import com.nhnacademy.account.backend.domain.AccountRequestDTO;
+import com.nhnacademy.account.backend.domain.AccountRequest;
 import com.nhnacademy.account.backend.entity.Account;
 import com.nhnacademy.account.backend.exception.AccountNotFoundException;
 import com.nhnacademy.account.backend.repository.AccountRepository;
@@ -16,12 +16,11 @@ public class AccountCommandServiceImpl implements AccountCommandService {
   private final AccountRepository accountRepository;
 
   @Override
-  public Account createAccount(AccountRequestDTO request) {
+  public Account createAccount(AccountRequest request) {
     Account account = Account.builder()
+        .id(request.getId())
         .name(request.getName())
-        .balance(request.getBalance())
-        .build();
-
+        .balance(request.getBalance()).build();
     return accountRepository.save(account);
   }
 
