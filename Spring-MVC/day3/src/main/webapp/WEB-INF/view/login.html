@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LOGIN</title>
+</head>
+<body>
+<form method="post" th:action="@{/login}">
+  <span th:text="#{studentId}"></span>: <input type="text" name="id" th:title="#{id}" /><br />
+  <span th:text="#{name}"></span>: <input type="text" name="name" /><br />
+  <input type="submit" th:value="#{login}">
+</form>
+</body>
+</html>
