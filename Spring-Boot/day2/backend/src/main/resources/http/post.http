@@ -1,0 +1,7 @@
+POST http://localhost:9090/accounts
+Content-Type: application/json
+
+{
+  "number": "94450200425819",
+  "balance": 100000000
+}

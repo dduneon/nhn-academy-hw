@@ -1,0 +1,6 @@
+### 존재하지 않는 계좌 삭제
+DELETE http://localhost:9090/accounts/0
+
+###
+
+DELETE http://localhost:9090/accounts/1
