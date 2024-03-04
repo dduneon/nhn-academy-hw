@@ -1,0 +1,15 @@
+POST http://localhost:8080/household
+Content-Type: application/json
+
+{
+  "householdSerialNumber": 2,
+  "householdResidentSerialNumber": 10,
+  "householdCompositionDate": "2023-01-11",
+  "householdCompositionReasonCode": "세대분리",
+  "currentHouseMovementAddress": "광주광역시 쌍촌동 아파트"
+}
+
+###
+
+DELETE http://localhost:8080/household/2
+Content-Type: application/json

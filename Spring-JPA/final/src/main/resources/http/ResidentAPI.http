@@ -1,0 +1,26 @@
+POST http://localhost:8080/residents
+Content-Type: application/json
+
+{
+  "residentSerialNumber": 10,
+  "name": "김준현",
+  "residentRegistrationNumber": "991230-1234567",
+  "genderCode": "남",
+  "birthDate": "1999-12-30 12:40:20",
+  "birthPlaceCode": "병원",
+  "registrationBaseAddress": "광주광역시 서구 쌍촌동"
+}
+
+###
+
+PUT http://localhost:8080/residents/10
+Content-Type: application/json
+
+{
+"name": "김준식",
+"residentRegistrationNumber": "991230-1234567",
+"genderCode": "여",
+"birthDate": "1999-12-30 12:40:20",
+"birthPlaceCode": "병원",
+"registrationBaseAddress": "광주광역시 서구 마륵동"
+}
