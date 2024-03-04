@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.nhnacademy.mart.BuyListTest" time="0" tests="1" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="gopherProxySet" value="false"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/Users/dduneon/dev/NHN_MAIN/Week1/hw/nhn-mart/target/test-classes:/Users/dduneon/dev/NHN_MAIN/Week1/hw/nhn-mart/target/classes:/Users/dduneon/.m2/repository/org/junit/platform/junit-platform-launcher/1.10.0/junit-platform-launcher-1.10.0.jar:/Users/dduneon/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/Users/dduneon/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/dduneon/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/dduneon/.m2/repository/org/junit/vintage/junit-vintage-engine/5.10.0/junit-vintage-engine-5.10.0.jar:/Users/dduneon/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/dduneon/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/dduneon/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/dduneon/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/dduneon/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/dduneon/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Users/dduneon/.m2/repository/org/slf4j/slf4j-api/2.0.7/slf4j-api-2.0.7.jar:/Users/dduneon/.m2/repository/ch/qos/logback/logback-classic/1.4.8/logback-classic-1.4.8.jar:/Users/dduneon/.m2/repository/ch/qos/logback/logback-core/1.4.8/logback-core-1.4.8.jar:"/>
+    <property name="java.vm.vendor" value="Eclipse Adoptium"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="https://adoptium.net/"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="KR"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home/lib"/>
+    <property name="sun.java.command" value="/Users/dduneon/dev/NHN_MAIN/Week1/hw/nhn-mart/target/surefire/surefirebooter15875480070862182188.jar /Users/dduneon/dev/NHN_MAIN/Week1/hw/nhn-mart/target/surefire 2023-09-03T23-27-32_393-jvmRun1 surefire7765003996899063767tmp surefire_018373515929397769722tmp"/>
+    <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="/Users/dduneon/dev/NHN_MAIN/Week1/hw/nhn-mart/target/test-classes:/Users/dduneon/dev/NHN_MAIN/Week1/hw/nhn-mart/target/classes:/Users/dduneon/.m2/repository/org/junit/platform/junit-platform-launcher/1.10.0/junit-platform-launcher-1.10.0.jar:/Users/dduneon/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/Users/dduneon/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/Users/dduneon/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/Users/dduneon/.m2/repository/org/junit/vintage/junit-vintage-engine/5.10.0/junit-vintage-engine-5.10.0.jar:/Users/dduneon/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/dduneon/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/Users/dduneon/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/Users/dduneon/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/Users/dduneon/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/Users/dduneon/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.10.0/junit-jupiter-params-5.10.0.jar:/Users/dduneon/.m2/repository/org/slf4j/slf4j-api/2.0.7/slf4j-api-2.0.7.jar:/Users/dduneon/.m2/repository/ch/qos/logback/logback-classic/1.4.8/logback-classic-1.4.8.jar:/Users/dduneon/.m2/repository/ch/qos/logback/logback-core/1.4.8/logback-core-1.4.8.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/Users/dduneon"/>
+    <property name="user.language" value="ko"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2023-07-18"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/temurin-11.jdk/Contents/Home"/>
+    <property name="file.separator" value="/"/>
+    <property name="basedir" value="/Users/dduneon/dev/NHN_MAIN/Week1/hw/nhn-mart"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/Users/dduneon/dev/NHN_MAIN/Week1/hw/nhn-mart/target/surefire/surefirebooter15875480070862182188.jar"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+    <property name="java.runtime.version" value="11.0.20+8"/>
+    <property name="user.name" value="dduneon"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="13.5.1"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="Temurin-11.0.20+8"/>
+    <property name="localRepository" value="/Users/dduneon/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
+    <property name="java.io.tmpdir" value="/var/folders/qf/z46yq4hn7t93pnz24hjz7hjh0000gn/T/"/>
+    <property name="java.version" value="11.0.20"/>
+    <property name="user.dir" value="/Users/dduneon/dev/NHN_MAIN/Week1/hw/nhn-mart"/>
+    <property name="os.arch" value="aarch64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/Users/dduneon/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Eclipse Adoptium"/>
+    <property name="java.vm.version" value="11.0.20+8"/>
+    <property name="java.specification.maintenance.version" value="2"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="java.class.version" value="55.0"/>
+    <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
+  </properties>
+  <testcase name="buyListitemsTest" classname="com.nhnacademy.mart.BuyListTest" time="0"/>
+</testsuite>
