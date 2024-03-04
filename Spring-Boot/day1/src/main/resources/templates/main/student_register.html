@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>학생 정보 등록</title>
+</head>
+<body>
+<form method="post" th:action="@{/student/register}">
+  <span>이름</span>: <input type="text" name="name" /><br />
+  <span>이메일</span>: <input type="text" name="email" /><br />
+  <span>점수</span>: <input type="text" name="score" /><br />
+  <span>의견</span>: <textarea name="comment" rows="10" cols="80"></textarea><br />
+  <br />
+  <input type="submit" value="등록">
+</form>
+</body>
+</html>
