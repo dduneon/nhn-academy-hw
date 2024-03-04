@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>주민 목록</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .grid-cell {
+      width: 100px;
+      height: 100px;
+    }
+    .table-header {
+      background-color: #f3f4f6; /* Tailwind light gray for light theme */
+    }
+    .table-data {
+      background-color: #ffffff; /* White for light theme */
+    }
+    .blue-text {
+      color: #60a5fa; /* Tailwind blue color */
+    }
+    .red-text {
+      color: #ff0000;
+    }
+    th, td {
+      border: 1px solid #444444;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+<div class="container mx-auto px-4 py-8">
+  <table class="min-w-full divide-y divide-gray-200 mb-8">
+    <thead class="table-header">
+    <tr>
+      <th scope="row" class="px-6 py-5 text-center text-s font-large text-gray-500 uppercase tracking-wider" colspan="7">주민 목록</th>
+    </tr>
+    <tr class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider">
+      <td>
+        이름
+      </td>
+      <td>
+        주민등록등본
+      </td>
+      <td>
+        가족관계증명서
+      </td>
+      <td>
+        출생신고서
+      </td>
+      <td>
+        사망신고서
+      </td>
+      <td>
+        발급목록
+      </td>
+      <td>
+        삭제
+      </td>
+    </tr>
+    </thead>
+    <tbody class="table-body">
+    <!-- data -->
+    <tr th:each="resident : ${CURRENT_PAGE_LIST}">
+      <td class="px-6 py-4 text-center whitespace-nowrap">
+        <p th:text="${resident.name}"></p>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a th:unless="${#strings.isEmpty(resident.householdSerialNumber)}" th:href="@{'/cert/resident/' + ${resident.residentSerialNumber}}">주민등록등본</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a th:href="@{'/cert/family/' + ${resident.residentSerialNumber}}">가족관계증명서</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a th:if="${#strings.toString(resident.birthDeathReportResident).contains('출생')}" th:href="@{'/cert/birth/' + ${resident.residentSerialNumber}}">출생신고서</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a th:if="${#strings.toString(resident.birthDeathReportResident).contains('사망')}" th:href="@{'/cert/death/' + ${resident.residentSerialNumber}}">사망신고서</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text">
+        <a th:if="${#lists.size(resident.certificateIssue) > 0}" th:href="@{'/cert/list/' + ${resident.residentSerialNumber}}">발급목록</a>
+      </td>
+      <td class="px-6 py-4 text-center whitespace-nowrap red-text">
+        <a th:href="@{'/delete/' + ${resident.residentSerialNumber}}">삭제</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+      <!-- 이전 페이지 링크 -->
+<!--      <li th:class="${!residentsPage.hasPrevious() ? 'page-item disabled' : 'page-item'}">-->
+<!--        <a class="page-link" th:href="@{${#httpServletRequest.requestURI}(page=${residentsPage.number - 1})}">Previous</a>-->
+<!--      </li>-->
+      <!-- 페이지 번호 링크 -->
+      <li th:each="pageNumber : ${#numbers.sequence(PAGE_INFO.navigationStartPos, PAGE_INFO.navigationEndPos)}">
+        <a class="page-link" th:href="'/?page=' + ${pageNumber}" th:text="${pageNumber + 1}"></a>
+      </li>
+      <!-- 다음 페이지 링크 -->
+<!--      <li th:class="${!residentsPage.hasNext() ? 'page-item disabled' : 'page-item'}">-->
+<!--        <a class="page-link" th:href="@{${#httpServletRequest.requestURI}(page=${residentsPage.number + 1})}">Next</a>-->
+<!--      </li>-->
+    </ul>
+  </nav>
+</div>
+<!-- Bootstrap 스크립트 추가 -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

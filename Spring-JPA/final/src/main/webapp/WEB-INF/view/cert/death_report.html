@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>사망신고서</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .grid-cell {
+      width: 100px;
+      height: 100px;
+    }
+    .table-header {
+      background-color: #f3f4f6; /* Tailwind light gray for light theme */
+    }
+    .table-data {
+      background-color: #ffffff; /* White for light theme */
+    }
+    .blue-text {
+      color: #60a5fa; /* Tailwind blue color */
+    }
+    th, td {
+      border: 1px solid #444444;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 font-sans antialiased">
+<div class="container mx-auto px-4 py-8">
+  <table class="min-w-full divide-y divide-gray-200 mb-8">
+    <thead class="table-header">
+    <tr>
+      <th scope="row" class="px-6 py-5 text-center text-s font-large text-gray-500 uppercase tracking-wider" colspan="6">사망신고서</th>
+    </tr>
+    </thead>
+    <thead class="table-header">
+    <!-- data -->
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider" colspan="6">
+        신고일 :
+        <span class="blue-text" th:text="${DEATH_REPORT_DATA.deathReportResident.birthDeathReportDate}"></span>
+      </th>
+    </tr>
+    </thead>
+    <tr>
+      <th class="px-1 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" rowspan="4">
+        사망자
+      </th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        성명
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${DEATH_REPORT_DATA.dead.name}">
+      </td>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        주민등록번호
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${DEATH_REPORT_DATA.dead.residentRegistrationNumber}">
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        사망일시
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="3" th:text="${DEATH_REPORT_DATA.dead.deathDate}">
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" rowspan="2">
+        사망장소
+      </th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        구분
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="3"  th:text="${DEATH_REPORT_DATA.dead.deathPlaceCode}">
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        주소
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="3"  th:text="${DEATH_REPORT_DATA.dead.deathPlaceAddress}">
+      </td>
+    </tr>
+    <tr>
+      <th class="px-1 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" rowspan="3">
+        신고인
+      </th>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        성명
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${DEATH_REPORT_DATA.deathReportResident.name}">
+        남기준
+      </td>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        주민등록번호
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${DEATH_REPORT_DATA.deathReportResident.residentRegistrationNumber}">
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        자격
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" colspan="3" th:text="${DEATH_REPORT_DATA.deathReportResident.deathReportQualificationsCode}">
+      </td>
+    </tr>
+    <tr>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header" colspan="2">
+        이메일
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${DEATH_REPORT_DATA.deathReportResident.emailAddress}">
+      </td>
+      <th scope="col" class="px-6 py-3 text-center text-s font-medium text-gray-500 uppercase tracking-wider table-header">
+        전화번호
+      </th>
+      <td class="px-6 py-4 text-center whitespace-nowrap blue-text" th:text="${DEATH_REPORT_DATA.deathReportResident.phoneNumber}">
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
